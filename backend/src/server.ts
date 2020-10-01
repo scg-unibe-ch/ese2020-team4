@@ -10,7 +10,7 @@ import { TodoItem } from './models/todoitem.model';
 import { User } from './models/user.model';
 
 import cors from 'cors';
-import { UserList } from './models/userlist.model';
+import { Role } from './models/role.model';
 
 export class Server {
     private server: Application;
@@ -26,10 +26,10 @@ export class Server {
         TodoItem.createAssociations();
         TodoList.createAssociations();
         User.initialize(this.sequelize);
-        UserList.initialize(this.sequelize);
-        UserList.uBuild();
+        Role.initialize(this.sequelize);
+        Role.uBuild();
         User.createAssociations();
-        UserList.createAssociations();
+        Role.createAssociations();
 
         this.sequelize.sync().then(() => {                           // create connection to the database
             this.server.listen(this.port, () => {                                   // start server on specified port

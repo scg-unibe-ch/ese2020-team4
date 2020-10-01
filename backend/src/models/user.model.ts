@@ -1,9 +1,9 @@
 import { TodoItem, TodoItemAttributes, TodoItemCreationAttributes } from './todoitem.model';
 import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
-import { UserList } from './userlist.model';
+import { Role } from './role.model';
 
 export interface UserAttributes {
-    userListId: number;
+    roleId: number;
     userId: number;
     email: string;
     userName: string;
@@ -20,7 +20,7 @@ export interface UserAttributes {
 export interface UserCreationAttributes extends Optional<UserAttributes, 'userId'> { }
 
 export class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
-    userListId!: number;
+    roleId!: number;
     userId!: number;
     email!: string;
     userName!: string;
@@ -34,7 +34,7 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
 
     public static initialize(sequelize: Sequelize) {
         User.init({
-            userListId: {
+            roleId: {
                 type: DataTypes.INTEGER,
                 defaultValue: 2,
                 allowNull: false
@@ -83,11 +83,11 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
         );
         }
         public static createAssociations() {
-            TodoItem.belongsTo(UserList, {
-                targetKey: 'userListId',
-                as: 'userList',
+            TodoItem.belongsTo(Role, {
+                targetKey: 'roleId',
+                as: 'role',
                 onDelete: 'cascade',
-                foreignKey: 'userListId'
+                foreignKey: 'roleId'
             });
         }
 }
