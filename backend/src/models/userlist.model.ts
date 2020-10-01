@@ -11,13 +11,12 @@ export interface UserListCreationAttributes extends Optional<UserListAttributes,
 export class UserList extends Model<UserListAttributes, UserListCreationAttributes> implements UserListAttributes {
 
     public static associations: {
-        todoItems: Association<UserList, User>;
+        users: Association<UserList, User>;
     };
     userListId!: number;
     name!: string;
 
     public getUserList!: HasManyGetAssociationsMixin<User>;
-    public addUserList!: HasManyAddAssociationMixin<User, number>;
 
     public readonly userItems?: User[];
 
@@ -26,7 +25,6 @@ export class UserList extends Model<UserListAttributes, UserListCreationAttribut
             {
                 userListId: {
                     type: DataTypes.INTEGER,
-                    autoIncrement: true,
                     primaryKey: true
                 },
                 name: {
@@ -34,8 +32,18 @@ export class UserList extends Model<UserListAttributes, UserListCreationAttribut
                     allowNull: false
                 }
             },
-            { tableName: 'userlists', sequelize }
+            { tableName: 'userlists', createdAt: false, updatedAt: true, sequelize }
         );
+    }
+    public static uBuild() {
+        try {
+        UserList.create({userListId: 1, name: 'Administrator'});
+        UserList.create({userListId: 2, name: 'User'});
+        UserList.create({userListId: 3, name: 'Guest'});
+        } catch (error) {
+            alert('UserList already built');
+        }
+
     }
     public static createAssociations() {
         UserList.hasMany(User, {

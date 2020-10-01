@@ -27,6 +27,7 @@ export class Server {
         TodoList.createAssociations();
         User.initialize(this.sequelize);
         UserList.initialize(this.sequelize);
+        UserList.uBuild();
         User.createAssociations();
         UserList.createAssociations();
 
@@ -70,7 +71,7 @@ export class Server {
     private configureSequelize(): Sequelize {
         return new Sequelize({
             dialect: 'sqlite',
-            storage: 'db.sqlite',
+            storage: 'dbNew.sqlite',
             logging: false // can be set to true for debugging
         });
     }

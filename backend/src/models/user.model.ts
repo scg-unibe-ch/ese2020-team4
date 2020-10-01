@@ -3,6 +3,7 @@ import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
 import { UserList } from './userlist.model';
 
 export interface UserAttributes {
+    userListId: number;
     userId: number;
     email: string;
     userName: string;
@@ -12,26 +13,32 @@ export interface UserAttributes {
     gender: string;
     tNumber: string;
     Address: string;
-    userListId: number;
+
 
 }
 
 export interface UserCreationAttributes extends Optional<UserAttributes, 'userId'> { }
 
 export class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
+    userListId!: number;
     userId!: number;
+    email!: string;
     userName!: string;
     password!: string;
-    email!: string;
     firstName!: string;
     lastName!: string;
     gender!: string;
     tNumber!: string;
     Address!: string;
-    userListId!: number;
+
 
     public static initialize(sequelize: Sequelize) {
         User.init({
+            userListId: {
+                type: DataTypes.INTEGER,
+                defaultValue: 2,
+                allowNull: false
+            },
             userId: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
@@ -67,10 +74,6 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
             },
             Address: {
                 type: DataTypes.STRING,
-                allowNull: true
-            },
-            userListId: {
-                type: DataTypes.INTEGER,
                 allowNull: true
             }
 
