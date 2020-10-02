@@ -8,6 +8,7 @@ export interface UserAttributes {
     email: string;
     userName: string;
     password: string;
+    password2: string;
     firstName: string;
     lastName: string;
     gender: string;
@@ -25,6 +26,7 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     email!: string;
     userName!: string;
     password!: string;
+    password2!: string;
     firstName!: string;
     lastName!: string;
     gender!: string;
@@ -53,6 +55,10 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
                 allowNull: false
             },
             password: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            password2: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
