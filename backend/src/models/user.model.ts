@@ -1,4 +1,3 @@
-import { TodoItem, TodoItemAttributes, TodoItemCreationAttributes } from './todoitem.model';
 import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
 import { Role } from './role.model';
 
@@ -8,12 +7,12 @@ export interface UserAttributes {
     email: string;
     userName: string;
     password: string;
-    password2: string;
     firstName: string;
     lastName: string;
     gender: string;
     tNumber: string;
-    Address: string;
+    address: string;
+    wallet: number;
 
 
 }
@@ -26,12 +25,12 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     email!: string;
     userName!: string;
     password!: string;
-    password2!: string;
     firstName!: string;
     lastName!: string;
     gender!: string;
     tNumber!: string;
-    Address!: string;
+    address!: string;
+    wallet!: number;
 
 
     public static initialize(sequelize: Sequelize) {
@@ -58,10 +57,6 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            password2: {
-                type: DataTypes.STRING,
-                allowNull: false
-            },
             firstName: {
                 type: DataTypes.STRING,
                 allowNull: false
@@ -78,18 +73,23 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
                 type: DataTypes.INTEGER,
                 allowNull: true
             },
-            Address: {
+            address: {
                 type: DataTypes.STRING,
+                allowNull: true
+            },
+            wallet: {
+                type: DataTypes.INTEGER,
+                defaultValue: 0,
                 allowNull: true
             }
 
         },
-            {sequelize, tableName: 'users'}
+            {sequelize, tableName: 'user'}
 
         );
         }
         public static createAssociations() {
-            TodoItem.belongsTo(Role, {
+            User.belongsTo(Role, {
                 targetKey: 'roleId',
                 as: 'role',
                 onDelete: 'cascade',

@@ -1,6 +1,5 @@
 import { Optional, Model, HasManyGetAssociationsMixin, HasManyAddAssociationMixin, DataTypes, Sequelize, Association } from 'sequelize';
 import { User } from './user.model';
-import {Op} from 'sequelize';
 
 export interface RoleAttributes {
     roleId: number;
@@ -36,7 +35,6 @@ export class Role extends Model<RoleAttributes, RoleCreationAttributes> implemen
             { tableName: 'role', createdAt: false, updatedAt: false, sequelize }
         );
     }
-
     public static uBuild() {
         Role.findAll().then(x => {
             if (x.length === 0) {
@@ -48,7 +46,7 @@ export class Role extends Model<RoleAttributes, RoleCreationAttributes> implemen
     }
     public static createAssociations() {
         Role.hasMany(User, {
-            as: 'users',
+            as: 'user',
             foreignKey: 'roleId'
         });
     }

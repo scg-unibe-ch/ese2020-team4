@@ -4,7 +4,6 @@ import {Op} from 'sequelize';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { validation } from '../middlewares/fieldsValid';
-import { or } from 'sequelize/types';
 
 export class UserService {
 
