@@ -1,29 +1,65 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>ESE-2020 Frontend Scaffolding</span>
+    <span>ESE-2020 Frontend</span>
   </mat-toolbar-row>
 </mat-toolbar>
 
 <mat-divider></mat-divider>
 
 <mat-tab-group animationDuration="800ms">
-  <mat-tab label="Todo List Example">
+  <mat-tab label="Registration">
+    <br>
+    <br>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
     <mat-card>
-      <mat-form-field>
-        <input matInput placeholder="List Name" [(ngModel)]="newTodoListName" name="name">
+      <mat-form-field appearance="standard">
+        <mat-label>Gender</mat-label>
+        <mat-select>
+          <mat-option value="option">Male</mat-option>
+          <mat-option value="option">Female</mat-option>
+          <mat-option value="option">Other</mat-option>
+        </mat-select>
       </mat-form-field>
-      <button mat-flat-button color="primary" (click)="onListCreate()" [disabled]="newTodoListName === ''">Create new list</button>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="First Name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Last Name">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Address">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Pin Code">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Phone Number">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Country">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Username">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="E-Mail">
+      </mat-form-field>
+      <br>
+      <button mat-flat-button color="primary" (click)="onListCreate()" [disabled]="newTodoListName === '' ">Create Account</button>
     </mat-card>
 
-    <app-todo-list
-      *ngFor="let todoList of todoLists" [todoList]="todoList"
-      (update)="onListUpdate($event)"
-      (delete)="onListDelete($event)"
-    ></app-todo-list>
   </mat-tab>
 
 
-  <mat-tab label="User Login Example">
+  <mat-tab label="Login">
     <app-user-login></app-user-login>
   </mat-tab>
 </mat-tab-group>
