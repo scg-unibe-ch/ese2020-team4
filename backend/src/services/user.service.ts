@@ -9,12 +9,10 @@ import { or } from 'sequelize/types';
 export class UserService {
 
     public register(user: UserAttributes): Promise<unknown> {
-            const saltRounds = 12;
-            user.password = bcrypt.hashSync(user.password, saltRounds); // hashes the password, never store passwords as plaintext
-            // password2 should also get encrypted or just not stored in database!
+
             return validation(user).then(function() {User.create(user).then(inserted => Promise.resolve(inserted)
                 .catch(err => Promise.reject(err))); }).catch(err => Promise.reject(err));
-        }
+    }
 
     public login(loginRequestee: LoginRequest): Promise<User | LoginResponse> {
         const secret = process.env.JWT_SECRET;
