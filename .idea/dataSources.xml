@@ -7,12 +7,6 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/backend/db.sqlite</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="dbNew" uuid="dfb288ec-dbcb-4154-afb0-855d25468742">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/backend/dbNew.sqlite</jdbc-url>
-    </data-source>
     <data-source source="LOCAL" name="dbOld" uuid="25469cc5-74e7-4806-a406-de8d23549e97">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
