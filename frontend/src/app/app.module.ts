@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
@@ -16,8 +16,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { UserLoginComponent } from './user-login/user-login.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { MaterialModule } from './material.module';
+
+
+
 
 @NgModule({
   declarations: [
@@ -32,6 +37,7 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule,
     HttpClientModule,
     MatButtonModule,
+    MaterialModule,
     MatListModule,
     MatInputModule,
     MatCheckboxModule,
@@ -39,7 +45,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatTabsModule,
     MatToolbarModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule,
+    ReactiveFormsModule
+
   ],
   providers: [
     {
@@ -51,5 +60,6 @@ import { MatSelectModule } from '@angular/material/select';
   bootstrap: [
     AppComponent
   ]
+  
 })
 export class AppModule { }
