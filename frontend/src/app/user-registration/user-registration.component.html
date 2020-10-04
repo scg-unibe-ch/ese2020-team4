@@ -1,0 +1,72 @@
+<br>
+<br>
+<p>Please fill in this form to create an account.</p>
+<hr>
+<mat-card>
+  <mat-form-field appearance="standard">
+    <mat-label>Gender</mat-label>
+    <mat-select>
+      <mat-option value="option">Male</mat-option>
+      <mat-option value="option">Female</mat-option>
+      <mat-option value="option">Other</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="First Name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Last Name">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Address">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Pin Code">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Phone Number">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="standard">
+    <mat-label>Country</mat-label>
+    <mat-select>
+      <mat-option value="option">Austria</mat-option>
+      <mat-option value="option">France</mat-option>
+      <mat-option value="option">Germany</mat-option>
+      <mat-option value="option">Italy</mat-option>
+      <mat-option value="option">Switzerland</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Username">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="E-Mail">
+  </mat-form-field>
+  <br>
+  <!--<mat-form-field>
+  <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  <mat-hint *ngIf="!passwordInput.value">Enter your password</mat-hint>
+</mat-form-field>
+<br>
+<mat-form-field>
+  <input matInput placeholder="Repeat Password" [type]="'password'" formControlName="password" required>
+
+  <mat-hint *ngIf="!passwordInput.value">Please repeat your password</mat-hint>
+</mat-form-field>
+<br>
+<br>
+<button mat-flat-button color="primary" (click)="register()">
+  Create Account
+</button>-->
+  <button mat-flat-button color="primary"
+          (click)="register()">Register
+  </button>
+</mat-card>

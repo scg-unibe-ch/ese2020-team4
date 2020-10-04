@@ -3,14 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { TodoList } from './models/todo-list.model';
 import { TodoItem } from './models/todo-item.model';
 import { environment } from '../environments/environment';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-
 export class AppComponent implements OnInit {
   title = 'frontend';
 
@@ -52,14 +50,5 @@ export class AppComponent implements OnInit {
     this.httpClient.delete(environment.endpointURL + 'todolist/' + todoList.listId).subscribe(() => {
       this.todoLists.splice(this.todoLists.indexOf(todoList), 1);
     });
-  }
-
-  signin: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.email, Validators.required ]),
-    password: new FormControl('', [Validators.required, Validators.min(3) ])
-  });s
-  hide = true;
-  get emailInput() { return this.signin.get('email'); }
-  get passwordInput() { return this.signin.get('password'); 
   }
 }
