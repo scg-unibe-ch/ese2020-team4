@@ -19,6 +19,14 @@ export class UserLoginComponent implements OnInit {
 
   constructor(private httpClient: HttpClient) { }
 
+  getUserName() {
+    return this.userName;
+  }
+
+  getToken() {
+    return this.userToken;
+  }
+
   ngOnInit(): void {
     this.checkUserStatus();
   }
