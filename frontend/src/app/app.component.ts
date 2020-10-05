@@ -13,12 +13,26 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export class AppComponent implements OnInit {
   title = 'frontend';
+  gender = '';
+  firstName = '';
+  lastName = '';
+  address = '';
+  pinCode = '';
+  phoneNumber = '';
+  country = '';
+  username = '';
+  email = '';
+  password = '';
 
   newTodoListName = '';
   todoLists: TodoList[] = [];
 
   constructor(private httpClient: HttpClient) {}
 
+  register(): void{
+    
+  }
+  
   // TodoList - CREATE
   onListCreate(): void {
     this.httpClient.post(environment.endpointURL + 'todolist', {

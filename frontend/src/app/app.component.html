@@ -16,9 +16,9 @@
       <mat-form-field appearance="standard">
         <mat-label>Gender</mat-label>
         <mat-select>
-          <mat-option value="option">Male</mat-option>
-          <mat-option value="option">Female</mat-option>
-          <mat-option value="option">Other</mat-option>
+          <mat-option value="male">Male</mat-option>
+          <mat-option value="female">Female</mat-option>
+          <mat-option value="other">Other</mat-option>
         </mat-select>
       </mat-form-field>
       <br>
@@ -44,11 +44,11 @@
       <mat-form-field appearance="standard">
         <mat-label>Country</mat-label>
         <mat-select>
-          <mat-option value="option">Austria</mat-option>
-          <mat-option value="option">France</mat-option>
-          <mat-option value="option">Germany</mat-option>
-          <mat-option value="option">Italy</mat-option>
-          <mat-option value="option">Switzerland</mat-option>
+          <mat-option value="austria">Austria</mat-option>
+          <mat-option value="france">France</mat-option>
+          <mat-option value="germany">Germany</mat-option>
+          <mat-option value="italy">Italy</mat-option>
+          <mat-option value="switzerland">Switzerland</mat-option>
         </mat-select>
       </mat-form-field>
       <br>
@@ -57,7 +57,7 @@
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input matInput placeholder="E-Mail">
+        <input matInput placeholder="E-Mail" required>
       </mat-form-field>
       <br>
       <mat-form-field>
@@ -73,7 +73,7 @@
       </mat-form-field>
       <br>
       <br>
-      <button mat-flat-button color="primary" (click)="register()">
+      <button mat-flat-button color="primary" (click)="onListCreate()">
           Create Account
       </button>
     </mat-card>
