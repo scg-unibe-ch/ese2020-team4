@@ -9,8 +9,9 @@ export class UserService {
 
     public register(user: UserAttributes): Promise<unknown> {
 
-            return validation(user).then(function() {User.create(user).then(inserted => Promise.resolve(inserted)
-                .catch(err => Promise.reject(err))); }).catch(err => Promise.reject(err));
+        const saltRounds = 12;
+        user.password = bcrypt.hashSync(user.password, saltRounds); // hashes the password, never store passwords as plaintext
+        return User.create(user).then(inserted => Promise.resolve(inserted)).catch(err => Promise.reject(err));
     }
 
     public login(loginRequestee: LoginRequest): Promise<User | LoginResponse> {
