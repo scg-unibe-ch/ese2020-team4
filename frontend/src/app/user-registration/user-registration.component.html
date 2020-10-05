@@ -2,7 +2,7 @@
 <br>
 <p>Please fill in this form to create an account.</p>
 <hr>
-<mat-card [formGroup]="signin">
+<mat-card [formGroup]="userForm">
   
   <br>
   <mat-form-field>
@@ -82,8 +82,8 @@
     </tr>
     <tr>
       <td style="padding: 10px">
-        touched : {{signin.touched}}
-        <br/> Form Values : {{signin.value | json}}
+        touched : {{userForm.touched}}
+        <br/> Form Values : {{userForm.value | json}}
       </td>
     </tr>
   </table>

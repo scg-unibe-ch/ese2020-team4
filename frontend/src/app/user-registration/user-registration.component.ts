@@ -11,39 +11,31 @@ import { INT_TYPE } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./user-registration.component.css']
 })
 export class UserRegistrationComponent implements OnInit  {
-  registerForm: FormGroup;
+  userForm: FormGroup;
 
-    signin: FormGroup = new FormGroup({
-    userName: new FormControl(''),
-    email: new FormControl('', [Validators.email, Validators.required ]),
-    password: new FormControl('', [Validators.required, Validators.min(3) ]),
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    tNumber: new FormControl(''),
-    address: new FormControl(''),
-    gender: new FormControl('')
-
-  });
-  
-  ngOnInit(): void{}
-
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
+  secureEndpointResponse = '';
   hide = false;
 
-  get emailInput() { return this.signin.get('email'); }
-  get passwordInput() { return this.signin.get('password'); }
-
-  constructor(private httpClient: HttpClient) { }
-  secureEndpointResponse = '';
+  ngOnInit(){
+    this.userForm = this.formBuilder.group({
+      userName: [''],
+      email: ['', [Validators.email, Validators.required ]],
+      password: ['', [Validators.required, Validators.min(3) ]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      tNumber: [''],
+      address: [''],
+      gender: ['']
+    })
+  }
 
   /**
    * Function to access a secure endpoint that can only be accessed by logged in users by providing their token.
    */
   register(): void {
-    console.log(this.signin.value)
-    this.httpClient.post(environment.endpointURL + 'user/register', {
-      signin: this.signin.value
-
-    }).subscribe((res: any) => {});
+    console.log(this.userForm.value)
+    this.httpClient.post(environment.endpointURL + 'user/register', this.userForm.value).subscribe((res: any) => {});
   }
 
 }
