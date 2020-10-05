@@ -15,19 +15,32 @@ export class UserRegistrationComponent implements OnInit  {
 
   constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
   secureEndpointResponse = '';
-  hide = false;
+  hide = true;
+
+
 
   ngOnInit(){
     this.userForm = this.formBuilder.group({
       userName: [''],
       email: ['', [Validators.email, Validators.required ]],
-      password: ['', [Validators.required, Validators.min(3) ]],
+      password: ['',
+        [Validators.required,
+          Validators.minLength(5),
+        Validators.pattern('^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\\D*\\d)[A-Za-z\\d!$%@#£€*?&]{7,}$')]],
+
+      confirmPassword: [''],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       tNumber: [''],
       address: [''],
       gender: ['']
-    })
+    },{validator: this.checkPassword })
+  }
+
+  checkPassword(formGroup: FormGroup) {
+    const { value: password } = formGroup.get('password');
+    const { value: confirmPassword } = formGroup.get('confirmPassword');
+    return password === confirmPassword ? null : { passwordNotMatch: true };
   }
 
   /**
@@ -38,5 +51,14 @@ export class UserRegistrationComponent implements OnInit  {
     this.httpClient.post(environment.endpointURL + 'user/register', this.userForm.value).subscribe((res: any) => {});
   }
 
-}
+  validForm() {
+    //checks if form is valid
+    if( this.userForm.valid){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 
+}

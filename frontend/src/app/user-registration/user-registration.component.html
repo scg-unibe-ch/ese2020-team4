@@ -1,9 +1,11 @@
+
 <br>
+<p>showButton = {{validForm()}}</p>
 <br>
 <p>Please fill in this form to create an account.</p>
 <hr>
 <mat-card [formGroup]="userForm">
-  
+
   <br>
   <mat-form-field>
     <input matInput placeholder="Username" [type]="'userName'" formControlName="userName" required>
@@ -14,9 +16,13 @@
   </mat-form-field>
   <br>
   <mat-form-field>
-      <input matInput placeholder="Password" [type]="'password'" formControlName="password" required>
+    <input matInput placeholder="Password" [type]="'password'" formControlName="password" required>
   </mat-form-field>
   <br>
+
+  <mat-form-field>
+    <input matInput placeholder="Confirm Password" [type]="'password'" formControlName="confirmPassword" required>
+  </mat-form-field>
 
 
   <br>
@@ -73,6 +79,7 @@
   Create Account
 </button>-->
   <button mat-flat-button color="primary"
+          [disabled] = "!validForm()"
           (click)="register()">Register
   </button>
   <!-- For testing purposes -->
