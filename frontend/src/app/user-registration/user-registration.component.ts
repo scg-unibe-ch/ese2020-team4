@@ -20,7 +20,8 @@ export class UserRegistrationComponent implements OnInit  {
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     tNumber: new FormControl(''),
-    address: new FormControl('')
+    address: new FormControl(''),
+    gender: new FormControl('')
 
   });
   
@@ -41,10 +42,8 @@ export class UserRegistrationComponent implements OnInit  {
     console.log(this.signin.value)
     this.httpClient.post(environment.endpointURL + 'user/register', {
       signin: this.signin.value
-      
-    }).subscribe((res: any) => {
 
-    });
+    }).subscribe((res: any) => {});
   }
 
 }
