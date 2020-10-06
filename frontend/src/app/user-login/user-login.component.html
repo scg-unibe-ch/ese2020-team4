@@ -8,7 +8,8 @@
     </mat-form-field>
     <button mat-flat-button color="primary" (click)="login()">Login</button>
     <br>
-    <button mat-mini-fab-button color="grey">Password reset</button>
+    <button mat-flat-button color="grey">Password reset</button>
+    <button mat-flat-button color="primary"  (click)="newUser()"> SignUp</button>
   </div>
 
   <div *ngIf="loggedIn">
@@ -18,6 +19,7 @@
 </mat-card>
 
 <mat-card>
-  <button mat-flat-button color="primary" (click)="accessSecuredEndpoint()">Access Secure Endpoint (only for logged in users)</button>
+  <button mat-flat-button color="primary" (click)="accessSecuredEndpoint()">Access Secure Endpoint (only for logged in
+    users)</button>
   {{ secureEndpointResponse }}
 </mat-card>
