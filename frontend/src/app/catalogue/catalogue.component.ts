@@ -3,7 +3,7 @@ import { TodoList } from '../models/todo-list.model';
 import { HttpClient } from '@angular/common/http';
 import { TodoItem } from '../models/todo-item.model';
 import { environment } from '../../environments/environment';
-import {UserLoginComponent} from '../user-login/user-login.component'
+import { UserLoginComponent } from '../user-login/user-login.component'
 
 @Component({
   selector: 'app-catalogue',
@@ -25,7 +25,7 @@ export class CatalogueComponent {
   newTodoItemName = '';
   secureEndpointResponse = '';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   onListUpdate(): void {
     // Emits event to parent component that TodoList got updated
@@ -53,7 +53,7 @@ export class CatalogueComponent {
   // Not required since all TodoItems of a TodoList are provided with the list itself
 
   // TodoItem - UPDATE
-  onItemUpdate(todoItem: TodoItem): void{
+  onItemUpdate(todoItem: TodoItem): void {
     this.httpClient.put(environment.endpointURL + 'todoitem/' + todoItem.itemId, {
       name: todoItem.name,
       done: todoItem.done,
@@ -62,12 +62,12 @@ export class CatalogueComponent {
   }
 
   // TodoItem - DELETE
-  onItemDelete(todoItem: TodoItem): void{
+  onItemDelete(todoItem: TodoItem): void {
     this.httpClient.delete(environment.endpointURL + 'todoitem/' + todoItem.itemId).subscribe(() => {
       this.todoList.todoItems.splice(this.todoList.todoItems.indexOf(todoItem), 1);
     });
   }
-  
+
 
 
 }
