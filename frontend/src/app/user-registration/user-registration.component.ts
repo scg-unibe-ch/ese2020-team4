@@ -31,6 +31,9 @@ export class UserRegistrationComponent implements OnInit {
       confirmPassword: [''],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
+      zip: [''],
+      city: [''],
+      country: [''],
       tNumber: [''],
       address: [''],
       gender: ['']

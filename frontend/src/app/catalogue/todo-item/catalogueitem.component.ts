@@ -3,8 +3,8 @@ import { TodoItem } from '../../models/todo-item.model';
 
 @Component({
   selector: 'app-catalogue-item',
-  templateUrl: './todo-item.component.html',
-  styleUrls: ['./todo-item.component.css']
+  templateUrl: './catalogueitem.component.html',
+  styleUrls: ['./catalogueitem.component.css']
 })
 export class TodoItemComponent {
 
