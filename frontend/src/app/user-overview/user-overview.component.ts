@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-user-login',
-  templateUrl: './user-login.component.html',
-  styleUrls: ['./user-login.component.css']
+  selector: 'app-user-overview',
+  templateUrl: './user-overview.component.html',
+  styleUrls: ['./user-overview.component.css']
 })
-export class UserLoginComponent implements OnInit {
+export class UserOverviewComponent implements OnInit {
 
   userName = '';
   password = '';
@@ -19,6 +19,11 @@ export class UserLoginComponent implements OnInit {
 
   constructor(private httpClient: HttpClient) { }
 
+
+
+
+
+  
   getUserName() {
     return this.userName;
   }

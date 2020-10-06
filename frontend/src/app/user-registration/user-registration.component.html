@@ -1,9 +1,11 @@
+
 <br>
+<p>showButton = {{validForm()}}</p>
 <br>
 <p>Please fill in this form to create an account.</p>
 <hr>
-<mat-card [formGroup]="signin">
-  
+<mat-card [formGroup]="userForm">
+
   <br>
   <mat-form-field>
     <input matInput placeholder="Username" [type]="'userName'" formControlName="userName" required>
@@ -14,9 +16,16 @@
   </mat-form-field>
   <br>
   <mat-form-field>
-      <input matInput placeholder="Password" [type]="'password'" formControlName="password" required>
+    <input matInput placeholder="Password" [type]=" hide ? 'password' : 'text'" formControlName="password" required>
+    <mat-icon matSuffix (click) = "hide = !hide">
+      {{hide ? 'visibility_off' : 'visibility'}}
+    </mat-icon>
   </mat-form-field>
   <br>
+
+  <mat-form-field>
+    <input matInput placeholder="Confirm Password" [type]="'password'" formControlName="confirmPassword" required>
+  </mat-form-field>
 
 
   <br>
@@ -37,7 +46,7 @@
   <br>
   <mat-form-field appearance="standard">
     <mat-label>Gender</mat-label>
-    <mat-select>
+    <mat-select formControlName="gender">
       <mat-option value="Male">Male</mat-option>
       <mat-option value="Female">Female</mat-option>
       <mat-option value="Other">Other</mat-option>
@@ -73,6 +82,7 @@
   Create Account
 </button>-->
   <button mat-flat-button color="primary"
+          [disabled] = "!validForm()"
           (click)="register()">Register
   </button>
   <!-- For testing purposes -->
@@ -82,8 +92,8 @@
     </tr>
     <tr>
       <td style="padding: 10px">
-        touched : {{signin.touched}}
-        <br/> Form Values : {{signin.value | json}}
+        touched : {{userForm.touched}}
+        <br/> Form Values : {{userForm.value | json}}
       </td>
     </tr>
   </table>

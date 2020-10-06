@@ -11,41 +11,54 @@ import { INT_TYPE } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./user-registration.component.css']
 })
 export class UserRegistrationComponent implements OnInit  {
-  registerForm: FormGroup;
+  userForm: FormGroup;
 
-    signin: FormGroup = new FormGroup({
-    userName: new FormControl(''),
-    email: new FormControl('', [Validators.email, Validators.required ]),
-    password: new FormControl('', [Validators.required, Validators.min(3) ]),
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    tNumber: new FormControl(''),
-    address: new FormControl('')
-
-  });
-  
-  ngOnInit(): void{}
-
-  hide = false;
-
-  get emailInput() { return this.signin.get('email'); }
-  get passwordInput() { return this.signin.get('password'); }
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
   secureEndpointResponse = '';
+  hide = true;
+
+
+
+  ngOnInit(){
+    this.userForm = this.formBuilder.group({
+      userName: [''],
+      email: ['', [Validators.email, Validators.required ]],
+      password: ['',
+        [Validators.required,
+          Validators.minLength(5),
+        Validators.pattern('^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\\D*\\d)[A-Za-z\\d!$%@#£€*?&]{7,}$')]],
+
+      confirmPassword: [''],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      tNumber: [''],
+      address: [''],
+      gender: ['']
+    },{validator: this.checkPassword })
+  }
+
+  checkPassword(formGroup: FormGroup) {
+    const { value: password } = formGroup.get('password');
+    const { value: confirmPassword } = formGroup.get('confirmPassword');
+    return password === confirmPassword ? null : { passwordNotMatch: true };
+  }
 
   /**
    * Function to access a secure endpoint that can only be accessed by logged in users by providing their token.
    */
   register(): void {
-    console.log(this.signin.value)
-    this.httpClient.post(environment.endpointURL + 'user/register', {
-      signin: this.signin.value
-      
-    }).subscribe((res: any) => {
+    console.log(this.userForm.value)
+    this.httpClient.post(environment.endpointURL + 'user/register', this.userForm.value).subscribe((res: any) => {});
+  }
 
-    });
+  validForm() {
+    //checks if form is valid
+    if( this.userForm.valid){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 
 }
-

@@ -10,8 +10,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {CatalogueComponent} from './catalogue/catalogue.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoItemComponent } from './todo-list/todo-item/todo-item.component';
+import { UserOverviewComponent} from './user-overview/user-overview.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AuthInterceptor } from './auth/auth.interceptor';
@@ -27,7 +29,9 @@ import {MatIconModule} from '@angular/material/icon';
     TodoListComponent,
     TodoItemComponent,
     UserLoginComponent,
-    UserRegistrationComponent
+    UserRegistrationComponent,
+    CatalogueComponent,
+    UserOverviewComponent
   ],
   imports: [
     BrowserModule,
