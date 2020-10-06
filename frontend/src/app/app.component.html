@@ -6,7 +6,7 @@
 
 <mat-divider></mat-divider>
 
-<mat-tab-group animationDuration="800ms">
+<mat-tab-group animationDuration="1ms" staticHeight>
 
   <mat-tab label="Catalogue">
     <app-catalogue></app-catalogue>
@@ -20,7 +20,10 @@
     <app-user-registration></app-user-registration>
   </mat-tab>
 
+  <div *ngIf="!!(loggedIn())">
   <mat-tab label="Overview">
     <app-user-overview></app-user-overview>
   </mat-tab>
+  </div>
+
 </mat-tab-group>

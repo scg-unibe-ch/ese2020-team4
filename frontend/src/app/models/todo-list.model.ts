@@ -6,5 +6,5 @@ export class TodoList {
     public listId: number,
     public name: string,
     public todoItems: TodoItem[]
-  ) {}
+  ) { }
 }

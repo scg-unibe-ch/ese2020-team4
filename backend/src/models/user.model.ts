@@ -11,7 +11,10 @@ export interface UserAttributes {
     lastName: string;
     gender: string;
     tNumber: string;
-    address: string;
+    street: string;
+    zipCode: number;
+    city: string;
+    country: String;
     wallet: number;
 
 
@@ -29,7 +32,10 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     lastName!: string;
     gender!: string;
     tNumber!: string;
-    address!: string;
+    street!: string;
+    zipCode!: number;
+    city!: string;
+    country!: String;
     wallet!: number;
 
 
@@ -73,7 +79,19 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
                 type: DataTypes.INTEGER,
                 allowNull: true
             },
-            address: {
+            street: {
+                type: DataTypes.STRING,
+                allowNull: true
+            },
+            zipCode: {
+                type: DataTypes.NUMBER,
+                allowNull: true
+            },
+            city: {
+                type: DataTypes.STRING,
+                allowNull: true
+            },
+            country: {
                 type: DataTypes.STRING,
                 allowNull: true
             },

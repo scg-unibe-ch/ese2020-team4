@@ -3,7 +3,7 @@ import { LoginResponse, LoginRequest } from '../models/login.model';
 import {Op} from 'sequelize';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { validation } from '../middlewares/fieldsValid';
+
 
 export class UserService {
 
