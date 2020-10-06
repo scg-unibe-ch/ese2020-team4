@@ -22,6 +22,7 @@ import {UserRegistrationComponent} from './user-registration/user-registration.c
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatOptionModule,
     MatSelectModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   providers: [
     {
