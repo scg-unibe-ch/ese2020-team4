@@ -13,6 +13,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {CatalogueComponent} from './catalogue/catalogue.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoItemComponent } from './todo-list/todo-item/todo-item.component';
+import { UserOverviewComponent} from './user-overview/user-overview.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AuthInterceptor } from './auth/auth.interceptor';
@@ -29,7 +30,8 @@ import {MatIconModule} from '@angular/material/icon';
     TodoItemComponent,
     UserLoginComponent,
     UserRegistrationComponent,
-    CatalogueComponent
+    CatalogueComponent,
+    UserOverviewComponent
   ],
   imports: [
     BrowserModule,
