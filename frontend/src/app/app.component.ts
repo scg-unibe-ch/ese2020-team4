@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   newTodoListName = '';
   todoLists: TodoList[] = [];
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   // TodoList - CREATE
   onListCreate(): void {
