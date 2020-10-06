@@ -14,8 +14,7 @@ export class AppComponent implements OnInit {
 
   newTodoListName = '';
   todoLists: TodoList[] = [];
-
-  constructor(private httpClient: HttpClient) { }
+  
   loggedIn() {
     return localStorage.getItem('userToken');
   }
