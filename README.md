@@ -3,6 +3,7 @@ Tunahan Özsoy;
 Julien Brunner;
 Daniel Guggisberg;
 Jasmin Kurtanovik;
+Fabio Suter;
 
 ## About
 This project contains an Angular frontend and an NodeJs backend which uses Express as a framework. The website displays todolists which can be customized with items to complete. Every list and item is saved in a database, meaning they will still be available after you restart the website or the backend. 
