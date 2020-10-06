@@ -1,15 +1,12 @@
 <mat-card [formGroup]="userForm">
-  <span>Registration</span>
-
-  <br>
-  <br>
   <mat-form-field>
     <input matInput placeholder="Username" [type]="'userName'" formControlName="userName" required>
   </mat-form-field>
   <br>
   <mat-form-field>
     <input matInput placeholder="E-Mail" [type]="'email'" formControlName="email" required>
-    <mat-error *ngIf="userForm.get('email').hasError('email') && userForm.get('email').touched">Invalid email format.</mat-error>
+    <mat-error *ngIf="userForm.get('email').hasError('email') && userForm.get('email').touched">Invalid email format.
+    </mat-error>
   </mat-form-field>
   <br>
   <mat-form-field>
@@ -18,14 +15,16 @@
       {{hide ? 'visibility_off' : 'visibility'}}
     </mat-icon>
     <mat-error *ngIf="userForm.get('password').hasError('required') && userForm.get('password').touched"></mat-error>
-    <mat-error *ngIf="userForm.get('password').hasError('pattern') && userForm.get('password').touched">Requires 7 characters a-z, A-Z, @#°§¦...</mat-error>
+    <mat-error *ngIf="userForm.get('password').hasError('pattern') && userForm.get('password').touched">Requires 7
+      characters a-z, A-Z, @#°§¦...</mat-error>
   </mat-form-field>
-  
+
   <br>
 
   <mat-form-field>
     <input matInput placeholder="Confirm Password" [type]="'password'" formControlName="confirmPassword" required>
-    <mat-error *ngIf="userForm.get('confirmPassword').hasError('required') && userForm.get('confirmPassword').touched">Please confirm password</mat-error>
+    <mat-error *ngIf="userForm.get('confirmPassword').hasError('required') && userForm.get('confirmPassword').touched">
+      Please confirm password</mat-error>
   </mat-form-field>
 
 
@@ -68,15 +67,5 @@
 
   <button mat-flat-button color="primary" [disabled]="!validForm()" (click)="register()">Register</button>
 
-  <table>
-    <tr>
-      <th style="padding: 10 px">FormGroup</th>
-    </tr>
-    <tr>
-      <td style="padding: 10px">
-        touched : {{userForm.touched}}
-        <br /> Form Values : {{userForm.value | json}}
-      </td>
-    </tr>
-  </table>
+
 </mat-card>
