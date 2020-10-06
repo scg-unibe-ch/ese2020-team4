@@ -1,8 +1,29 @@
 <mat-card>
-
-</mat-card>
-
-<mat-card>
-  <button mat-flat-button color="primary" (click)="accessSecuredEndpoint()">Access Secure Endpoint (only for logged in users)</button>
-  {{ secureEndpointResponse }}
+  <mat-tab-group animationDuration="800ms">
+    <mat-tab label="Your Products">
+      <br>
+      <button mat-flat-button color="primary">Post new Product</button>
+    </mat-tab>
+  
+    <mat-tab label="Your Advertisements">
+      <br>
+      <button mat-flat-button color="primary">Post new Advertisement</button>
+    </mat-tab>
+    <br>
+    <mat-tab label="Account">
+      <mat-tab-group animationDuration="800ms">
+        <mat-tab label="Account Statistics">
+          <br>
+          <button mat-flat-button color="primary">Test</button>
+        </mat-tab>
+        <mat-tab label="Account Settings">
+          <br>
+          <button mat-flat-button color="primary">Confirm Changes</button>
+          <br>
+          <br>
+          <button mat-flat-button color="primary">Delete Account</button>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-tab>
+  </mat-tab-group>
 </mat-card>
