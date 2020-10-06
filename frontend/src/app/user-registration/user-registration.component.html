@@ -17,7 +17,8 @@
     <mat-icon matSuffix (click)="hide = !hide">
       {{hide ? 'visibility_off' : 'visibility'}}
     </mat-icon>
-    <mat-error *ngIf="userForm.get('password').hasError('pattern') && userForm.get('password').touched">Combination of capital and small letters, numbers, and special characters, at least 7 characters</mat-error>
+    <mat-error *ngIf="userForm.get('password').hasError('required') && userForm.get('password').touched"></mat-error>
+    <mat-error *ngIf="userForm.get('password').hasError('pattern') && userForm.get('password').touched">Requires 7 characters a-z, A-Z, @#°§¦...</mat-error>
   </mat-form-field>
   
   <br>
