@@ -1,10 +1,7 @@
-<br>
-<p>showButton = {{validForm()}}</p>
-<br>
-<p>Please fill in this form to create an account.</p>
-<hr>
 <mat-card [formGroup]="userForm">
+  <span>Registration</span>
 
+  <br>
   <br>
   <mat-form-field>
     <input matInput placeholder="Username" [type]="'userName'" formControlName="userName" required>
@@ -36,11 +33,11 @@
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder="Address" formControlName="address">
+    <input matInput placeholder="Street" formControlName="street">
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder="Zip Code" formControlName="zip">
+    <input matInput placeholder="Zip Code" formControlName="zipCode">
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="City" formControlName="city">

@@ -4,7 +4,6 @@ import { TodoList } from './models/todo-list.model';
 import { TodoItem } from './models/todo-item.model';
 import { environment } from '../environments/environment';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,6 +16,11 @@ export class AppComponent implements OnInit {
   todoLists: TodoList[] = [];
 
   constructor(private httpClient: HttpClient) { }
+  loggedIn() {
+    return localStorage.getItem('userToken');
+  }
+
+  constructor(private httpClient: HttpClient) {}
 
   // TodoList - CREATE
   onListCreate(): void {

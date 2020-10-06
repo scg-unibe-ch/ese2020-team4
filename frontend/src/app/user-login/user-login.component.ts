@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
+
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -19,6 +20,7 @@ export class UserLoginComponent implements OnInit {
 
   constructor(private httpClient: HttpClient) { }
 
+
   getUserName() {
     return this.userName;
   }
@@ -26,6 +28,8 @@ export class UserLoginComponent implements OnInit {
   getToken() {
     return this.userToken;
   }
+
+
 
   ngOnInit(): void {
     this.checkUserStatus();
@@ -71,4 +75,13 @@ export class UserLoginComponent implements OnInit {
       this.secureEndpointResponse = 'Unauthorized';
     });
   }
+
+
+  newUser() {
+    (<HTMLElement>document.querySelectorAll('.mat-tab-label')[2]).click();
+  }
+
+
+
+
 }
