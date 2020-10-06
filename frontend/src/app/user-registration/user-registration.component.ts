@@ -31,8 +31,11 @@ export class UserRegistrationComponent implements OnInit {
       confirmPassword: [''],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
+      street: [''],
+      zipCode: [''],
+      city: [''],
+      country: [''],
       tNumber: [''],
-      address: [''],
       gender: ['']
     }, { validator: this.checkPassword })
   }
