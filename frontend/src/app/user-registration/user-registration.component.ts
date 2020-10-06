@@ -10,7 +10,7 @@ import { INT_TYPE } from '@angular/compiler/src/output/output_ast';
   templateUrl: './user-registration.component.html',
   styleUrls: ['./user-registration.component.css']
 })
-export class UserRegistrationComponent implements OnInit  {
+export class UserRegistrationComponent implements OnInit {
   userForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
@@ -19,13 +19,13 @@ export class UserRegistrationComponent implements OnInit  {
 
 
 
-  ngOnInit(){
+  ngOnInit() {
     this.userForm = this.formBuilder.group({
       userName: [''],
-      email: ['', [Validators.email, Validators.required ]],
+      email: ['', [Validators.email, Validators.required]],
       password: ['',
         [Validators.required,
-          Validators.minLength(5),
+        Validators.minLength(5),
         Validators.pattern('^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\\D*\\d)[A-Za-z\\d!$%@#£€*?&]{7,}$')]],
 
       confirmPassword: [''],
@@ -34,7 +34,7 @@ export class UserRegistrationComponent implements OnInit  {
       tNumber: [''],
       address: [''],
       gender: ['']
-    },{validator: this.checkPassword })
+    }, { validator: this.checkPassword })
   }
 
   checkPassword(formGroup: FormGroup) {
@@ -48,15 +48,15 @@ export class UserRegistrationComponent implements OnInit  {
    */
   register(): void {
     console.log(this.userForm.value)
-    this.httpClient.post(environment.endpointURL + 'user/register', this.userForm.value).subscribe((res: any) => {});
+    this.httpClient.post(environment.endpointURL + 'user/register', this.userForm.value).subscribe((res: any) => { });
   }
 
   validForm() {
     //checks if form is valid
-    if( this.userForm.valid){
+    if (this.userForm.valid) {
       return true;
     }
-    else{
+    else {
       return false;
     }
   }
