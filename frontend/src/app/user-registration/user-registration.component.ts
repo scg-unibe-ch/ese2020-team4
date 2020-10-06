@@ -12,7 +12,6 @@ import { INT_TYPE } from '@angular/compiler/src/output/output_ast';
 })
 export class UserRegistrationComponent implements OnInit {
   userForm: FormGroup;
-
   constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
   secureEndpointResponse = '';
   hide = true;
