@@ -77,8 +77,8 @@ export class UserLoginComponent implements OnInit {
   }
 
 
-  newUser() {
-    (<HTMLElement>document.querySelectorAll('.mat-tab-label')[2]).click();
+  newUser(): void {
+    (<HTMLElement>document.querySelectorAll('.mat-tab-label')[2]).click(); // not safe for changes!
   }
 
 

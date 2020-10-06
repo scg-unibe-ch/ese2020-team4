@@ -20,12 +20,10 @@
     <app-user-registration></app-user-registration>
   </mat-tab>
 
-  <!--<div *ngIf="!!(localStorage.getItem('userToken'))">-->
   <div *ngIf="!!(loggedIn())">
   <mat-tab label="Overview">
     <app-user-overview></app-user-overview>
   </mat-tab>
-  <!--</div>-->
   </div>
 
 </mat-tab-group>
