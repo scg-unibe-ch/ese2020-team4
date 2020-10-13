@@ -1,5 +1,6 @@
-import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
+import { Optional, Model, Sequelize, DataTypes, Association, HasManyAddAssociationMixin, HasManyGetAssociationsMixin } from 'sequelize';
 import { Role } from './role.model';
+import { Item } from './useritem/item.model';
 
 export interface UserAttributes {
     roleId: number;
@@ -23,6 +24,11 @@ export interface UserAttributes {
 export interface UserCreationAttributes extends Optional<UserAttributes, 'userId'> { }
 
 export class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
+
+    public static associations: {
+        item: Association<User, Item>
+    };
+
     roleId!: number;
     userId!: number;
     email!: string;
@@ -38,6 +44,10 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     country!: String;
     wallet!: number;
 
+    public getUserItems!: HasManyGetAssociationsMixin<Item>;
+    public addItem!: HasManyAddAssociationMixin<Item, number>;
+
+    public readonly userItems?: Item[];
 
     public static initialize(sequelize: Sequelize) {
         User.init({
@@ -113,6 +123,11 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
                 onDelete: 'cascade',
                 foreignKey: 'roleId'
             });
+            User.hasMany(Item, {
+                as: 'userItem',
+                foreignKey: 'userId'
+            });
         }
+
 }
 

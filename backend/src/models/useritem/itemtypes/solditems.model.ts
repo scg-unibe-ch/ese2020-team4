@@ -1,7 +1,7 @@
 import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
-import { User } from '../user.model';
+import { User } from '../../user.model';
 
-export interface PostedItemAttributes {
+export interface UserItem {
     userId: number;
     postedItemId: number;
     name: string;
@@ -10,9 +10,9 @@ export interface PostedItemAttributes {
     price: number;
 }
 
-export interface PostedItemCreationAttributes extends Optional<PostedItemAttributes, 'userId'> { }
+export interface SoldItemCreationAttributes extends Optional<UserItem, 'userId'> { }
 
-export class PostedItem extends Model<PostedItemAttributes, PostedItemCreationAttributes> implements PostedItemAttributes {
+export class SoldItem extends Model<UserItem, SoldItemCreationAttributes> implements UserItem {
     userId!: number;
     postedItemId!: number;
     name!: string;
@@ -21,7 +21,7 @@ export class PostedItem extends Model<PostedItemAttributes, PostedItemCreationAt
     price!: number;
 
     public static initialize(sequelize: Sequelize) {
-        PostedItem.init({
+        SoldItem.init({
             userId: {
                 type: DataTypes.INTEGER,
                 allowNull: false
@@ -49,14 +49,14 @@ export class PostedItem extends Model<PostedItemAttributes, PostedItemCreationAt
             },
 
         },
-            {sequelize, tableName: 'postedItem'}
+            {sequelize, tableName: 'soldItem'}
 
         );
         }
         public static createAssociations() {
-            PostedItem.belongsTo(User, {
+            SoldItem.belongsTo(User, {
                 targetKey: 'userId',
-                as: 'userposteditems',
+                as: 'usersolditems',
                 onDelete: 'cascade',
                 foreignKey: 'userId'
             });

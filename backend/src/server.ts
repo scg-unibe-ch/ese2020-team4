@@ -8,7 +8,7 @@ import { Sequelize } from 'sequelize';
 import { TodoList } from './models/todolist.model';
 import { TodoItem } from './models/todoitem.model';
 import { User } from './models/user.model';
-import * as uitems from './models/useritems/index';
+import * as uitems from './models/useritem/index';
 
 import cors from 'cors';
 import { Role } from './models/role.model';
@@ -29,23 +29,25 @@ export class Server {
         TodoList.createAssociations();
         User.initialize(this.sequelize);
         Role.initialize(this.sequelize);
-        Role.uBuild();
+        uitems.Item.initialize(this.sequelize);
         User.createAssociations();
         Role.createAssociations();
+        uitems.Item.createAssociations();
+        Role.uBuild();
 
         // Really ugly right now could be made better with a common Interface
-        uitems.LentItem.initialize(this.sequelize);
-        uitems.PostedItem.initialize(this.sequelize);
-        uitems.PurchasedItem.initialize(this.sequelize);
-        uitems.SoldItem.initialize(this.sequelize);
+        // uitems.LentItem.initialize(this.sequelize);
+        // uitems.PostedItem.initialize(this.sequelize);
+        // uitems.PurchasedItem.initialize(this.sequelize);
+        // uitems.SoldItem.initialize(this.sequelize);
 
-        uitems.LentItem.createAssociations();
-        uitems.PostedItem.createAssociations();
-        uitems.PurchasedItem.createAssociations();
-        uitems.SoldItem.createAssociations();
+        // uitems.LentItem.createAssociations();
+        // uitems.PostedItem.createAssociations();
+        // uitems.PurchasedItem.createAssociations();
+        // uitems.SoldItem.createAssociations();
 
 
-        this.sequelize.sync().then(() => {                           // create connection to the database
+        this.sequelize.sync({alter: true}).then(() => {                           // create connection to the database
             this.server.listen(this.port, () => {                                   // start server on specified port
                 console.log(`server listening at http://localhost:${this.port}`);   // indicate that the server has started
             });

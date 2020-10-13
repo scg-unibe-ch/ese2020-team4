@@ -1,27 +1,29 @@
 import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
-import { User } from '../user.model';
+import { User } from '../../user.model';
 
-export interface PurchasedItemsAttributes {
+export interface LentItemAttributes {
     userId: number;
     postedItemId: number;
     name: string;
     category: string;
     description: string;
+    duration: number;
     price: number;
 }
 
-export interface PurchasedItemCreationAttributes extends Optional<PurchasedItemsAttributes, 'userId'> { }
+export interface LentItemCreationAttributes extends Optional<LentItemAttributes, 'userId'> { }
 
-export class PurchasedItem extends Model<PurchasedItemsAttributes, PurchasedItemCreationAttributes> implements PurchasedItemsAttributes {
+export class LentItem extends Model<LentItemAttributes, LentItemCreationAttributes> implements LentItemAttributes {
     userId!: number;
     postedItemId!: number;
     name!: string;
     category!: string;
     description!: string;
+    duration!: number;
     price!: number;
 
     public static initialize(sequelize: Sequelize) {
-        PurchasedItem.init({
+        LentItem.init({
             userId: {
                 type: DataTypes.INTEGER,
                 allowNull: false
@@ -43,20 +45,24 @@ export class PurchasedItem extends Model<PurchasedItemsAttributes, PurchasedItem
                 type: DataTypes.STRING,
                 allowNull: false
             },
+            duration: {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            },
             price: {
                 type: DataTypes.INTEGER,
                 allowNull: false
             },
 
         },
-            {sequelize, tableName: 'purchasedItem'}
+            {sequelize, tableName: 'lentItem'}
 
         );
         }
         public static createAssociations() {
-            PurchasedItem.belongsTo(User, {
+            LentItem.belongsTo(User, {
                 targetKey: 'userId',
-                as: 'userpurchaseditems',
+                as: 'userlentitems',
                 onDelete: 'cascade',
                 foreignKey: 'userId'
             });

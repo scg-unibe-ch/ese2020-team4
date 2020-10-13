@@ -1,32 +1,33 @@
-import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
+import { Optional, Model, Sequelize, DataTypes, Association, HasManyAddAssociationMixin } from 'sequelize';
 import { User } from '../user.model';
 
-export interface UserItem {
+export interface ItemAttributes {
     userId: number;
-    postedItemId: number;
+    itemId: number;
     name: string;
     category: string;
     description: string;
     price: number;
 }
 
-export interface SoldItemCreationAttributes extends Optional<UserItem, 'userId'> { }
+export interface ItemCreationAttributes extends Optional<Item, 'itemId'> { }
 
-export class SoldItem extends Model<UserItem, SoldItemCreationAttributes> implements UserItem {
+export class Item extends Model<ItemAttributes, ItemCreationAttributes> implements ItemAttributes {
     userId!: number;
-    postedItemId!: number;
+    itemId!: number;
     name!: string;
     category!: string;
     description!: string;
     price!: number;
 
+
     public static initialize(sequelize: Sequelize) {
-        SoldItem.init({
+        Item.init({
             userId: {
                 type: DataTypes.INTEGER,
                 allowNull: false
             },
-            postedItemId: {
+            itemId: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true
@@ -49,17 +50,16 @@ export class SoldItem extends Model<UserItem, SoldItemCreationAttributes> implem
             },
 
         },
-            {sequelize, tableName: 'soldItem'}
+            {sequelize, tableName: 'item'}
 
         );
         }
         public static createAssociations() {
-            SoldItem.belongsTo(User, {
+            Item.belongsTo(User, {
                 targetKey: 'userId',
-                as: 'usersolditems',
+                as: 'userItem',
                 onDelete: 'cascade',
                 foreignKey: 'userId'
             });
         }
 }
-

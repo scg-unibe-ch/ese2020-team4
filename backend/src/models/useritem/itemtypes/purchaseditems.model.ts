@@ -1,29 +1,27 @@
 import { Optional, Model, Sequelize, DataTypes } from 'sequelize';
-import { User } from '../user.model';
+import { User } from '../../user.model';
 
-export interface LentItemAttributes {
+export interface PurchasedItemsAttributes {
     userId: number;
     postedItemId: number;
     name: string;
     category: string;
     description: string;
-    duration: number;
     price: number;
 }
 
-export interface LentItemCreationAttributes extends Optional<LentItemAttributes, 'userId'> { }
+export interface PurchasedItemCreationAttributes extends Optional<PurchasedItemsAttributes, 'userId'> { }
 
-export class LentItem extends Model<LentItemAttributes, LentItemCreationAttributes> implements LentItemAttributes {
+export class PurchasedItem extends Model<PurchasedItemsAttributes, PurchasedItemCreationAttributes> implements PurchasedItemsAttributes {
     userId!: number;
     postedItemId!: number;
     name!: string;
     category!: string;
     description!: string;
-    duration!: number;
     price!: number;
 
     public static initialize(sequelize: Sequelize) {
-        LentItem.init({
+        PurchasedItem.init({
             userId: {
                 type: DataTypes.INTEGER,
                 allowNull: false
@@ -45,24 +43,20 @@ export class LentItem extends Model<LentItemAttributes, LentItemCreationAttribut
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            duration: {
-                type: DataTypes.INTEGER,
-                allowNull: false
-            },
             price: {
                 type: DataTypes.INTEGER,
                 allowNull: false
             },
 
         },
-            {sequelize, tableName: 'lentItem'}
+            {sequelize, tableName: 'purchasedItem'}
 
         );
         }
         public static createAssociations() {
-            LentItem.belongsTo(User, {
+            PurchasedItem.belongsTo(User, {
                 targetKey: 'userId',
-                as: 'userlentitems',
+                as: 'userpurchaseditems',
                 onDelete: 'cascade',
                 foreignKey: 'userId'
             });

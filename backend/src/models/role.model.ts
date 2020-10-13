@@ -32,7 +32,7 @@ export class Role extends Model<RoleAttributes, RoleCreationAttributes> implemen
                     allowNull: false
                 }
             },
-            { tableName: 'role', createdAt: false, updatedAt: false, sequelize }
+            {tableName: 'role', createdAt: false, updatedAt: false, sequelize }
         );
     }
     public static uBuild() {
@@ -42,7 +42,8 @@ export class Role extends Model<RoleAttributes, RoleCreationAttributes> implemen
                 Role.create({roleId: 2, name: 'User'}).catch(error => console.log(error));
                 Role.create({roleId: 3, name: 'Guest'}).catch(error => console.log(error));
             }
-        });
+        }).catch(error => console.error('This is a false error when building a predefined role Table'));
+
     }
     public static createAssociations() {
         Role.hasMany(User, {
