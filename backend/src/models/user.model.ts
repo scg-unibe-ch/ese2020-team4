@@ -3,8 +3,8 @@ import { Role } from './role.model';
 import { Item } from './useritem/item.model';
 
 export interface UserAttributes {
-    roleId: number;
     userId: number;
+    roleName: string;
     email: string;
     userName: string;
     password: string;
@@ -29,8 +29,8 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
         item: Association<User, Item>
     };
 
-    roleId!: number;
     userId!: number;
+    roleName!: string;
     email!: string;
     userName!: string;
     password!: string;
@@ -51,15 +51,15 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
 
     public static initialize(sequelize: Sequelize) {
         User.init({
-            roleId: {
-                type: DataTypes.INTEGER,
-                defaultValue: 2,
-                allowNull: false
-            },
             userId: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true
+            },
+            roleName: {
+                type: DataTypes.STRING,
+                defaultValue: 'User',
+                allowNull: false
             },
             email: {
                 type: DataTypes.STRING,
@@ -112,22 +112,22 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
             }
 
         },
-            {sequelize, tableName: 'user'}
+            { sequelize, tableName: 'user' }
 
         );
-        }
-        public static createAssociations() {
-            User.belongsTo(Role, {
-                targetKey: 'roleId',
-                as: 'role',
-                onDelete: 'cascade',
-                foreignKey: 'roleId'
-            });
-            User.hasMany(Item, {
-                as: 'userItem',
-                foreignKey: 'userId'
-            });
-        }
+    }
+    public static createAssociations() {
+        User.belongsTo(Role, {
+            targetKey: 'name',
+            as: 'role',
+            onDelete: 'cascade',
+            foreignKey: 'name'
+        });
+        User.hasMany(Item, {
+            as: 'userItem',
+            foreignKey: 'userId'
+        });
+    }
 
 }
 

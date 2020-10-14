@@ -27,13 +27,16 @@ export class Server {
         TodoList.initialize(this.sequelize);
         TodoItem.createAssociations();
         TodoList.createAssociations();
-        User.initialize(this.sequelize);
         Role.initialize(this.sequelize);
+        User.initialize(this.sequelize);
         uitems.Item.initialize(this.sequelize);
-        User.createAssociations();
-        Role.createAssociations();
-        uitems.Item.createAssociations();
+
+
         Role.uBuild();
+        Role.createAssociations();
+        User.createAssociations();
+        uitems.Item.createAssociations();
+
 
         // Really ugly right now could be made better with a common Interface
         // uitems.LentItem.initialize(this.sequelize);
@@ -47,7 +50,7 @@ export class Server {
         // uitems.SoldItem.createAssociations();
 
 
-        this.sequelize.sync({alter: true}).then(() => {                           // create connection to the database
+        this.sequelize.sync({alter: true, logging: console.log}).then(() => {                           // create connection to the database
             this.server.listen(this.port, () => {                                   // start server on specified port
                 console.log(`server listening at http://localhost:${this.port}`);   // indicate that the server has started
             });

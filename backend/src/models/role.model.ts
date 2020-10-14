@@ -25,6 +25,7 @@ export class Role extends Model<RoleAttributes, RoleCreationAttributes> implemen
             {
                 roleId: {
                     type: DataTypes.INTEGER,
+                    autoIncrement: true,
                     primaryKey: true
                 },
                 name: {
@@ -32,15 +33,15 @@ export class Role extends Model<RoleAttributes, RoleCreationAttributes> implemen
                     allowNull: false
                 }
             },
-            {tableName: 'role', createdAt: false, updatedAt: false, sequelize }
+            { tableName: 'role', sequelize }
         );
     }
     public static uBuild() {
         Role.findAll().then(x => {
             if (x.length === 0) {
-                Role.create({roleId: 1, name: 'Administrator'}).catch(error => console.log(error));
-                Role.create({roleId: 2, name: 'User'}).catch(error => console.log(error));
-                Role.create({roleId: 3, name: 'Guest'}).catch(error => console.log(error));
+                Role.create({ name: 'Administrator' }).catch(error => console.log(error));
+                Role.create({ name: 'User' }).catch(error => console.log(error));
+                Role.create({ name: 'Guest' }).catch(error => console.log(error));
             }
         }).catch(error => console.error('This is a false error when building a predefined role Table'));
 
@@ -48,7 +49,7 @@ export class Role extends Model<RoleAttributes, RoleCreationAttributes> implemen
     public static createAssociations() {
         Role.hasMany(User, {
             as: 'user',
-            foreignKey: 'roleId'
+            foreignKey: 'name'
         });
     }
 }
