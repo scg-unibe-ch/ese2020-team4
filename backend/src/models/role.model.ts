@@ -25,8 +25,8 @@ export class Role extends Model<RoleAttributes, RoleCreationAttributes> implemen
             {
                 roleId: {
                     type: DataTypes.INTEGER,
-                    autoIncrement: true,
-                    primaryKey: true
+                    primaryKey: true,
+                    autoIncrement: true
                 },
                 name: {
                     type: DataTypes.STRING,
@@ -43,13 +43,13 @@ export class Role extends Model<RoleAttributes, RoleCreationAttributes> implemen
                 Role.create({ name: 'User' }).catch(error => console.log(error));
                 Role.create({ name: 'Guest' }).catch(error => console.log(error));
             }
-        }).catch(error => console.error('This is a false error when building a predefined role Table'));
+        }).catch(error => console.error('Error when building a predefined role Table'));
 
     }
     public static createAssociations() {
         Role.hasMany(User, {
             as: 'user',
-            foreignKey: 'name'
+            foreignKey: 'roleId'
         });
     }
 }

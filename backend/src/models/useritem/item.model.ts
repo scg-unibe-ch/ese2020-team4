@@ -25,7 +25,7 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
         Item.init({
             userId: {
                 type: DataTypes.INTEGER,
-                allowNull: false
+                allowNull: false,
             },
             itemId: {
                 type: DataTypes.INTEGER,
@@ -42,7 +42,7 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
             },
             description: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: true
             },
             price: {
                 type: DataTypes.INTEGER,

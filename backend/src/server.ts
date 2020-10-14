@@ -1,9 +1,6 @@
 import express, { Application , Request, Response } from 'express';
 import morgan from 'morgan';
-import { TodoItemController } from './controllers/todoitem.controller';
-import { TodoListController } from './controllers/todolist.controller';
-import { UserController } from './controllers/user.controller';
-import { SecuredController } from './controllers/secured.controller';
+import {TodoItemController, TodoListController, UserController, SecuredController, ItemController} from './controllers/cindex';
 import { Sequelize } from 'sequelize';
 import { TodoList } from './models/todolist.model';
 import { TodoItem } from './models/todoitem.model';
@@ -49,7 +46,6 @@ export class Server {
         // uitems.PurchasedItem.createAssociations();
         // uitems.SoldItem.createAssociations();
 
-
         this.sequelize.sync({alter: true, logging: console.log}).then(() => {                           // create connection to the database
             this.server.listen(this.port, () => {                                   // start server on specified port
                 console.log(`server listening at http://localhost:${this.port}`);   // indicate that the server has started
@@ -79,6 +75,7 @@ export class Server {
             .use(morgan('tiny'))                    // logs incoming requests
             .use('/todoitem', TodoItemController)   // any request on this path is forwarded to the TodoItemController
             .use('/todolist', TodoListController)
+            .use('/item', ItemController)
             .use('/user', UserController)
             .use('/secured', SecuredController)
             .options('*', cors(options))
@@ -90,7 +87,7 @@ export class Server {
     private configureSequelize(): Sequelize {
         return new Sequelize({
             dialect: 'sqlite',
-            storage: 'dbNew.sqlite',
+            storage: 'dbN.sqlite',
             logging: false // can be set to true for debugging
         });
     }

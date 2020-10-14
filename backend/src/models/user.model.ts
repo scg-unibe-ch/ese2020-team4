@@ -4,7 +4,7 @@ import { Item } from './useritem/item.model';
 
 export interface UserAttributes {
     userId: number;
-    roleName: string;
+    roleId: number;
     email: string;
     userName: string;
     password: string;
@@ -30,7 +30,7 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     };
 
     userId!: number;
-    roleName!: string;
+    roleId!: number;
     email!: string;
     userName!: string;
     password!: string;
@@ -56,9 +56,9 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
                 autoIncrement: true,
                 primaryKey: true
             },
-            roleName: {
-                type: DataTypes.STRING,
-                defaultValue: 'User',
+            roleId: {
+                type: DataTypes.INTEGER,
+                defaultValue: 2,
                 allowNull: false
             },
             email: {
@@ -118,10 +118,10 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     }
     public static createAssociations() {
         User.belongsTo(Role, {
-            targetKey: 'name',
+            targetKey: 'roleId',
             as: 'role',
             onDelete: 'cascade',
-            foreignKey: 'name'
+            foreignKey: 'roleId'
         });
         User.hasMany(Item, {
             as: 'userItem',
