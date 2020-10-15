@@ -11,6 +11,7 @@ import { environment } from '../../environments/environment';
 export class UserLoginComponent implements OnInit {
 
   userName = '';
+  userId = '';
   password = '';
 
   userToken: string;
@@ -47,11 +48,13 @@ export class UserLoginComponent implements OnInit {
   login(): void {
     this.httpClient.post(environment.endpointURL + 'user/login', {
       userName: this.userName,
+      userId: this.userId,
       password: this.password
     }).subscribe((res: any) => {
       // Set user data in local storage
       localStorage.setItem('userToken', res.token);
       localStorage.setItem('userName', res.user.userName);
+      localStorage.setItem('userId', res.user.userId)
 
       this.checkUserStatus();
     });

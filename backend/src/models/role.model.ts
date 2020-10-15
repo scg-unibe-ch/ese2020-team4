@@ -1,4 +1,4 @@
-import { Optional, Model, HasManyGetAssociationsMixin, HasManyAddAssociationMixin, DataTypes, Sequelize, Association } from 'sequelize';
+import { Association, DataTypes, HasManyGetAssociationsMixin, Model, Optional, Sequelize } from 'sequelize';
 import { User } from './user.model';
 
 export interface RoleAttributes {
@@ -26,6 +26,7 @@ export class Role extends Model<RoleAttributes, RoleCreationAttributes> implemen
                 roleId: {
                     type: DataTypes.INTEGER,
                     primaryKey: true,
+                    unique: true,
                     autoIncrement: true
                 },
                 name: {

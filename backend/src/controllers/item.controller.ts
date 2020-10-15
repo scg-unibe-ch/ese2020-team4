@@ -1,10 +1,9 @@
-import express from 'express';
-import { Router, Request, Response } from 'express';
+import express, { Request, Response, Router } from 'express';
 import { Item } from '../models/useritem/item.model';
 
 const itemController: Router = express.Router();
 
-itemController.post('/', (req: Request, res: Response) => {
+itemController.post('/post', (req: Request, res: Response) => {
     Item.create(req.body)
         .then(inserted => res.send(inserted))
         .catch(err => res.status(500).send(err));
@@ -35,6 +34,13 @@ itemController.delete('/:id', (req: Request, res: Response) => {
                 res.sendStatus(404);
             }
         })
+        .catch(err => res.status(500).send(err));
+});
+
+itemController.get('/get/:id', (req: Request, res: Response) => {
+    // this automatically fills each todolist with the according todoitems
+    Item.findAll({where: {userId: req.params.id} })
+        .then(list => res.status(200).send(list))
         .catch(err => res.status(500).send(err));
 });
 

@@ -1,4 +1,4 @@
-export * from './item.controller copy';
+export * from './item.controller';
 export * from './secured.controller';
 export * from './todoitem.controller';
 export * from './todolist.controller';

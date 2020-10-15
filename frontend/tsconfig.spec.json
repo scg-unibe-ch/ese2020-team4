@@ -13,6 +13,6 @@
   ],
   "include": [
     "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts", "src/app/user-overview/user-products/products-list/products-list.ts"
   ]
 }

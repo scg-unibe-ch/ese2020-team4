@@ -1,7 +1,7 @@
 import express, { Application , Request, Response } from 'express';
 import morgan from 'morgan';
 import {TodoItemController, TodoListController, UserController, SecuredController, ItemController} from './controllers/cindex';
-import { Sequelize } from 'sequelize';
+import { BelongsTo, Sequelize } from 'sequelize';
 import { TodoList } from './models/todolist.model';
 import { TodoItem } from './models/todoitem.model';
 import { User } from './models/user.model';
@@ -28,7 +28,6 @@ export class Server {
         User.initialize(this.sequelize);
         uitems.Item.initialize(this.sequelize);
 
-
         Role.uBuild();
         Role.createAssociations();
         User.createAssociations();
@@ -46,11 +45,13 @@ export class Server {
         // uitems.PurchasedItem.createAssociations();
         // uitems.SoldItem.createAssociations();
 
-        this.sequelize.sync({alter: true, logging: console.log}).then(() => {                           // create connection to the database
+        this.sequelize.sync({logging: console.log}).then(() => {                           // create connection to the database
             this.server.listen(this.port, () => {                                   // start server on specified port
                 console.log(`server listening at http://localhost:${this.port}`);   // indicate that the server has started
             });
-        });
+        }).catch(err => console.log(err));
+
+
     }
 
     private configureServer(): Application {

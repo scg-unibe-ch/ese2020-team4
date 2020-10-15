@@ -20,10 +20,6 @@ export class UserOverviewComponent implements OnInit {
   constructor(private httpClient: HttpClient) { }
 
 
-
-
-
-
   getUserName() {
     return this.userName;
   }

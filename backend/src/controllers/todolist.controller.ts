@@ -1,5 +1,4 @@
-import express from 'express';
-import { Router, Request, Response } from 'express';
+import express, { Request, Response, Router } from 'express';
 import { TodoList } from '../models/todolist.model';
 
 const todoListController: Router = express.Router();

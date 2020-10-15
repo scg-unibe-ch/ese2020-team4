@@ -19,6 +19,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { UserLoginComponent } from './user-login/user-login.component';
 import {UserRegistrationComponent} from './user-registration/user-registration.component';
+import {UserProductsComponent} from './user-overview/user-products/user-products.component';
+import {UserItemListComponent} from './user-overview/user-products/products-list/products-list.component';
+import {ProductsFormComponent} from './user-overview/user-products/products-form/products-form.component';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
@@ -31,7 +34,10 @@ import {RouterModule} from "@angular/router";
     TodoItemComponent,
     UserLoginComponent,
     UserRegistrationComponent,
+    UserProductsComponent,
+    ProductsFormComponent,
     CatalogueComponent,
+    UserItemListComponent,
     UserOverviewComponent
   ],
   imports: [

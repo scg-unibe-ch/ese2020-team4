@@ -44,10 +44,10 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     country!: String;
     wallet!: number;
 
-    public getUserItems!: HasManyGetAssociationsMixin<Item>;
+    public getUserItem!: HasManyGetAssociationsMixin<Item>;
     public addItem!: HasManyAddAssociationMixin<Item, number>;
 
-    public readonly userItems?: Item[];
+    public readonly userItem?: Item[];
 
     public static initialize(sequelize: Sequelize) {
         User.init({

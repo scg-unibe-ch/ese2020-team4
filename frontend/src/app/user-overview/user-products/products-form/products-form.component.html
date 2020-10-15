@@ -1,0 +1,21 @@
+<mat-card [formGroup]="itemForm">
+  <h2>Product Registration</h2>
+  <mat-form-field>
+    <input matInput placeholder="name" [type]="'name'" formControlName="name" required>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="category" formControlName="category" required>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="description" formControlName="description">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="price" formControlName="price" required>
+  </mat-form-field>
+  <br>
+  <button mat-flat-button color="primary" [disabled]="!validForm()" (click)="post()">Post</button>
+  <span>Note that Products only get posted after Inspection, but its no actually implemented yet. :D</span>
+</mat-card>

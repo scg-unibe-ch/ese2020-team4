@@ -1,4 +1,4 @@
-import { Optional, Model, Sequelize, DataTypes, Association, HasManyAddAssociationMixin } from 'sequelize';
+import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 import { User } from '../user.model';
 
 export interface ItemAttributes {
@@ -19,7 +19,6 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
     category!: string;
     description!: string;
     price!: number;
-
 
     public static initialize(sequelize: Sequelize) {
         Item.init({
@@ -62,4 +61,8 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
                 foreignKey: 'userId'
             });
         }
+
+    public getUserId() {
+        return this.userId;
+    }
 }
