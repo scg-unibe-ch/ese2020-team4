@@ -40,6 +40,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatDividerModule} from '@angular/material/divider';
 
+// @ts-ignore
 @NgModule({
   exports: [
     CdkTableModule,

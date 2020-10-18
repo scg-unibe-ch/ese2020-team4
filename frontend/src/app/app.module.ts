@@ -26,6 +26,9 @@ import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {RouterModule} from "@angular/router";
+import { DialogComponent } from './dialog/dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import {RouterModule} from "@angular/router";
     ProductsFormComponent,
     CatalogueComponent,
     UserItemListComponent,
-    UserOverviewComponent
+    UserOverviewComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,8 @@ import {RouterModule} from "@angular/router";
     MatSelectModule,
     MatIconModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    MatDialogModule
   ],
   providers: [
     {
@@ -67,6 +72,7 @@ import {RouterModule} from "@angular/router";
   ],
   bootstrap: [
     AppComponent
-  ]
+  ],
+  entryComponents:[DialogComponent]
 })
 export class AppModule { }

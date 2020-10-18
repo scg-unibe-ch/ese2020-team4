@@ -66,6 +66,7 @@
   <br>
 
   <button mat-flat-button color="primary" [disabled]="!validForm()" (click)="register()">Register</button>
+  <mat-error>{{ secureEndpointResponse }}</mat-error>
 
 
 </mat-card>

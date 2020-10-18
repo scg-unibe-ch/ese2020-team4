@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 })
 export class UserLoginComponent implements OnInit {
 
-  userName = '';
+  userName =  '';
   userId = '';
   password = '';
 
@@ -19,22 +19,38 @@ export class UserLoginComponent implements OnInit {
 
   secureEndpointResponse = '';
 
-  constructor(private httpClient: HttpClient) { }
+
+  constructor(private httpClient: HttpClient) {
+
+  }
 
 
-  getUserName() {
+  getUserName(): string {
     return this.userName;
   }
 
-  getToken() {
+  getToken(): string {
     return this.userToken;
   }
+
+  setUserName(userName: string): void{
+    this.userName = userName;
+  }
+
+  setPassword(password: string): void{
+    this.password = password;
+  }
+
 
 
 
   ngOnInit(): void {
     this.checkUserStatus();
   }
+
+  // ngOnChanges(): void {
+  //   this.checkUserStatus();
+  // }
 
   checkUserStatus(): void {
     // Get user data from local storage
@@ -45,6 +61,8 @@ export class UserLoginComponent implements OnInit {
     this.loggedIn = !!(this.userToken);
   }
 
+
+
   login(): void {
     this.httpClient.post(environment.endpointURL + 'user/login', {
       userName: this.userName,
@@ -54,7 +72,7 @@ export class UserLoginComponent implements OnInit {
       // Set user data in local storage
       localStorage.setItem('userToken', res.token);
       localStorage.setItem('userName', res.user.userName);
-      localStorage.setItem('userId', res.user.userId)
+      localStorage.setItem('userId', res.user.userId);
 
       this.checkUserStatus();
     });
@@ -66,6 +84,7 @@ export class UserLoginComponent implements OnInit {
     localStorage.removeItem('userName');
 
     this.checkUserStatus();
+
   }
 
   /**
@@ -81,10 +100,17 @@ export class UserLoginComponent implements OnInit {
 
 
   newUser(): void {
-    (<HTMLElement>document.querySelectorAll('.mat-tab-label')[2]).click(); // not safe for changes!
+    (<HTMLElement> document.querySelectorAll('.mat-tab-label')[2]).click(); // not safe for changes!
   }
 
 
+  test(): string {
+    return 'test123';
+  }
+
+  loggedInMethod(): string {
+    return localStorage.getItem('userToken');
+  }
 
 
 }
