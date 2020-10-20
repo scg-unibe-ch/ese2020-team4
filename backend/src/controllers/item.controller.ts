@@ -25,7 +25,7 @@ itemController.put('/:id', (req: Request, res: Response) => {
 
 });
 
-itemController.delete('/:id', (req: Request, res: Response) => {
+itemController.delete('/delete/:id', (req: Request, res: Response) => {
     Item.findByPk(req.params.id)
         .then(found => {
             if (found != null) {

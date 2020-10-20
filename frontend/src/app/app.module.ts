@@ -27,6 +27,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {RouterModule} from "@angular/router";
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,7 @@ import {RouterModule} from "@angular/router";
     MatSelectModule,
     MatIconModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [
     {

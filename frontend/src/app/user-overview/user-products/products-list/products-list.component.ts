@@ -10,6 +10,7 @@ import { environment } from '../../../../environments/environment';
 })
 export class UserItemListComponent implements OnInit{
   userId = localStorage.getItem("userId");
+  itemId = 0;
   newUserItemName = '';
   tableData : string [];
   constructor(private httpClient: HttpClient) {}
@@ -31,6 +32,12 @@ export class UserItemListComponent implements OnInit{
         console.log(err.message)
     });
   
+  }
+
+  deleteItem(itemId){
+    this.itemId = itemId
+    this.httpClient.delete(environment.endpointURL + 'item/delete/' + this.itemId, {
+    }).subscribe();
   }
 }
 
