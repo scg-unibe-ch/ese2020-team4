@@ -6,10 +6,10 @@ Jasmin Kurtanovik;
 Fabio Suter;
 
 # Available Logins
-Username: Administrator, Password: Admin!123
-Username: User, Password: User!123
+### Username: Administrator, Password: Admin!123
+### Username: User, Password: User!123
 
-If for some reason the Database has to be deleted please restart it 2 times to insert the Default Table Inputs. This will change in the future. :)
+If for some reason the Database has to be deleted please restart the backend twice times to insert the Default Table Data. This will change in the future. :)
 
 ## About
 This project contains an Angular frontend and an NodeJs backend which uses Express as a framework. The website displays todolists which can be customized with items to complete. Every list and item is saved in a database, meaning they will still be available after you restart the website or the backend. 
