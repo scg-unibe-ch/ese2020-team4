@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit, Directive, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, NgControl } from '@angular/forms';
 import { environment } from '../../../../environments/environment';
 
 
@@ -14,19 +14,34 @@ export class ProductsFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
   secureEndpointResponse = '';
   hide = true;
+  flags: boolean[] = [false, false];
+  typeFlag = false;
+  sellLendFlag = false;
+  
   
   ngOnInit() {
     this.itemForm = this.formBuilder.group({
       userId: [localStorage.getItem('userId').toString()],
-      name: [''],
-      category: [''],
-      description: [''],
-      price: ['']
+      title: ['',[Validators.required]],
+      productType: ['',[Validators.required]],
+      transactionType: ['',[Validators.required]],
+      pictureId: [''],
+      location: ['',[Validators.required]],
+      delivery: ['',[Validators.required]],
+      description: ['',[Validators.required]],
+      price: ['',[Validators.required, Validators.min(0), Validators.pattern("^[0-9]*$")]],
+      priceModel: ['']
+    })
+    this.itemForm.patchValue({
+      productType: 'Product',
+      transactionType: 'Sell',
+      priceModel: 'Fixed',
+      delivery: '0'
+
     })
   }
 
   post(): void {
-    console.log(environment.endpointURL)
     console.log(this.itemForm.value)
     this.httpClient.post(environment.endpointURL + 'item/post', this.itemForm.value).subscribe((res: any) => { });
   }
@@ -41,4 +56,16 @@ export class ProductsFormComponent implements OnInit {
     }
   }
 
+  typeChange = (type, param) => {
+    if (type == 0) {
+      this.flags[param] = true;
+    }
+    else {
+      this.flags[param] = false;
+    }
+    } 
+    
+  flagCheck(param): boolean {
+    return this.flags[param]
+  }
 }

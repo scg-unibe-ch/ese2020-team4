@@ -1,19 +1,51 @@
 <mat-card [formGroup]="itemForm">
   <h2>Product Registration</h2>
   <mat-form-field>
-    <input matInput placeholder="name" [type]="'name'" formControlName="name" required>
+    <mat-select matInput placeholder="ProductType" formControlName="productType" required>
+      <mat-option value="Product" (click) = 'typeChange(1, 0)' >Product</mat-option>
+      <mat-option value="Service" (click) = 'typeChange(0, 0)' >Service</mat-option>
+    </mat-select>
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder="category" formControlName="category" required>
+    <mat-select matInput placeholder="TransactionType" formControlName="transactionType" required>
+      <mat-option value="Sell" (click) = 'typeChange(1, 1)'>Sell</mat-option>
+      <mat-option value="Lend" (click) = 'typeChange(0, 1)'>Lend</mat-option>
+    </mat-select>
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder="description" formControlName="description">
+    <input matInput placeholder="Title" [type]="'title'" formControlName="title" required>
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder="price" formControlName="price" required>
+    <input matInput placeholder="Location" formControlName="location" required>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-select matInput placeholder="Delivery" formControlName="delivery" required>
+      <mat-option value="0">False</mat-option>
+      <mat-option  [disableControl]="flagCheck(0)" value="1">True</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Description" formControlName="description" required>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Picture" formControlName="pictureId">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Price" formControlName="price" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select matInput placeholder="Price Model"  formControlName="priceModel" required>
+      <mat-option value="Fixed">Fixed</mat-option>
+      <mat-option  [disableControl]="!flagCheck(1)" value="Hourly">Hourly</mat-option>
+      <mat-option  [disableControl]="!flagCheck(1)" value="Daily">Daily</mat-option>
+    </mat-select>
   </mat-form-field>
   <br>
   <button mat-flat-button color="primary" [disabled]="!validForm()" (click)="post()">Post</button>

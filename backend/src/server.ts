@@ -10,7 +10,6 @@ import * as uitems from './models/useritem/index';
 import cors from 'cors';
 import { Role } from './models/role.model';
 
-
 export class Server {
     private server: Application;
     private sequelize: Sequelize;
@@ -29,9 +28,12 @@ export class Server {
         uitems.Item.initialize(this.sequelize);
 
         Role.uBuild();
+        User.uBuild();
+
         Role.createAssociations();
         User.createAssociations();
         uitems.Item.createAssociations();
+
 
 
         // Really ugly right now could be made better with a common Interface
@@ -45,10 +47,11 @@ export class Server {
         // uitems.PurchasedItem.createAssociations();
         // uitems.SoldItem.createAssociations();
 
-        this.sequelize.sync({logging: console.log}).then(() => {                           // create connection to the database
+        this.sequelize.sync({logging: console.log}).then(() => {
             this.server.listen(this.port, () => {                                   // start server on specified port
-                console.log(`server listening at http://localhost:${this.port}`);   // indicate that the server has started
-            });
+            console.log(`server listening at http://localhost:${this.port}`);
+            })
+            ;
         }).catch(err => console.log(err));
 
 

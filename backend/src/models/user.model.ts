@@ -1,6 +1,8 @@
+import { UserService } from './../services/user.service';
 import { Optional, Model, Sequelize, DataTypes, Association, HasManyAddAssociationMixin, HasManyGetAssociationsMixin } from 'sequelize';
 import { Role } from './role.model';
 import { Item } from './useritem/item.model';
+import bcrypt from 'bcrypt';
 
 export interface UserAttributes {
     userId: number;
@@ -58,8 +60,7 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
             },
             roleId: {
                 type: DataTypes.INTEGER,
-                defaultValue: 2,
-                allowNull: false
+                defaultValue: 2
             },
             email: {
                 type: DataTypes.STRING,
@@ -116,6 +117,25 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
 
         );
     }
+
+    public static uBuild() {
+        User.findAll().then(x => {
+            if (x.length === 0) {
+                User.create({userName: 'Administrator', roleId: 1,
+                email: 'Administrator@hotmail.ch', firstName: 'Ad',
+                lastName: 'min', password: bcrypt.hashSync('Admin!123', 12), gender: 'male',
+                tNumber: '0323223232', street: 'AdminStreet', zipCode: 2222,
+                city: 'Administratium', country: 'BossCountry', wallet: 999999}).catch(error => console.log(error)),
+                User.create({userName: 'User', roleId: 2,
+                email: 'User@hotmail.ch', firstName: 'Us',
+                lastName: 'er', password: bcrypt.hashSync('User!123', 12), gender: 'male',
+                tNumber: '0323223233', street: 'UserStreet', zipCode: 2222,
+                city: 'Userium', country: 'PlebianCountry', wallet: 0}).catch(error => console.log(error));
+            }
+        }).catch(error => console.error('Error when building a predefined role Table'));
+
+    }
+
     public static createAssociations() {
         User.belongsTo(Role, {
             targetKey: 'roleId',

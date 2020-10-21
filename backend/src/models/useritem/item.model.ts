@@ -4,10 +4,19 @@ import { User } from '../user.model';
 export interface ItemAttributes {
     userId: number;
     itemId: number;
-    name: string;
-    category: string;
+    soldToId: number;
+    productType: string;
+    title: string;
+    transactionType: string;
     description: string;
+    pictureId: number;
+    location: string;
+    status: string;
+    delivery: boolean;
+    userReviews: string;
     price: number;
+    priceModel: string;
+    approvedFlag: boolean;
 }
 
 export interface ItemCreationAttributes extends Optional<Item, 'itemId'> { }
@@ -15,10 +24,19 @@ export interface ItemCreationAttributes extends Optional<Item, 'itemId'> { }
 export class Item extends Model<ItemAttributes, ItemCreationAttributes> implements ItemAttributes {
     userId!: number;
     itemId!: number;
-    name!: string;
-    category!: string;
+    soldToId!: number;
+    productType: string;
+    title!: string;
+    transactionType!: string;
     description!: string;
+    pictureId!: number;
+    location!: string;
+    status!: string;
+    delivery!: boolean;
+    userReviews!: string;
     price!: number;
+    priceModel!: string;
+    approvedFlag!: boolean;
 
     public static initialize(sequelize: Sequelize) {
         Item.init({
@@ -31,22 +49,63 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
                 autoIncrement: true,
                 primaryKey: true
             },
-            name: {
+            soldToId: {
+                type: DataTypes.STRING,
+                defaultValue: 0,
+                allowNull: false
+            },
+            productType: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            category: {
+            title: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            transactionType: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
             description: {
                 type: DataTypes.STRING,
+                allowNull: false
+            },
+            pictureId: {
+                type: DataTypes.INTEGER,
                 allowNull: true
+            },
+            location: {
+                type: DataTypes.STRING,
+                allowNull: false
+            },
+            status: {
+                type: DataTypes.STRING,
+                defaultValue: 'Available',
+                allowNull: false
+            },
+            delivery: {
+                type: DataTypes.BOOLEAN,
+                defaultValue: false,
             },
             price: {
                 type: DataTypes.INTEGER,
                 allowNull: false
             },
+            priceModel: {
+                type: DataTypes.STRING,
+                defaultValue: 'Fixed',
+                allowNull: false
+            },
+            approvedFlag: {
+                type: DataTypes.BOOLEAN,
+                defaultValue: 0,
+                allowNull: true
+            },
+            userReviews: {
+                type: DataTypes.STRING,
+                defaultValue: false,
+                allowNull: true
+            }
 
         },
             {sequelize, tableName: 'item'}
