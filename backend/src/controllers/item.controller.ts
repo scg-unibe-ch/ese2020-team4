@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import express, { Request, Response, Router } from 'express';
 import { Item } from '../models/useritem/item.model';
 
@@ -39,7 +40,25 @@ itemController.delete('/delete/:id', (req: Request, res: Response) => {
 
 itemController.get('/get/:id', (req: Request, res: Response) => {
     // this automatically fills each todolist with the according todoitems
-    Item.findAll({where: {userId: req.params.id} })
+    Item.findAll({where: {
+        [Op.and] : [{userId: req.params.id}, {soldToId: 0}]}
+         })
+        .then(list => res.status(200).send(list))
+        .catch(err => res.status(500).send(err));
+});
+
+itemController.get('/getTranBou/:id', (req: Request, res: Response) => {
+    // this automatically fills each todolist with the according todoitems
+    Item.findAll({where: {soldToId: req.params.id} })
+        .then(list => res.status(200).send(list))
+        .catch(err => res.status(500).send(err));
+});
+
+itemController.get('/getTranSol/:id', (req: Request, res: Response) => {
+    // this automatically fills each todolist with the according todoitems
+    Item.findAll({where: {
+        [Op.and] : [{userId: req.params.id}, {soldToId: !0}]}
+         })
         .then(list => res.status(200).send(list))
         .catch(err => res.status(500).send(err));
 });

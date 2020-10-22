@@ -1,3 +1,5 @@
+import { UserSoldComponent } from './user-overview/user-transactions/user-sold/user-sold.component';
+import { UserBoughtComponent } from './user-overview/user-transactions/user-bought/user-bought.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -29,7 +31,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {RouterModule} from "@angular/router";
 import {DisableControlDirective} from './user-overview/user-products/products-form/disableControl';
 import {EditProductsFormComponent} from './user-overview/user-products/products-list/edit-product-form/edit-products-form.component';
-
+import {UserTransactionsComponent} from './user-overview/user-transactions/user-transactions.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,10 @@ import {EditProductsFormComponent} from './user-overview/user-products/products-
     UserItemListComponent,
     UserOverviewComponent,
     DisableControlDirective,
-    EditProductsFormComponent
+    EditProductsFormComponent,
+    UserTransactionsComponent,
+    UserSoldComponent,
+    UserBoughtComponent
   ],
   imports: [
     BrowserModule,
