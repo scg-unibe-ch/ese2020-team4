@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkUserStatus();
-    console.log(this.userName)
   }
 
   checkUserStatus(): void {

@@ -1,3 +1,10 @@
+import { BuyServiceComponent } from './catalogue/catalogue-service-list/buy-dialog/buy-dialog.component';
+import { CatalogueServiceListComponent } from './catalogue/catalogue-service-list/catalogue-service-list.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { BuyDialogComponent } from './catalogue/catalogue-product-list/buy-dialog/buy-dialog.component';
+import { CatalogueProductsListComponent } from './catalogue/catalogue-product-list/catalogue-products-list.component';
 import { UserSoldComponent } from './user-overview/user-transactions/user-sold/user-sold.component';
 import { UserBoughtComponent } from './user-overview/user-transactions/user-bought/user-bought.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -49,7 +56,11 @@ import {UserTransactionsComponent} from './user-overview/user-transactions/user-
     EditProductsFormComponent,
     UserTransactionsComponent,
     UserSoldComponent,
-    UserBoughtComponent
+    UserBoughtComponent,
+    BuyDialogComponent,
+    CatalogueProductsListComponent,
+    CatalogueServiceListComponent,
+    BuyServiceComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +79,10 @@ import {UserTransactionsComponent} from './user-overview/user-transactions/user-
     MatIconModule,
     ReactiveFormsModule,
     RouterModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
   providers: [
     {
