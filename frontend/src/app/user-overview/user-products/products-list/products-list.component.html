@@ -31,7 +31,11 @@
             <td>{{item.delivery}}</td>
             <td>{{item.price}}</td>
             <td>{{item.priceModel}}</td> 
-            <td><button mat-flat-button color="primary" (click)= "deleteItem(item.itemId)">Delete</button></td>
+            <td>
+            <button mat-flat-button color="primary" (click)= "deleteItem(item.itemId)">Delete</button>
+            <pre style="margin:1px;"></pre>
+            <button mat-flat-button color="primary" (click)= "openDialog(item)">Edit</button>
+            </td>
         </tr>
     </table>
     </div>

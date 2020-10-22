@@ -9,6 +9,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
+import {MatDialogModule} from '@angular/material/dialog';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {CatalogueComponent} from './catalogue/catalogue.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
@@ -27,6 +28,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {RouterModule} from "@angular/router";
 import {DisableControlDirective} from './user-overview/user-products/products-form/disableControl';
+import {EditProductsFormComponent} from './user-overview/user-products/products-list/edit-product-form/edit-products-form.component';
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import {DisableControlDirective} from './user-overview/user-products/products-fo
     CatalogueComponent,
     UserItemListComponent,
     UserOverviewComponent,
-    DisableControlDirective
+    DisableControlDirective,
+    EditProductsFormComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import {DisableControlDirective} from './user-overview/user-products/products-fo
     MatIconModule,
     ReactiveFormsModule,
     RouterModule,
+    MatDialogModule
   ],
   providers: [
     {
