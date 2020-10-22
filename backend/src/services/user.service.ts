@@ -29,7 +29,7 @@ export class UserService {
                 }
                 return User.create(user).then(inserted => Promise.resolve(inserted)).catch(err => Promise.reject(err));
             })
-            .catch(err => Promise.reject({ message: err}));
+            .catch(err =>  Promise.reject({ message: err}));
     }
 
     public login(loginRequestee: LoginRequest): Promise<User | LoginResponse> {
@@ -53,4 +53,5 @@ export class UserService {
     public getAll(): Promise<User[]> {
         return User.findAll();
     }
+
 }

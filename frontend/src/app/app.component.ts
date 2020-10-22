@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { TodoList } from './models/todo-list.model';
 import { TodoItem } from './models/todo-item.model';
 import { environment } from '../environments/environment';
+import {UserLoginComponent} from "./user-login/user-login.component";
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,10 @@ export class AppComponent implements OnInit {
 
   loggedIn(): string {
     return localStorage.getItem('userToken');
+  }
+
+  isAdmin(): boolean {
+    return Number(localStorage.getItem('roleId'))  === 1;
   }
 
   constructor(private httpClient: HttpClient) {}

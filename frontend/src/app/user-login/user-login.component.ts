@@ -1,5 +1,5 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 
@@ -10,19 +10,24 @@ import { environment } from '../../environments/environment';
 })
 export class UserLoginComponent implements OnInit {
 
+
+
+  constructor(private httpClient: HttpClient) {
+
+  }
+
   userName =  '';
   userId = '';
   password = '';
 
   userToken: string;
   loggedIn = false;
+  admin = false;
+  roleId = '';
+
 
   secureEndpointResponse = '';
 
-
-  constructor(private httpClient: HttpClient) {
-
-  }
 
 
   getUserName(): string {
@@ -59,6 +64,10 @@ export class UserLoginComponent implements OnInit {
 
     // Set boolean whether a user is logged in or not
     this.loggedIn = !!(this.userToken);
+
+    this.isAdmin();
+
+
   }
 
 
@@ -73,6 +82,7 @@ export class UserLoginComponent implements OnInit {
       localStorage.setItem('userToken', res.token);
       localStorage.setItem('userName', res.user.userName);
       localStorage.setItem('userId', res.user.userId);
+      localStorage.setItem('roleId', res.user.roleId);
 
       this.checkUserStatus();
     });
@@ -82,6 +92,8 @@ export class UserLoginComponent implements OnInit {
     // Remove user data from local storage
     localStorage.removeItem('userToken');
     localStorage.removeItem('userName');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('roleId');
 
     this.checkUserStatus();
 
@@ -112,5 +124,19 @@ export class UserLoginComponent implements OnInit {
     return localStorage.getItem('userToken');
   }
 
+  isAdmin(): void {
 
+    this.userId = localStorage.getItem('userId');
+    this.httpClient.get(environment.endpointURL + 'user/isAdmin/' + this.userId, {
+    }).subscribe((res: any) => {
+      this.admin =  res as boolean; //answer as boolean;
+    }, (err: HttpErrorResponse) => {
+      console.log(err.message);
+      this.admin = false;
+
+    });
+
+
+
+  }
 }

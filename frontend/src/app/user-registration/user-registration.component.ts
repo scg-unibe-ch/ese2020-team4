@@ -49,7 +49,7 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   register(): void {
-    console.log(this.userForm.value)
+    console.log(this.userForm.value);
     this.httpClient.post(environment.endpointURL + 'user/register', this.userForm.value).subscribe((res: any) => {
 
 
@@ -62,7 +62,9 @@ export class UserRegistrationComponent implements OnInit {
 
     }, (err: any) => {
 
-     this.secureEndpointResponse = err.error.message; // not able to access message "field" of error
+
+      //console.log(err.error.message.message);
+      this.secureEndpointResponse = err.error.message.message; // not able to access message "field" of error
 
     });
   }

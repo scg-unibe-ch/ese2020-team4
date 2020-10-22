@@ -28,4 +28,10 @@
   </mat-tab>
   </div>
 
+  <div *ngIf="!!(isAdmin())">
+    <mat-tab label="Admin Overview">
+      <app-user-overview></app-user-overview>
+    </mat-tab>
+  </div>
+
 </mat-tab-group>
