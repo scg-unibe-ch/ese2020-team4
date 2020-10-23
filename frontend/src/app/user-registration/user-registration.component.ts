@@ -14,9 +14,8 @@ export class UserRegistrationComponent implements OnInit {
   userForm: FormGroup;
   constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
   secureEndpointResponse = '';
+  registered = false;
   hide = true;
-
-
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
@@ -46,6 +45,7 @@ export class UserRegistrationComponent implements OnInit {
   register(): void {
     console.log(this.userForm.value)
     this.httpClient.post(environment.endpointURL + 'user/register', this.userForm.value).subscribe((res: any) => { });
+    this.registered = true;
   }
 
   validForm(): boolean {
@@ -57,5 +57,4 @@ export class UserRegistrationComponent implements OnInit {
       return false;
     }
   }
-
 }
