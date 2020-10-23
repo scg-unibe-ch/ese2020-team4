@@ -34,4 +34,10 @@
   </mat-tab>
   </div>
 
+  <div *ngIf="!!(loggedIn())">
+    <mat-tab label="Admin Overview">
+      <app-admin-overview></app-admin-overview>
+    </mat-tab>
+  </div>
+
 </mat-tab-group>

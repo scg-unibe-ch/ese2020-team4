@@ -15,7 +15,7 @@ import { environment } from '../../../../environments/environment';
 export class BuyServiceComponent {
   itemForm: FormGroup;
   public constructor(public dialogRef: MatDialogRef<BuyServiceComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ItemData, private httpClient: HttpClient) { 
+    @Inject(MAT_DIALOG_DATA) public data: ItemData, private httpClient: HttpClient) {
   }
   secureEndpointResponse = '';
   hide = true;
