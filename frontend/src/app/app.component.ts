@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   userName = "";
 
   constructor(private httpClient: HttpClient) {}
-  
+
   loggedIn() {
     this.checkUserStatus();
     return localStorage.getItem('userToken');
@@ -23,6 +23,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkUserStatus();
+  }
+
+  isAdmin(): boolean {
+    return Number(localStorage.getItem('roleId'))  === 1;
   }
 
   checkUserStatus(): void {

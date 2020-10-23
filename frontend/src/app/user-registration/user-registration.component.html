@@ -1,82 +1,72 @@
 <mat-card [formGroup]="userForm">
-  <div *ngIf="registered">
-    <div class="alert alert-success alert-dismissible">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>Success!</strong> Your account has been successfully created. Please go to Login page to proceed.
-    </div>
-  </div>
+  <mat-form-field>
+    <input matInput placeholder="Username" [type]="'userName'" formControlName="userName" required>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="E-Mail" [type]="'email'" formControlName="email" required>
+    <mat-error *ngIf="userForm.get('email').hasError('email') && userForm.get('email').touched">Invalid email format.
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Password" [type]=" hide ? 'password' : 'text'" formControlName="password" required>
+    <mat-icon matSuffix (click)="hide = !hide">
+      {{hide ? 'visibility_off' : 'visibility'}}
+    </mat-icon>
+    <mat-error *ngIf="userForm.get('password').hasError('required') && userForm.get('password').touched"></mat-error>
+    <mat-error *ngIf="userForm.get('password').hasError('pattern') && userForm.get('password').touched">Requires 7
+      characters a-z, A-Z, @#°§¦...</mat-error>
+  </mat-form-field>
 
-  <div>
-    <mat-form-field>
-      <input matInput placeholder="Username" [type]="'userName'" formControlName="userName" required>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <input matInput placeholder="E-Mail" [type]="'email'" formControlName="email" required>
-      <mat-error *ngIf="userForm.get('email').hasError('email') && userForm.get('email').touched">Invalid email format.
-      </mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <input matInput placeholder="Password" [type]=" hide ? 'password' : 'text'" formControlName="password" required>
-      <mat-icon matSuffix (click)="hide = !hide">
-        {{hide ? 'visibility_off' : 'visibility'}}
-      </mat-icon>
-      <mat-error *ngIf="userForm.get('password').hasError('required') && userForm.get('password').touched"></mat-error>
-      <mat-error *ngIf="userForm.get('password').hasError('pattern') && userForm.get('password').touched">Requires 7
-        characters a-z, A-Z, @#°§¦...</mat-error>
-    </mat-form-field>
+  <br>
 
-    <br>
-
-    <mat-form-field>
-      <input matInput placeholder="Confirm Password" [type]="'password'" formControlName="confirmPassword" required>
-      <mat-error
-        *ngIf="userForm.get('confirmPassword').hasError('required') && userForm.get('confirmPassword').touched">
-        Please confirm password</mat-error>
-    </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Confirm Password" [type]="'password'" formControlName="confirmPassword" required>
+    <mat-error *ngIf="userForm.get('confirmPassword').hasError('required') && userForm.get('confirmPassword').touched">
+      Please confirm password</mat-error>
+  </mat-form-field>
 
 
-    <br>
-    <mat-form-field>
-      <input matInput placeholder="First Name" [type]="'firstName'" formControlName="firstName" required>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Last Name" [type]="'lastName'" formControlName="lastName" required>
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <input matInput placeholder="Street" formControlName="street">
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <input matInput placeholder="Zip Code" formControlName="zipCode">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="City" formControlName="city">
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <input matInput placeholder="Country" formControlName="country">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Phone Number" formControlName="tNumber">
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="standard">
-      <mat-label>Gender</mat-label>
-      <mat-select formControlName="gender">
-        <mat-option value="Male">Male</mat-option>
-        <mat-option value="Female">Female</mat-option>
-        <mat-option value="Other">Other</mat-option>
-      </mat-select>
-    </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="First Name" [type]="'firstName'" formControlName="firstName" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Last Name" [type]="'lastName'" formControlName="lastName" required>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Street" formControlName="street">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Zip Code" formControlName="zipCode">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="City" formControlName="city">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Country" formControlName="country">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Phone Number" formControlName="tNumber">
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="standard">
+    <mat-label>Gender</mat-label>
+    <mat-select formControlName="gender">
+      <mat-option value="Male">Male</mat-option>
+      <mat-option value="Female">Female</mat-option>
+      <mat-option value="Other">Other</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <br>
+  <br>
 
-    <button mat-flat-button color="primary" [disabled]="!validForm()"
-      (click)="register(); this.userForm.reset()">Register</button>
-  </div>
+  <button mat-flat-button color="primary" [disabled]="!validForm()" (click)="register()">Register</button>
+
 
 
 </mat-card>
