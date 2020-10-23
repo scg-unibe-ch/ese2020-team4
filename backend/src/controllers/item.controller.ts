@@ -84,6 +84,8 @@ itemController.get('/get/:id', (req: Request, res: Response) => {
         .catch(err => res.status(500).send(err));
 });
 
+
+
 itemController.get('/getTranBou/:id', (req: Request, res: Response) => {
     // this automatically fills each todolist with the according todoitems
     Item.findAll({where: {soldToId: req.params.id} })
@@ -99,5 +101,28 @@ itemController.get('/getTranSol/:id', (req: Request, res: Response) => {
         .then(list => res.status(200).send(list))
         .catch(err => res.status(500).send(err));
 });
+
+itemController.get('/getAllItems', (req: Request, res: Response) => {
+    // this automatically fills each todolist with the according todoitems
+    Item.findAll()
+        .then(list => res.status(200).send(list))
+        .catch(err => res.status(500).send(err));
+});
+
+itemController.post('/changeFlag/:id', (req: Request, res: Response) => {
+    Item.findByPk(req.params.id)
+        .then(found => {
+            if (found != null) {
+                found.update({approvedFlag : !(found.approvedFlag)}).then(updated => {
+                    res.status(200).send(updated);
+                });
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(err => res.status(500).send(err));
+});
+
+
 
 export const ItemController: Router = itemController;

@@ -12,4 +12,6 @@ export interface Item {
     userReviews: string;
     price: number;
     priceModel: string;
+    approvedFlag: boolean;
 }
+

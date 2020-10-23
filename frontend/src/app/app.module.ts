@@ -39,6 +39,11 @@ import {RouterModule} from "@angular/router";
 import {DisableControlDirective} from './user-overview/user-products/products-form/disableControl';
 import {EditProductsFormComponent} from './user-overview/user-products/products-list/edit-product-form/edit-products-form.component';
 import {UserTransactionsComponent} from './user-overview/user-transactions/user-transactions.component';
+import { AdminOverviewComponent } from './admin-overview/admin-overview.component';
+import { UserListComponent } from './admin-overview/user-list/user-list.component';
+import { ProductListComponent } from './admin-overview/product-list/product-list.component';
+import { DeleteDialogComponent } from './admin-overview/user-list/delete-dialog/delete-dialog.component';
+import { ApprovmentDialogComponent } from './admin-overview/product-list/approvment-dialog/approvment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +65,12 @@ import {UserTransactionsComponent} from './user-overview/user-transactions/user-
     BuyDialogComponent,
     CatalogueProductsListComponent,
     CatalogueServiceListComponent,
-    BuyServiceComponent
+    BuyServiceComponent,
+    AdminOverviewComponent,
+    UserListComponent,
+    ProductListComponent,
+    DeleteDialogComponent,
+    ApprovmentDialogComponent
   ],
   imports: [
     BrowserModule,
