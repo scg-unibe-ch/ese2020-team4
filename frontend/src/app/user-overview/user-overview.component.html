@@ -11,6 +11,11 @@
       <mat-tab-group animationDuration="1ms" staticHeight>
         <mat-tab label="Account Statistics">
           <br>
+          <div *ngIf="loggedIn">
+            <button mat-flat-button color="warn" (click)="logout()">Logout</button>
+            You are currently logged in as {{ userName }}
+          </div>
+          <br>
           <button mat-flat-button color="primary">Test</button>
         </mat-tab>
         <mat-tab label="Account Settings">
