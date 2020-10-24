@@ -48,8 +48,10 @@
         <mat-option  [disableControl]="!flagCheck(1)" value="Daily">Daily</mat-option>
       </mat-select>
     </mat-form-field>
-    <br>
-    <button mat-flat-button color="primary" [disabled]="!validForm()" (click)="edit()">Edit</button>
-    <pre style="margin:6px;"></pre>
-    <span>Your Product will need to undergo approval again</span>
 </div>
+<br>
+
+<button class="button" mat-flat-button color="primary" [disabled]="!validForm()" (click)="edit()">Edit</button>
+<button class="buttonR" mat-flat-button color="primary" (click)="close()">Cancel</button>
+<pre style="margin:6px;"></pre>
+<h5>Your Product will need to undergo approval again!</h5>

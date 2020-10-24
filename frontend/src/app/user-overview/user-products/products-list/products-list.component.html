@@ -1,48 +1,82 @@
-<script>
-  
-</script>
-<mat-card>
-  <div style="text-align:left;width:500px;">
-    <h2>
-        Your Products
-    </h2>
-    <div class="container">
-    <table *ngIf="tableData">
-        <tr>
-            <th>ProductType</th>
-            <th>TransactionType</th>
-            <th>Title</th>
-            <th>Location</th>
-            <th>Status</th>
-            <th>Description</th>
-            <th>Delivery</th>
-            <th>Price</th>
-            <th>Price Model</th>
-            <th>Options</th>
-        </tr>
 
-        <tr *ngFor="let item of tableData" [attr.id]= "item.itemId">
-            <td>{{item.productType}}</td>
-            <td>{{item.transactionType}}</td>
-            <td>{{item.title}}</td>
-            <td>{{item.location}}</td>
-            <td>{{item.status}}</td>
-            <td>{{item.description}}</td>
-            <td>{{item.delivery}}</td>
-            <td>{{item.price}}</td>
-            <td>{{item.priceModel}}</td> 
-            <td>
-            <button mat-flat-button color="primary" (click)= "deleteItem(item.itemId)">Delete</button>
-            <pre style="margin:1px;"></pre>
-            <button mat-flat-button color="primary" (click)= "openDialog(item)">Edit</button>
-            </td>
-        </tr>
-    </table>
+<div class="container">
+    <div style="text-align:left;">
+        <h2>
+                Your Products
+        </h2>
     </div>
-    <br>
-    <button mat-flat-button color="primary" (click)="updateTable()">Refresh</button>
+    <table #itemTable mat-table  [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        
+        <ng-container matColumnDef="productType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Type </th>
+            <td mat-cell *matCellDef="let item"> {{item.productType}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="transactionType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Transaction </th>
+            <td mat-cell *matCellDef="let item"> {{item.transactionType}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Title </th>
+            <td mat-cell *matCellDef="let item"> {{item.title}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Location </th>
+            <td mat-cell *matCellDef="let item"> {{item.location}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Status </th>
+            <td mat-cell *matCellDef="let item"> {{item.status}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+             <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Description </th>
+             <td mat-cell *matCellDef="let item"> {{item.description}} </td>
+         </ng-container>
+
+        <ng-container matColumnDef="delivery">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Delivery </th>
+            <td mat-cell *matCellDef="let item"> {{item.delivery}} </td>
+         </ng-container>
+
+         <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Price </th>
+             <td mat-cell *matCellDef="let item"> {{item.price}} </td>
+         </ng-container>
+
+         <ng-container matColumnDef="priceModel">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Price Model </th>
+             <td mat-cell *matCellDef="let item"> {{item.priceModel}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="approvedFlag">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Approved </th>
+            <td mat-cell *matCellDef="let item"> {{item.approvedFlag}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="options">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Options </th>
+             <td mat-cell *matCellDef="let item"> 
+                <button class="tableb" type="tableb" mat-flat-button color="primary" (click)= "deleteItem(item.itemId)">Delete</button>  
+                <pre style="margin:1px;"></pre>
+                <button class="tableb" type="tableb" mat-flat-button color="primary" (click)= "editDialog(item)">Edit</button>
+            </td>      
+        </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['productType','transactionType', 'title', 'location', 'status', 'description','delivery','price', 'priceModel', 'approvedFlag', 'options']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['productType','transactionType', 'title', 'location', 'status', 'description','delivery','price', 'priceModel', 'approvedFlag', 'options'];"></tr>
+    </table>
+    <pre style="margin:6px;"></pre>
+    <i class="far fa-plus-square"></i>
+
+    <button class="post" mat-flat-button color="primary" (click)= "postDialog()"><i class="far fa-plus-square"></i>Post New Item</button>
 </div>
-</mat-card>
+
+
+
 
 
 
