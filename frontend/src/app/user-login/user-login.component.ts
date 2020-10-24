@@ -10,25 +10,40 @@ import { environment } from '../../environments/environment';
 })
 export class UserLoginComponent implements OnInit {
 
-  userName = '';
+  constructor(private httpClient: HttpClient) {
+
+  }
+
+  userName =  '';
   userId = '';
   password = '';
 
   userToken: string;
   loggedIn = false;
+  admin = false;
+  roleId = '';
+
 
   secureEndpointResponse = '';
 
-  constructor(private httpClient: HttpClient) { }
 
 
-  getUserName() {
+  getUserName(): string {
     return this.userName;
   }
 
-  getToken() {
+  getToken(): string {
     return this.userToken;
   }
+
+  setUserName(userName: string): void{
+    this.userName = userName;
+  }
+
+  setPassword(password: string): void{
+    this.password = password;
+  }
+
 
 
 
@@ -43,7 +58,12 @@ export class UserLoginComponent implements OnInit {
 
     // Set boolean whether a user is logged in or not
     this.loggedIn = !!(this.userToken);
+
+    //this.isAdmin();
+
+
   }
+
 
   login(): void {
     this.httpClient.post(environment.endpointURL + 'user/login', {
@@ -54,19 +74,36 @@ export class UserLoginComponent implements OnInit {
       // Set user data in local storage
       localStorage.setItem('userToken', res.token);
       localStorage.setItem('userName', res.user.userName);
-      localStorage.setItem('userId', res.user.userId)
+      localStorage.setItem('userId', res.user.userId);
+      localStorage.setItem('roleId', res.user.roleId);
 
       this.checkUserStatus();
     });
+  }
+
+  newUser(): void {
+    this.moveToSelectedTab('Registration');
+  }
+
+  test(): string {
+    return 'test123';
+  }
+
+  loggedInMethod(): string {
+    return localStorage.getItem('userToken');
   }
 
   logout(): void {
     // Remove user data from local storage
     localStorage.removeItem('userToken');
     localStorage.removeItem('userName');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('roleId');
 
     this.checkUserStatus();
+
   }
+
 
   /**
    * Function to access a secure endpoint that can only be accessed by logged in users by providing their token.
@@ -79,10 +116,19 @@ export class UserLoginComponent implements OnInit {
     });
   }
 
-
-  newUser(): void {
-    (<HTMLElement>document.querySelectorAll('.mat-tab-label')[2]).click(); // not safe for changes!
+  moveToSelectedTab(tabName: string) {
+    for (let i =0; i < document.querySelectorAll('.mat-tab-label').length; i++) {
+      if ((<HTMLElement> document.querySelectorAll('.mat-tab-label')[i]).innerText === tabName) {
+        (<HTMLElement> document.querySelectorAll('.mat-tab-label')[i]).click();
+      }
+    }
   }
+
+
+  // // tslint:disable-next-line:adjacent-overload-signatures
+  // newUser(): void {
+  //   (<HTMLElement>document.querySelectorAll('.mat-tab-label')[2]).click(); // not safe for changes!
+  // }
 
 
 

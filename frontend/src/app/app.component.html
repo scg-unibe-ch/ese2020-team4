@@ -1,10 +1,6 @@
-
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span>Team4's secret bonanza</span>
-    <div class="container text-right" *ngIf="!!(loggedIn())">
-      <span class="d-inline" >Logged in as: {{ userName }}</span>
-    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -16,25 +12,23 @@
     <app-catalogue></app-catalogue>
   </mat-tab>
 
+  <mat-tab label="Login">
+    <app-user-login></app-user-login>
+  </mat-tab>
+
   <div *ngIf="!(loggedIn())">
-    <mat-tab label="Login">
-      <app-user-login></app-user-login>
+    <mat-tab label="Registration">
+      <app-user-registration></app-user-registration>
     </mat-tab>
   </div>
-  
-  <div *ngIf="!(loggedIn())">
-  <mat-tab label="Registration">
-    <app-user-registration></app-user-registration>
-  </mat-tab>
-  </div>
 
   <div *ngIf="!!(loggedIn())">
-  <mat-tab label="Overview">
-    <app-user-overview></app-user-overview>
-  </mat-tab>
+    <mat-tab label="Overview">
+      <app-user-overview></app-user-overview>
+    </mat-tab>
   </div>
 
-  <div *ngIf="!!(loggedIn())">
+  <div *ngIf="!!(isAdmin())">
     <mat-tab label="Admin Overview">
       <app-admin-overview></app-admin-overview>
     </mat-tab>

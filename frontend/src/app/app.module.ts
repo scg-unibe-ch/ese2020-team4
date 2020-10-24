@@ -45,6 +45,8 @@ import { UserListComponent } from './admin-overview/user-list/user-list.componen
 import { ProductListComponent } from './admin-overview/product-list/product-list.component';
 import { DeleteDialogComponent } from './admin-overview/user-list/delete-dialog/delete-dialog.component';
 import { ApprovmentDialogComponent } from './admin-overview/product-list/approvment-dialog/approvment-dialog.component';
+import { DialogErrorComponent } from './user-registration/dialog-error/dialog-error.component';
+import { DialogSuccessfulComponent } from './user-registration/dialog-successful/dialog-successful.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,9 @@ import { ApprovmentDialogComponent } from './admin-overview/product-list/approvm
     ProductListComponent,
     DeleteDialogComponent,
     ApprovmentDialogComponent,
-    ProductsItemDelete
+    ProductsItemDelete,
+    DialogErrorComponent,
+    DialogSuccessfulComponent
   ],
   imports: [
     BrowserModule,
