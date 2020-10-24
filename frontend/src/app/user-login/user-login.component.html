@@ -6,8 +6,13 @@
     <mat-form-field>
       <input matInput placeholder="Password" [(ngModel)]="password" name="password" type="password">
     </mat-form-field>
-    <button mat-flat-button color="primary" (click)="login()">Login</button>
-    <button mat-flat-button color="primary"  (click)="newUser()"> SignUp</button>
+    <div>
+      <button mat-flat-button color="primary" (click)="login()">Login</button>
+      <div class="divider">
+        <button mat-flat-button color="primary"  (click)="newUser()"> SignUp</button>
+      </div>
+    </div>
+    
     <br>
     <button mat-flat-button color="grey">Password reset</button>
     <br>

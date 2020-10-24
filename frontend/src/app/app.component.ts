@@ -20,6 +20,16 @@ export class AppComponent implements OnInit {
     return localStorage.getItem('userToken');
   }
 
+  logout(): void {
+    // Remove user data from local storage
+    localStorage.removeItem('userToken');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('roleId');
+
+    this.checkUserStatus();
+
+  }
 
   ngOnInit(): void {
     this.checkUserStatus();
