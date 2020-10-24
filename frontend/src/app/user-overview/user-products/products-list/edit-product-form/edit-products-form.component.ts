@@ -14,7 +14,7 @@ import { environment } from '../../../../../environments/environment';
 })
 export class EditProductsFormComponent implements OnInit {
   itemForm: FormGroup;
-  public constructor(dialogRef: MatDialogRef<EditProductsFormComponent>,
+  public constructor(public dialogRef: MatDialogRef<EditProductsFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ItemData, private formBuilder: FormBuilder, private httpClient: HttpClient) { 
   }
   secureEndpointResponse = '';
@@ -45,6 +45,11 @@ export class EditProductsFormComponent implements OnInit {
     console.log(this.itemForm.value)
     this.httpClient.put(environment.endpointURL + 'item/'+this.itemForm.get('itemId').value, this.itemForm.value).subscribe((res: any) => { });
   }
+
+  close(): void{
+    this.dialogRef.close()
+  }
+
 
   validForm(): boolean {
     // checks if form is valid

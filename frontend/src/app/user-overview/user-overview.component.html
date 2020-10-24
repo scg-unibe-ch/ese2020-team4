@@ -8,24 +8,16 @@
     </mat-tab>
     <br>
     <mat-tab label="Account">
-      <mat-tab-group animationDuration="1ms" staticHeight>
-        <mat-tab label="Account Statistics">
-          <br>
-          <div *ngIf="loggedIn">
-            <button mat-flat-button color="warn" (click)="logout()">Logout</button>
-            You are currently logged in as {{ userName }}
-          </div>
-          <br>
-          <button mat-flat-button color="primary">Test</button>
-        </mat-tab>
-        <mat-tab label="Account Settings">
-          <br>
-          <button mat-flat-button color="primary">Confirm Changes</button>
-          <br>
-          <br>
-          <button mat-flat-button color="primary">Delete Account</button>
-        </mat-tab>
-      </mat-tab-group>
+      <mat-card>
+        <div *ngIf="loggedIn">
+          <button mat-flat-button color="warn" (click)="logout()">Logout</button>
+          You are currently logged in as {{ userName }}
+        </div>
+        <br>
+        <span>Account Settings</span>
+        <br>
+        <span>Account Statistics</span>
+      </mat-card>
     </mat-tab>
     <mat-tab label="Wallet"></mat-tab>
   </mat-tab-group>

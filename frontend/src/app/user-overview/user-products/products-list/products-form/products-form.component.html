@@ -1,4 +1,4 @@
-<mat-card [formGroup]="itemForm">
+<div class="center" [formGroup]="itemForm">
   <h2>Product Registration</h2>
   <mat-form-field>
     <mat-select matInput placeholder="ProductType" formControlName="productType" required>
@@ -47,7 +47,9 @@
       <mat-option  [disableControl]="!flagCheck(1)" value="Daily">Daily</mat-option>
     </mat-select>
   </mat-form-field>
-  <br>
-  <button mat-flat-button color="primary" [disabled]="!validForm()" (click)="post()">Post</button>
-  <span>Note that Products only get posted after Inspection, but its no actually implemented yet. :D</span>
-</mat-card>
+</div>
+<br>
+<button class="post" mat-flat-button color="primary" [disabled]="!validForm()" (click)="post()">Post</button>
+<button class="post" mat-flat-button color="primary" (click)="close()">Cancel</button>
+<pre style="margin:6px;"></pre>
+<h5>Posted Items will undergo Approval for 2 Days before being visible!</h5>

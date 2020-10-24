@@ -46,6 +46,15 @@ userController.delete('/delete/:id', (req: Request, res: Response) => {
         .catch(err => res.status(500).send(err));
 });
 
+userController.get('/getAllwithoutAdmin',
+    (req: Request, res: Response) => {
+        User.findAll({where: {
+            [Op.and] : [{roleId: {[Op.ne]: 1}}]}
+             })
+            .then(list => res.status(200).send(list))
+            .catch(err => res.status(500).send(err));
+});
+
 
 
 export const UserController: Router = userController;

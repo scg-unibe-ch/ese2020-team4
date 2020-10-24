@@ -2,42 +2,69 @@
   
 </script>
 <mat-card>
-  <div style="text-align:left;width:500px;">
-    <h2>
-        Bought Products and Services
-    </h2>
-    <div class="container">
-    <table *ngIf="tableData">
-        <tr>
-            <th>ProductType</th>
-            <th>TransactionType</th>
-            <th>Title</th>
-            <th>Location</th>
-            <th>Status</th>
-            <th>Description</th>
-            <th>Delivery</th>
-            <th>Price</th>
-            <th>Price Model</th>
-            <th>Time</th>
-        </tr>
-
-        <tr *ngFor="let item of tableData" [attr.id]= "item.itemId">
-            <td>{{item.productType}}</td>
-            <td>{{item.transactionType}}</td>
-            <td>{{item.title}}</td>
-            <td>{{item.location}}</td>
-            <td>{{item.status}}</td>
-            <td>{{item.description}}</td>
-            <td>{{item.delivery}}</td>
-            <td>{{item.price}}</td>
-            <td>{{item.priceModel}}</td>
-            <td>{{item.updatedAt}}</td> 
-        </tr>
-    </table>
-    </div>
-    <br>
-    <button mat-flat-button color="primary" (click)="updateTable()">Refresh</button>
-</div>
+        <div class="container">
+            <div style="text-align:left;">
+                <h2>
+                    Bought Products and Services
+                </h2>
+            </div>
+        <table #itemTable mat-table  [dataSource]="dataSource" matSort class="mat-elevation-z8">
+            
+            <ng-container matColumnDef="productType">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Type </th>
+                <td mat-cell *matCellDef="let item"> {{item.productType}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="transactionType">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Transaction </th>
+                <td mat-cell *matCellDef="let item"> {{item.transactionType}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Title </th>
+                <td mat-cell *matCellDef="let item"> {{item.title}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="location">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Location </th>
+                <td mat-cell *matCellDef="let item"> {{item.location}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Status </th>
+                <td mat-cell *matCellDef="let item"> {{item.status}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Description </th>
+                <td mat-cell *matCellDef="let item"> {{item.description}} </td>
+             </ng-container>
+    
+            <ng-container matColumnDef="delivery">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Delivery </th>
+                <td mat-cell *matCellDef="let item"> {{item.delivery}} </td>
+             </ng-container>
+    
+             <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Price </th>
+                <td mat-cell *matCellDef="let item"> {{item.price}} </td>
+             </ng-container>
+    
+             <ng-container matColumnDef="priceModel">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Price Model </th>
+                <td mat-cell *matCellDef="let item"> {{item.priceModel}} </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="updatedAt">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Time </th>
+                <td mat-cell *matCellDef="let item"> {{item.updatedAt}} </td>      
+            </ng-container>
+                
+                <tr mat-header-row *matHeaderRowDef="['productType','transactionType', 'title', 'location', 'status', 'description','delivery' ,'price', 'priceModel', 'updatedAt']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['productType','transactionType', 'title', 'location', 'status', 'description','delivery' ,'price', 'priceModel', 'updatedAt'];"></tr>
+        </table>
+        </div>
+        <br>
 </mat-card>
 
 

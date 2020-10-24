@@ -54,29 +54,22 @@ itemController.delete('/delete/:id', (req: Request, res: Response) => {
 });
 
 itemController.get('/getPro/', (req: Request, res: Response) => {
-    // this automatically fills each todolist with the according todoitems
     Item.findAll({where: {
-        [Op.and] : [{productType: 'Product'}, {soldToId: 0}]}
+        [Op.and] : [{productType: 'Product'}, {soldToId: 0}, , {approvedFlag: {[Op.gt]: 0}}]}
          })
         .then(list => res.status(200).send(list))
         .catch(err => res.status(500).send(err));
 });
 
 itemController.get('/getSer/', (req: Request, res: Response) => {
-    // this automatically fills each todolist with the according todoitems
     Item.findAll({where: {
-        [Op.and] : [{productType: 'Service'}, {soldToId: 0}]}
+        [Op.and] : [{productType: 'Service'}, {soldToId: 0}, , {approvedFlag: {[Op.gt]: 0}}]}
          })
         .then(list => res.status(200).send(list))
         .catch(err => res.status(500).send(err));
 });
 
-
-
-
-
 itemController.get('/get/:id', (req: Request, res: Response) => {
-    // this automatically fills each todolist with the according todoitems
     Item.findAll({where: {
         [Op.and] : [{userId: req.params.id}, {soldToId: 0}]}
          })
@@ -84,27 +77,24 @@ itemController.get('/get/:id', (req: Request, res: Response) => {
         .catch(err => res.status(500).send(err));
 });
 
-
-
 itemController.get('/getTranBou/:id', (req: Request, res: Response) => {
-    // this automatically fills each todolist with the according todoitems
     Item.findAll({where: {soldToId: req.params.id} })
         .then(list => res.status(200).send(list))
         .catch(err => res.status(500).send(err));
 });
 
 itemController.get('/getTranSol/:id', (req: Request, res: Response) => {
-    // this automatically fills each todolist with the according todoitems
     Item.findAll({where: {
-        [Op.and] : [{userId: req.params.id}, {soldToId: {[Op.gt]: 0}}]}
+        [Op.and] : [{userId: req.params.id}, {soldToId: req.params.id}]}
          })
         .then(list => res.status(200).send(list))
         .catch(err => res.status(500).send(err));
 });
 
 itemController.get('/getAllItems', (req: Request, res: Response) => {
-    // this automatically fills each todolist with the according todoitems
-    Item.findAll()
+    Item.findAll({where: {
+        [Op.and] : [{soldToId: {[Op.eq]: 0}}]}
+         })
         .then(list => res.status(200).send(list))
         .catch(err => res.status(500).send(err));
 });

@@ -39,7 +39,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(){
-    this.httpClient.get(environment.endpointURL + 'user/getAllUsers', {
+    this.httpClient.get(environment.endpointURL + 'user/getAllwithoutAdmin', {
     }).subscribe(data => {
         this.locData = data as User[];
         this.dataSource = new MatTableDataSource(data as User[]);
@@ -58,7 +58,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   refresh(): void{
-    this.httpClient.get(environment.endpointURL + 'user/getAllUsers/', {
+    this.httpClient.get(environment.endpointURL + 'user/getAllwithoutAdmin/', {
     }).subscribe(data => {
       this.dataSource.data = data as User[];
       this.dataSource.sort = this.sort;

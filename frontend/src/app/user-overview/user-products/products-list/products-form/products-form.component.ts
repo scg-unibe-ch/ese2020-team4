@@ -1,8 +1,8 @@
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, Directive, Input } from '@angular/core';
+import { Component, OnInit, Directive, Input, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgControl } from '@angular/forms';
-import { environment } from '../../../../environments/environment';
-
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'products-form',
@@ -11,7 +11,7 @@ import { environment } from '../../../../environments/environment';
 })
 export class ProductsFormComponent implements OnInit {
   itemForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient) { }
+  constructor(public dialogRef: MatDialogRef<ProductsFormComponent>, private formBuilder: FormBuilder, private httpClient: HttpClient) { }
   secureEndpointResponse = '';
   hide = true;
   flags: boolean[] = [false, false];
@@ -44,6 +44,10 @@ export class ProductsFormComponent implements OnInit {
   post(): void {
     console.log(this.itemForm.value)
     this.httpClient.post(environment.endpointURL + 'item/post', this.itemForm.value).subscribe((res: any) => { });
+  }
+
+  close(): void{
+    this.dialogRef.close()
   }
 
   validForm(): boolean {

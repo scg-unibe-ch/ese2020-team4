@@ -1,3 +1,4 @@
+import { ProductsItemDelete } from './user-overview/user-products/products-list/delete-dialog/products-item-delete.component';
 import { BuyServiceComponent } from './catalogue/catalogue-service-list/buy-dialog/buy-dialog.component';
 import { CatalogueServiceListComponent } from './catalogue/catalogue-service-list/catalogue-service-list.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -31,12 +32,12 @@ import { UserLoginComponent } from './user-login/user-login.component';
 import {UserRegistrationComponent} from './user-registration/user-registration.component';
 import {UserProductsComponent} from './user-overview/user-products/user-products.component';
 import {UserItemListComponent} from './user-overview/user-products/products-list/products-list.component';
-import {ProductsFormComponent} from './user-overview/user-products/products-form/products-form.component';
+import {ProductsFormComponent} from './user-overview/user-products/products-list/products-form/products-form.component';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {RouterModule} from "@angular/router";
-import {DisableControlDirective} from './user-overview/user-products/products-form/disableControl';
+import {DisableControlDirective} from './user-overview/user-products/products-list/products-form/disableControl';
 import {EditProductsFormComponent} from './user-overview/user-products/products-list/edit-product-form/edit-products-form.component';
 import {UserTransactionsComponent} from './user-overview/user-transactions/user-transactions.component';
 import { AdminOverviewComponent } from './admin-overview/admin-overview.component';
@@ -70,7 +71,8 @@ import { ApprovmentDialogComponent } from './admin-overview/product-list/approvm
     UserListComponent,
     ProductListComponent,
     DeleteDialogComponent,
-    ApprovmentDialogComponent
+    ApprovmentDialogComponent,
+    ProductsItemDelete
   ],
   imports: [
     BrowserModule,

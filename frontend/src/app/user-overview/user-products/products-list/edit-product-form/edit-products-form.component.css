@@ -2,3 +2,9 @@
     justify-content: center;
     align-items: center;
 }
+
+.button {        
+    width: 35%;
+    text-align: center;
+}
+
