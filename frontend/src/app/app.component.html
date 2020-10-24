@@ -2,6 +2,9 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span>Team4's secret bonanza</span>
+    <div class="container text-right" *ngIf="!!(loggedIn())">
+      <span class="d-inline" >Logged in as: {{ userName }}</span>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 

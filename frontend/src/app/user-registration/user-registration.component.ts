@@ -51,8 +51,6 @@ export class UserRegistrationComponent implements OnInit {
   register(): void {
     console.log(this.userForm.value)
     this.httpClient.post(environment.endpointURL + 'user/register', this.userForm.value).subscribe((res: any) => {
-
-
       this.loginComponent = new UserLoginComponent(this.httpClient);
       this.loginComponent.setUserName(this.userForm.value.userName);
       this.loginComponent.setPassword(this.userForm.value.password);
