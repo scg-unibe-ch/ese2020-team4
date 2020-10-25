@@ -19,6 +19,9 @@ export interface UserAttributes {
     city: string;
     country: String;
     wallet: number;
+    resetPasswordToken: String;
+    resetPasswordExpires: number;
+
 
 
 }
@@ -45,6 +48,9 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     city!: string;
     country!: String;
     wallet!: number;
+    resetPasswordToken: String;
+    resetPasswordExpires: number;
+
 
     public getUserItem!: HasManyGetAssociationsMixin<Item>;
     public addItem!: HasManyAddAssociationMixin<Item, number>;
@@ -110,7 +116,15 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
                 type: DataTypes.INTEGER,
                 defaultValue: 0,
                 allowNull: true
-            }
+            },
+            resetPasswordToken: {
+                type: DataTypes.STRING,
+                allowNull: true
+                },
+            resetPasswordExpires: {
+                type: DataTypes.NUMBER,
+                allowNull: true
+                }
 
         },
             { sequelize, tableName: 'user' }
@@ -125,12 +139,14 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
                 email: 'Administrator@hotmail.ch', firstName: 'Ad',
                 lastName: 'min', password: bcrypt.hashSync('Admin!123', 12), gender: 'male',
                 tNumber: '0323223232', street: 'AdminStreet', zipCode: 2222,
-                city: 'Administratium', country: 'BossCountry', wallet: 999999}).catch(error => console.log(error)),
+                city: 'Administratium', country: 'BossCountry', wallet: 999999,
+                resetPasswordToken: null, resetPasswordExpires: null}).catch(error => console.log(error)),
                 User.create({userName: 'User', roleId: 2,
                 email: 'User@hotmail.ch', firstName: 'Us',
                 lastName: 'er', password: bcrypt.hashSync('User!123', 12), gender: 'male',
                 tNumber: '0323223233', street: 'UserStreet', zipCode: 2222,
-                city: 'Userium', country: 'PlebianCountry', wallet: 0}).catch(error => console.log(error));
+                city: 'Userium', country: 'PlebianCountry', wallet: 0,
+                resetPasswordToken: null, resetPasswordExpires: null}).catch(error => console.log(error));
             }
         }).catch(error => console.error('Error when building a predefined role Table'));
 

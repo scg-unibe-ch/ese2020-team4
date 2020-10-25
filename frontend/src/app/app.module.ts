@@ -47,6 +47,10 @@ import { DeleteDialogComponent } from './admin-overview/user-list/delete-dialog/
 import { ApprovmentDialogComponent } from './admin-overview/product-list/approvment-dialog/approvment-dialog.component';
 import { DialogErrorComponent } from './user-registration/dialog-error/dialog-error.component';
 import { DialogSuccessfulComponent } from './user-registration/dialog-successful/dialog-successful.component';
+import { ResetDialogComponent } from './user-login/reset-dialog/reset-dialog.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +80,11 @@ import { DialogSuccessfulComponent } from './user-registration/dialog-successful
     ApprovmentDialogComponent,
     ProductsItemDelete,
     DialogErrorComponent,
-    DialogSuccessfulComponent
+    DialogSuccessfulComponent,
+    ResetDialogComponent,
+    PageNotFoundComponent,
+    PasswordResetComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +102,12 @@ import { DialogSuccessfulComponent } from './user-registration/dialog-successful
     MatSelectModule,
     MatIconModule,
     ReactiveFormsModule,
-    RouterModule,
+    RouterModule.forRoot([
+      {path: 'main', component: MainPageComponent},
+      {path: 'reset/:id', component: PasswordResetComponent},
+      {path: '', redirectTo: '/main', pathMatch: 'full'},
+      {path: '**', component: PageNotFoundComponent}
+    ]),
     MatDialogModule,
     MatTableModule,
     MatSortModule,

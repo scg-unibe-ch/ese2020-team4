@@ -10,39 +10,10 @@ import { environment } from '../environments/environment';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  userToken = "";
-  userName = "";
-
-  constructor(private httpClient: HttpClient) {}
-
-  loggedIn() {
-    this.checkUserStatus();
-    return localStorage.getItem('userToken');
-  }
-
-  logout(): void {
-    // Remove user data from local storage
-    localStorage.removeItem('userToken');
-    localStorage.removeItem('userName');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('roleId');
-
-    this.checkUserStatus();
-
-  }
+  constructor() { }
 
   ngOnInit(): void {
-    this.checkUserStatus();
   }
 
-  isAdmin(): boolean {
-    return Number(localStorage.getItem('roleId'))  === 1;
-  }
 
-  checkUserStatus(): void {
-    // Get user data from local storage
-    this.userToken = localStorage.getItem('userToken');
-    this.userName = localStorage.getItem('userName');
-
-  }
 }

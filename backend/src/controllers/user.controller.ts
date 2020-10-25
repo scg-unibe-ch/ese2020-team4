@@ -1,4 +1,4 @@
-
+import nodemailer from 'nodemailer';
 import express, { Request, Response, Router } from 'express';
 import { verifyToken } from '../middlewares/checkAuth';
 import { UserService } from '../services/user.service';
@@ -54,6 +54,24 @@ userController.get('/getAllwithoutAdmin',
             .then(list => res.status(200).send(list))
             .catch(err => res.status(500).send(err));
 });
+
+
+
+userController.post('/resetRequest',
+    (req: Request, res: Response) => {
+        userService.resetRequest(req.body.email).then(sent => res.send(sent)).catch(err => res.status(500).send(err));
+    }
+);
+
+userController.post('/resetPassword',
+    (req: Request, res: Response) => {
+        userService.resetPassword(req.body.token, req.body.password)
+            .then(changed => res.send(changed)).catch(err => res.status(500).send(err));
+    }
+);
+
+
+
 
 
 

@@ -1,0 +1,10 @@
+<div class="center">
+  <h2>Enter your email</h2>
+  <pre style="margin:2px;"></pre>
+  <mat-form-field>
+    <input matInput placeholder="email" [(ngModel)]="email" name="email">
+  </mat-form-field>
+  <button mat-flat-button color="primary" (click)= "reset()">Ok</button>
+  <button class="buttonR" mat-flat-button color="primary" (click)= "close()">Cancel</button>
+</div>
+<small> {{response}}</small>

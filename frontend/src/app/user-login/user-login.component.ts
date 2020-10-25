@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import {DeleteDialogComponent} from "../admin-overview/user-list/delete-dialog/delete-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {ResetDialogComponent} from "./reset-dialog/reset-dialog.component";
 
 
 @Component({
@@ -10,7 +13,10 @@ import { environment } from '../../environments/environment';
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient) {
+
+
+  constructor(private httpClient: HttpClient, private dialog: MatDialog) {
+
 
   }
 
@@ -125,12 +131,11 @@ export class UserLoginComponent implements OnInit {
   }
 
 
-  // // tslint:disable-next-line:adjacent-overload-signatures
-  // newUser(): void {
-  //   (<HTMLElement>document.querySelectorAll('.mat-tab-label')[2]).click(); // not safe for changes!
-  // }
+  reset() {
 
 
-
-
+    this.dialog.open(ResetDialogComponent, {
+      width: '250px'
+    });
+  }
 }
