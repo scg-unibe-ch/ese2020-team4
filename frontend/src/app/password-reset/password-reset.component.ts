@@ -17,7 +17,7 @@ export class PasswordResetComponent implements OnInit {
   secureEndpointResponse = 'response';
   hide = true;
   private token: string;
-  private response: any;
+  response: any;
   constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private router: Router) { }
 
 
