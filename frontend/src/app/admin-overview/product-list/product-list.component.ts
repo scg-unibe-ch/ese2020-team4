@@ -8,8 +8,8 @@ import {User} from "../../models/user.model";
 import {MatPaginator} from "@angular/material/paginator";
 import {environment} from "../../../environments/environment";
 import {Item} from "../../models/item.model";
-import {DeleteDialogComponent} from "../user-list/delete-dialog/delete-dialog.component";
 import {ApprovmentDialogComponent} from "./approvment-dialog/approvment-dialog.component";
+import {DeleteItemDialogComponent} from "./delete-item-dialog/delete-item-dialog.component";
 
 @Component({
   selector: 'app-product-list',
@@ -73,4 +73,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
 
+  deleteDialog(itemId: any) {
+    this.dialog.open(DeleteItemDialogComponent, {
+      width: '250px',
+      data: itemId
+    });
+  }
 }

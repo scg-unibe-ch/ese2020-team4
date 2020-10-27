@@ -97,7 +97,7 @@ export class UserService {
                 // send mail with defined transport object
                 const mailOptions = {
                         from: 'ese2020team4@gmail.com', // sender address
-                        to: 'ese2020team4@gmail.com', // receiver (for testing reason the same account)
+                        to: receiver, // receiver (for testing reason the same account)
                         subject: 'Reset Password', // subject
                         text:   'You are receiving this because you have requested the reset ' +
                                 'of the password for your account.\n\n' +
@@ -163,7 +163,7 @@ export class UserService {
                 // send mail with defined transport object
                 const mailOptions = {
                     from: 'ese2020team4@gmail.com', // sender address
-                    to: 'ese2020team4@gmail.com', // receiver (for testing reason the same account)
+                    to: receiver, // receiver (for testing reason the same account)
                     subject: 'password changed successfully! :)', // subject
                     text:   'This is a confirmation that the password for your account '
                         + user.email + ' has just been changed.\n'

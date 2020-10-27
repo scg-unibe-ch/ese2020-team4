@@ -51,6 +51,7 @@ import { ResetDialogComponent } from './user-login/reset-dialog/reset-dialog.com
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { DeleteItemDialogComponent } from './admin-overview/product-list/delete-item-dialog/delete-item-dialog.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { MainPageComponent } from './main-page/main-page.component';
     ResetDialogComponent,
     PageNotFoundComponent,
     PasswordResetComponent,
-    MainPageComponent
+    MainPageComponent,
+    DeleteItemDialogComponent
   ],
   imports: [
     BrowserModule,
