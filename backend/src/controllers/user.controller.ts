@@ -1,4 +1,3 @@
-import nodemailer from 'nodemailer';
 import express, { Request, Response, Router } from 'express';
 import { verifyToken } from '../middlewares/checkAuth';
 import { UserService } from '../services/user.service';
