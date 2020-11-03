@@ -22,9 +22,11 @@
   <br>
 
   <mat-form-field>
-    <input matInput placeholder="Confirm Password" [type]="'password'" formControlName="confirmPassword" required>
-    <mat-error *ngIf="userForm.get('confirmPassword').hasError('required') && userForm.get('confirmPassword').touched">
-      Please confirm password</mat-error>
+    <input matInput placeholder="Confirm Password" [type]="'password'" formControlName="confirmPassword" [errorStateMatcher] = "matcher">
+    
+    <mat-error *ngIf="userForm.hasError('passwordNotMatch') && userForm.get('confirmPassword').touched">
+      Passwords don't match
+    </mat-error>
   </mat-form-field>
 
 
@@ -66,7 +68,6 @@
   <br>
 
   <button mat-flat-button color="primary" [disabled]="!validForm()" (click)="register()">Register</button>
-
 
 
 </mat-card>

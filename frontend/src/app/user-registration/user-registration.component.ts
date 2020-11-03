@@ -1,13 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormGroupDirective, NgForm } from '@angular/forms';
 import {UserLoginComponent} from "../user-login/user-login.component";
 import {DeleteDialogComponent} from "../admin-overview/user-list/delete-dialog/delete-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogSuccessfulComponent} from "./dialog-successful/dialog-successful.component";
 import {DialogErrorComponent} from "./dialog-error/dialog-error.component";
+import { ErrorStateMatcher } from '@angular/material/core';
 
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
+    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
+
+    return (invalidCtrl || invalidParent);
+  }
+}
 
 
 @Component({
@@ -17,10 +27,13 @@ import {DialogErrorComponent} from "./dialog-error/dialog-error.component";
 })
 export class UserRegistrationComponent implements OnInit {
   userForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private dialog: MatDialog, private httpClient: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private dialog: MatDialog, private httpClient: HttpClient) {
+    
+  }
   secureEndpointResponse = 'response';
   hide = true;
   private loginComponent: UserLoginComponent;
+  matcher = new MyErrorStateMatcher();
 
 
   ngOnInit() {
@@ -30,7 +43,7 @@ export class UserRegistrationComponent implements OnInit {
       password: ['',
         [Validators.required,
         Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*[@$!%*#?&])(?=.*\\d)[A-Za-z\\d!$%@#£€*?&]{7,}$')]],
-      confirmPassword: ['', [Validators.required]],
+      confirmPassword: [''],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       street: [''],
