@@ -23,12 +23,27 @@ export class BuyDialogComponent {
 
 
   buyProduct(): void {
-    this.userId = localStorage.getItem('userId')
+    if(localStorage.getItem('userId') == null){
+      this.dialogRef.close();
+      this.moveToSelectedTab('Login');
+    }
+    else{
+      this.userId = localStorage.getItem('userId')
     console.log(this.data)
     this.httpClient.put(environment.endpointURL + 'item/buy/'+this.data+ "/"+ this.userId, null).subscribe((res: any) => { });
     this.dialogRef.close()
+    }
   }
+
   close(): void{
     this.dialogRef.close()
+  }
+
+  moveToSelectedTab(tabName: string) {
+    for (let i =0; i < document.querySelectorAll('.mat-tab-label').length; i++) {
+      if ((<HTMLElement> document.querySelectorAll('.mat-tab-label')[i]).innerText === tabName) {
+        (<HTMLElement> document.querySelectorAll('.mat-tab-label')[i]).click();
+      }
+    }
   }
 }
