@@ -1,10 +1,12 @@
 
 <mat-toolbar color="primary">
-  <mat-toolbar-row>
+  <mat-toolbar-row class="top team4-container">
     <span>Team4's secret bonanza</span>
     <div class="container text-right" *ngIf="!!(loggedIn())">
       <span class="d-inline" >Logged in as: {{ userName }}
-        <button mat-flat-button color="warn" (click)="logout()">Logout</button>
+        <div id="loginactioncontainer" class="team4-right"> 
+          <button mat-flat-button color="warn" (click)="logout()">Logout</button>
+        </div>
     </span>
     </div>
   </mat-toolbar-row>

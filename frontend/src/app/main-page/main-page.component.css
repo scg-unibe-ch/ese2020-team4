@@ -19,3 +19,30 @@ input.example-right-align {
   margin-left:auto;
   margin-right:0;
 }
+
+.top{
+  position: relative;
+  height: 68px;
+  padding-top: 20px;
+  line-height: 50px;
+}
+
+.team4-container{
+  padding: 0.01em 16px;
+}
+
+.team4-right{
+  float: right!important;
+}
+
+.text-right{
+  text-align: right !important;
+  margin-right: 0px;
+}
+
+
+
+#loginactioncontainer{
+  width: 80px;
+  height: 50px;
+}
