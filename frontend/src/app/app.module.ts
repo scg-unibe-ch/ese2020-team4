@@ -52,6 +52,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { DeleteItemDialogComponent } from './admin-overview/product-list/delete-item-dialog/delete-item-dialog.component';
+import { MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { DeleteItemDialogComponent } from './admin-overview/product-list/delete-
     PasswordResetComponent,
     MainPageComponent,
     DeleteItemDialogComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -113,7 +115,8 @@ import { DeleteItemDialogComponent } from './admin-overview/product-list/delete-
     MatDialogModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatMenuModule
   ],
   providers: [
     {

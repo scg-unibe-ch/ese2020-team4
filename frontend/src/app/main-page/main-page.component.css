@@ -40,6 +40,9 @@ input.example-right-align {
   margin-right: 0px;
 }
 
+.icon-display{
+  transform: scale(2);
+}
 
 
 #loginactioncontainer{

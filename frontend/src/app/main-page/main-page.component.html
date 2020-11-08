@@ -3,11 +3,14 @@
   <mat-toolbar-row class="top team4-container">
     <span>Team4's secret bonanza</span>
     <div class="container text-right" *ngIf="!!(loggedIn())">
-      <span class="d-inline" >Logged in as: {{ userName }}
-        <div id="loginactioncontainer" class="team4-right"> 
-          <button mat-flat-button color="warn" (click)="logout()">Logout</button>
-        </div>
-    </span>
+      <span>Hello, {{userName}}</span>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon class="icon-display">account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Profile</button>
+        <button mat-menu-item color="warn" (click)="logout()">Logout</button>
+      </mat-menu>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
