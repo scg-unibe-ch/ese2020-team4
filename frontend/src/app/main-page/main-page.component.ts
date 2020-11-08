@@ -45,4 +45,5 @@ export class MainPageComponent implements OnInit {
     this.roleId = localStorage.getItem('roleId');
 
   }
+  
 }

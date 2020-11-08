@@ -3,12 +3,15 @@
   <mat-toolbar-row class="top team4-container">
     <span>Team4's secret bonanza</span>
     <div class="container text-right" *ngIf="!!(loggedIn())">
+      <span>Wallet Fr. </span>
       <span>Hello, {{userName}}</span>
       <button mat-button [matMenuTriggerFor]="menu">
         <mat-icon class="icon-display">account_circle</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Profile</button>
+        <button mat-menu-item  >Account</button>
+        <button mat-menu-item>Your Products</button>
+        <button mat-menu-item>Your Transactions</button>
         <button mat-menu-item color="warn" (click)="logout()">Logout</button>
       </mat-menu>
     </div>
