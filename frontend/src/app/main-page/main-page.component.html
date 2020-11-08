@@ -1,7 +1,7 @@
 
 <mat-toolbar color="primary">
   <mat-toolbar-row class="top team4-container">
-    <span>Team4's secret bonanza</span>
+    <button mat-button routerLink="">Team4's secret bonanza</button>
     <div class="container text-right" *ngIf="!!(loggedIn())">
       <span>Wallet Fr. </span>
       <span>Hello, {{userName}}</span>
@@ -9,9 +9,9 @@
         <mat-icon class="icon-display">account_circle</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item  >Account</button>
-        <button mat-menu-item>Your Products</button>
-        <button mat-menu-item>Your Transactions</button>
+        <button mat-menu-item routerLink="account">Account</button>
+        <button mat-menu-item routerLink="your-product">Your Products</button>
+        <button mat-menu-item routerLink="your-transaction">Your Transactions</button>
         <button mat-menu-item color="warn" (click)="logout()">Logout</button>
       </mat-menu>
     </div>

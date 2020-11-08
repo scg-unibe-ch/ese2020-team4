@@ -115,6 +115,9 @@ import { UserAccountComponent } from './user-overview/user-account/user-account.
       {path: 'main', component: MainPageComponent},
       {path: 'reset/:id', component: PasswordResetComponent},
       {path: '', redirectTo: '/main', pathMatch: 'full'},
+      {path: 'main/your-product', component: UserProductsComponent},
+      {path: 'main/your-transaction', component: UserTransactionsComponent},
+      {path: 'main/account', component: UserOverviewComponent},
       {path: '**', component: PageNotFoundComponent}
     ]),
     MatDialogModule,
