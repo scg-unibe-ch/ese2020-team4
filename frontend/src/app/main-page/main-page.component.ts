@@ -48,6 +48,7 @@ export class MainPageComponent implements OnInit {
     this.roleId = localStorage.getItem('roleId');
 
   }
+<<<<<<< HEAD
 
   displayMenu(): void{
     this.trigger.openMenu();
@@ -56,4 +57,7 @@ export class MainPageComponent implements OnInit {
   hideMenu(): void{
     this.trigger.closeMenu();
   }
+=======
+  
+>>>>>>> 5189491895f248181f4a7dd0480874a39905bab8
 }
