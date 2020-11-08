@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'app-main-page',
@@ -7,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
+
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
   userToken = "";
   userName = "";
@@ -44,5 +47,13 @@ export class MainPageComponent implements OnInit {
     this.userName = localStorage.getItem('userName');
     this.roleId = localStorage.getItem('roleId');
 
+  }
+
+  displayMenu(): void{
+    this.trigger.openMenu();
+  }
+
+  hideMenu(): void{
+    this.trigger.closeMenu();
   }
 }

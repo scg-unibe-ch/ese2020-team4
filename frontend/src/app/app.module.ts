@@ -53,6 +53,10 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { MainPageComponent } from './main-page/main-page.component';
 import { DeleteItemDialogComponent } from './admin-overview/product-list/delete-item-dialog/delete-item-dialog.component';
 import { MatMenuModule} from '@angular/material/menu';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { UserAccountComponent } from './user-overview/user-account/user-account.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +91,8 @@ import { MatMenuModule} from '@angular/material/menu';
     PageNotFoundComponent,
     PasswordResetComponent,
     MainPageComponent,
-    DeleteItemDialogComponent
+    DeleteItemDialogComponent,
+    UserAccountComponent
     
   ],
   imports: [
@@ -116,7 +121,10 @@ import { MatMenuModule} from '@angular/material/menu';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatMenuModule
+    MatMenuModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     {
