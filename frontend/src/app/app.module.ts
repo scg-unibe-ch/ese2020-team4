@@ -57,6 +57,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { UserAccountComponent } from './user-overview/user-account/user-account.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { UserAccountComponent } from './user-overview/user-account/user-account.
     PasswordResetComponent,
     MainPageComponent,
     DeleteItemDialogComponent,
-    UserAccountComponent
+    UserAccountComponent,
+    HeaderComponent
     
   ],
   imports: [
@@ -117,7 +119,7 @@ import { UserAccountComponent } from './user-overview/user-account/user-account.
       {path: '', redirectTo: '/main', pathMatch: 'full'},
       {path: 'main/your-product', component: UserProductsComponent},
       {path: 'main/your-transaction', component: UserTransactionsComponent},
-      {path: 'main/account', component: UserOverviewComponent},
+      {path: 'main/account', component: UserAccountComponent},
       {path: '**', component: PageNotFoundComponent}
     ]),
     MatDialogModule,
