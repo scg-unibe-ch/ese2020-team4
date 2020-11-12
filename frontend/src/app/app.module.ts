@@ -1,3 +1,7 @@
+import { DeleteOrderItem } from './checkout/order/delete-order-item/delete-order-item.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatStepperModule } from '@angular/material/stepper';
+import { OrderComponent } from './checkout/order/checkout-order.component';
 import { ProductsItemDelete } from './user-overview/user-products/products-list/delete-dialog/products-item-delete.component';
 import { BuyServiceComponent } from './catalogue/catalogue-service-list/buy-dialog/buy-dialog.component';
 import { CatalogueServiceListComponent } from './catalogue/catalogue-service-list/catalogue-service-list.component';
@@ -52,6 +56,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { DeleteItemDialogComponent } from './admin-overview/product-list/delete-item-dialog/delete-item-dialog.component';
+import { CheckoutComponent} from './checkout/checkout.component'
 
 @NgModule({
   declarations: [
@@ -86,7 +91,11 @@ import { DeleteItemDialogComponent } from './admin-overview/product-list/delete-
     PageNotFoundComponent,
     PasswordResetComponent,
     MainPageComponent,
-    DeleteItemDialogComponent
+    DeleteItemDialogComponent,
+    CheckoutComponent,
+    OrderComponent,
+    DeleteOrderItem
+
   ],
   imports: [
     BrowserModule,
@@ -106,14 +115,19 @@ import { DeleteItemDialogComponent } from './admin-overview/product-list/delete-
     ReactiveFormsModule,
     RouterModule.forRoot([
       {path: 'main', component: MainPageComponent},
+      {path: 'checkout', component: CheckoutComponent},
       {path: 'reset/:id', component: PasswordResetComponent},
       {path: '', redirectTo: '/main', pathMatch: 'full'},
-      {path: '**', component: PageNotFoundComponent}
+      {path: '**', component: PageNotFoundComponent},
+      
     ]),
     MatDialogModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatStepperModule,
+    MatExpansionModule
+    
   ],
   providers: [
     {

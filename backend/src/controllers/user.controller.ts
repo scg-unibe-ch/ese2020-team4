@@ -45,6 +45,18 @@ userController.delete('/delete/:id', (req: Request, res: Response) => {
         .catch(err => res.status(500).send(err));
 });
 
+userController.get('/getSpecific/:id', (req: Request, res: Response) => {
+    User.findByPk(req.params.id)
+        .then(found => {
+            if (found != null) {
+                res.send(found);
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(err => res.status(500).send(err));
+});
+
 userController.get('/getAllwithoutAdmin',
     (req: Request, res: Response) => {
         User.findAll({where: {

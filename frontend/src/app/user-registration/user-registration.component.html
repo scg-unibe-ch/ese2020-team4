@@ -1,4 +1,4 @@
-<mat-card [formGroup]="userForm">
+<div [formGroup]="userForm">
   <mat-form-field>
     <input matInput placeholder="Username" [type]="'userName'" formControlName="userName" required>
   </mat-form-field>
@@ -70,4 +70,4 @@
   <button mat-flat-button color="primary" [disabled]="!validForm()" (click)="register()">Register</button>
 
 
-</mat-card>
+</div>

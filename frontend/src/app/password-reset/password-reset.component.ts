@@ -50,9 +50,6 @@ export class PasswordResetComponent implements OnInit {
   }
 
   reset(): void {
-    console.log(this.userForm.value);
-    console.log(this.token);
-    console.log(this.userForm.value.password);
     this.token = (location.pathname + location.search).substr(7);
     this.httpClient.post(environment.endpointURL + 'user/resetPassword', {token: this.token,
       password: this.userForm.value.password})

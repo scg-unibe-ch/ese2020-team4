@@ -42,7 +42,6 @@ export class ProductsFormComponent implements OnInit {
   }
 
   post(): void {
-    console.log(this.itemForm.value)
     this.httpClient.post(environment.endpointURL + 'item/post', this.itemForm.value).subscribe((res: any) => { });
   }
 

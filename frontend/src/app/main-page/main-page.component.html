@@ -2,11 +2,16 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span>Team4's secret bonanza</span>
-    <div class="container text-right" *ngIf="!!(loggedIn())">
-      <span class="d-inline" >Logged in as: {{ userName }}
-        <button mat-flat-button color="warn" (click)="logout()">Logout</button>
-    </span>
+    <div class="container text-right">
+      <div *ngIf="!!(loggedIn()) && !!(existingOrder() )">
+        <button mat-flat-button color="primary" (click) = "openDialog()">
+          <mat-icon>shopping_cart</mat-icon>
+        </button>
+      </div>
     </div>
+    <span *ngIf="!!(loggedIn())" class="d-inline" >Logged in as: {{ userName }}
+      <button mat-flat-button color="warn" (click)="logout()">Logout</button>
+    </span>
   </mat-toolbar-row>
 </mat-toolbar>
 

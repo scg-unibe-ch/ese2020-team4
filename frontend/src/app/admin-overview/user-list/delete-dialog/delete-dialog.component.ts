@@ -19,7 +19,6 @@ export class DeleteDialogComponent  {
 
 
   delete(): void {
-    console.log(this.data)
     this.httpClient.delete(environment.endpointURL + 'user/delete/' + this.data).subscribe((res: any) => { });
     this.dialogRef.close()
   }

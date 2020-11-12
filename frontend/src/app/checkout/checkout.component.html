@@ -1,0 +1,137 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <button mat-button class="small-icon" (click) = "closeDialog()">
+    <mat-icon>cancel</mat-icon>
+  </button>
+  
+  <mat-step [stepControl]= "!!(loggedInMethod())" [completed] = "!!(loggedInMethod())" [editable]="true">     
+    <ng-template matStepLabel>Account</ng-template>
+    <div [@.disabled]="disableAnimation">
+    <mat-accordion class="example-headers-align" multi="false">
+      
+      <mat-expansion-panel [expanded]="false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Use existing Account
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <p><app-user-login></app-user-login></p>
+      </mat-expansion-panel>
+    
+      <mat-expansion-panel [expanded]="false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Create new Account
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <p><app-user-registration></app-user-registration></p>
+        </mat-expansion-panel>
+    
+      </mat-accordion>
+    </div>
+    <div>
+      <button mat-raised-button color='primary' matStepperNext (click) = "getAddress()">Next</button>
+    </div>
+  </mat-step>
+
+
+  <mat-step [stepControl]="shippingAddress" [completed] = "shippingAddress" [editable]="true" label="Fill out your address">
+    <ng-template matStepLabel>Shipping Address</ng-template>
+
+    <mat-accordion class="example-headers-align" multi="false" >
+      
+      <mat-expansion-panel hideToggle [formGroup]="shippingAddress" (click) = "getAddress()"> 
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Your Shipping Address
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <p>
+          <mat-form-field>
+            <input matInput placeholder="Street" formControlName="street" required= true>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Zip Code" formControlName="zipCode" required= true>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="City" formControlName="city" required= true>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Country" formControlName="country" required= true>
+          </mat-form-field>
+        </p>
+      </mat-expansion-panel>
+    
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Use Drop Box near you
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <p></p>
+        </mat-expansion-panel>
+    
+      </mat-accordion>
+
+    <div>
+      <button mat-raised-button color='primary' matStepperPrevious>Back</button>
+      <button mat-raised-button color='primary' matStepperNext (click)= 'changeAddress()'>Next</button>
+    </div>
+
+  </mat-step>
+  
+  <mat-step [stepControl]="order">
+    <ng-template matStepLabel>Order</ng-template>
+    <checkout-order></checkout-order>
+    
+    <div>
+      <button mat-raised-button color='primary' matStepperPrevious>Back</button>
+      <button mat-raised-button color='primary' matStepperNext>Next</button>
+    </div>
+
+  </mat-step>
+
+  <mat-step [stepControl]="payment">
+    <ng-template matStepLabel>Payment</ng-template>
+    <mat-accordion class="example-headers-align" multi="false">
+      
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Pay in Bonanza Coins
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <p></p>
+      </mat-expansion-panel>
+    
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Select one of these Payment Types
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <p></p>
+        </mat-expansion-panel>
+    
+      </mat-accordion>
+    
+    <div>
+      <button mat-raised-button color='primary' matStepperPrevious>Back</button>
+      <button class = 'complete'mat-raised-button color='green' matStepperPrevious (click)= "completeTransaction()">Complete Order</button>
+    </div>
+  </mat-step>
+
+  <ng-template matStepperIcon="address">
+    <mat-icon>done</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="address">
+    <mat-icon>done</mat-icon>
+  </ng-template>
+</mat-horizontal-stepper>

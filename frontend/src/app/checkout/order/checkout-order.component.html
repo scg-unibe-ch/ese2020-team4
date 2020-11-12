@@ -1,0 +1,110 @@
+
+<script>
+  
+</script>
+<pre style="margin:5px;"></pre>
+<div>
+    <div class="container">
+    <table #itemTable mat-table  [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Title </th>
+            <td mat-cell *matCellDef="let item"> {{item.title}} </td>
+            <td mat-footer-cell *matFooterCellDef><span class = "mobile-label">Total:</span></td>
+        </ng-container>
+
+        <ng-container matColumnDef="transactionType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Transaction </th>
+            <td mat-cell *matCellDef="let item"> {{item.transactionType}} </td>
+            <td mat-footer-cell *matFooterCellDef><span class = "mobile-label">Netto Total:</span></td>
+        </ng-container>
+
+        <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Location </th>
+            <td mat-cell *matCellDef="let item"> {{item.location}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Status </th>
+            <td mat-cell *matCellDef="let item"> {{item.status}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Description </th>
+            <td mat-cell *matCellDef="let item"> {{item.description}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+         </ng-container>
+
+        <ng-container matColumnDef="delivery">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Delivery </th>
+            <td mat-cell *matCellDef="let item"> {{item.delivery}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+         </ng-container>
+
+         <ng-container matColumnDef="priceModel">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Price Model </th>
+            <td mat-cell *matCellDef="let item"> {{item.priceModel}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+         
+         <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Price </th>
+            <td mat-cell *matCellDef="let item"> {{item.price | currency: 'USD'}} </td>
+            <td mat-footer-cell *matFooterCellDef>
+                
+                <span class = "mobile-value">{{ calculateCost() | currency: 'USD'}}</span>      
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="options">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Options </th>
+            <td mat-cell *matCellDef="let item"> <button mat-flat-button color="warn" (click)= "openDialog(item.itemId)">Delete</button></td>  
+            <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="vat">
+            <td mat-footer-cell *matFooterCellDef>
+                <span class = "mobile-weak">VAT: 20%</span>  
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nettototal">
+            <td mat-footer-cell *matFooterCellDef>
+                <span class = "mobile-value">{{ calculateCost() * 1.2 | currency: 'USD'}}</span>  
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="bonanzaCoinsTotal">
+            <td mat-footer-cell *matFooterCellDef><span class = "mobile-label">Total Bonanza Coins:</span></td>
+        </ng-container>
+
+        <ng-container matColumnDef="bonanzaCoinsRate">
+            <td mat-footer-cell *matFooterCellDef><span class = "mobile-weak">{{ 1 | currency: 'BC'}} : {{ 9785.45| currency: 'USD'}}</span></td>
+        </ng-container>
+
+        <ng-container matColumnDef="bonanzaCoins">
+            <td mat-footer-cell *matFooterCellDef><span class = "mobile-value">{{ calculateBCCosts()| currency: 'BC'}}</span></td>
+        </ng-container>
+
+        <ng-container matColumnDef="disclaimer">
+            <td mat-footer-cell *matFooterCellDef colspan="8">
+              Please note that the cost of items and currency rates displayed are completely and totally made up. ;)
+            </td>
+        </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['title', 'transactionType', 'location', 'status', 'description','delivery', 'priceModel','price', 'options']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['title', 'transactionType', 'location', 'status', 'description','delivery', 'priceModel','price',  'options'];"></tr>
+            <tr mat-footer-row *matFooterRowDef="['title', 'location', 'location', 'status', 'description','delivery', 'priceModel','price', 'options']"></tr>
+            <tr mat-footer-row *matFooterRowDef="['transactionType', 'location', 'location', 'status', 'description','delivery', 'vat','nettototal', 'options']"></tr>
+            <tr mat-footer-row *matFooterRowDef="['bonanzaCoinsTotal', 'location', 'location', 'status', 'description','delivery', 'bonanzaCoinsRate','bonanzaCoins', 'options']"></tr>
+            <tr mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row"></tr>
+    </table>
+    </div>
+    <br>
+</div>
+
+
+
+

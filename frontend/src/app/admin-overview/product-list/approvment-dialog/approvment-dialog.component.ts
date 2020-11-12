@@ -23,7 +23,6 @@ export class ApprovmentDialogComponent implements OnInit {
   }
 
   save() {
-    console.log(this.data)
     this.httpClient.post(environment.endpointURL + 'item/changeFlag/' + this.data,null ).subscribe((res: any) => { });
     this.dialogRef.close()
 

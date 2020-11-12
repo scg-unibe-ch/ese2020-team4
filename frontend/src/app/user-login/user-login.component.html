@@ -1,25 +1,25 @@
-<mat-card>
-  <div *ngIf="!(loggedInMethod())">
-    <mat-form-field>
-      <input matInput placeholder="User Name" [(ngModel)]="userName" name="userName">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Password" [(ngModel)]="password" name="password" type="password">
-    </mat-form-field>
-    <div>
-      <button mat-flat-button color="primary" (click)="login()">Login</button>
-      <div class="divider">
-        <button mat-flat-button color="primary"  (click)="newUser()"> SignUp</button>
-      </div>
+
+<div *ngIf="!(loggedInMethod())">
+  <mat-form-field>
+    <input matInput placeholder="User Name" [(ngModel)]="userName" name="userName">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Password" [(ngModel)]="password" name="password" type="password">
+  </mat-form-field>
+  <div>
+    <button mat-flat-button color="primary" (click)="login()">Login</button>
+    <div class="divider">
+      <button mat-flat-button color="primary"  (click)="newUser()"> SignUp</button>
     </div>
-
-    <br>
-    <button mat-flat-button color="primary"  (click)="reset()"> password forgotten?</button>
-    <br>
   </div>
 
-  <div *ngIf=!!(loggedInMethod())>
-    <button mat-flat-button color="warn" (click)="logout()">Logout</button>
-    You are currently logged in as {{ userName }}
-  </div>
-</mat-card>
+  <br>
+  <button mat-flat-button color="primary"  (click)="reset()"> password forgotten?</button>
+  <br>
+</div>
+
+<div *ngIf=!!(loggedInMethod())>
+  <button mat-flat-button color="warn" (click)="logout()">Logout</button>
+  You are currently logged in as {{ userName }}
+</div>
+

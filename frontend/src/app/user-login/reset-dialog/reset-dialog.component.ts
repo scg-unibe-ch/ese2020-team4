@@ -19,12 +19,10 @@ export class ResetDialogComponent {
   }
 
   reset(): void {
-    console.log("frontend 1");
     this.httpClient.post(environment.endpointURL + 'user/resetRequest', {
       email: this.email
 
     }).subscribe((res: {message: string}) => {
-      console.log('resolved');
       this.response = res.message;
     }, (err: any) => {
 

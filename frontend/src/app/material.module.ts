@@ -11,7 +11,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatStepperModule } from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -52,7 +51,6 @@ import {MatDividerModule} from '@angular/material/divider';
     MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
-    MatStepperModule,
     MatDatepickerModule,
     MatDialogModule,
     MatDividerModule,
@@ -79,6 +77,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    MatIconModule,
+    MatIconRegistry,
   ]
 })
 export class MaterialModule { }

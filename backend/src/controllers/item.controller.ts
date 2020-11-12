@@ -27,15 +27,31 @@ itemController.put('/:id', (req: Request, res: Response) => {
 
 });
 
-itemController.put('/buy/:id/:uid', (req: Request, res: Response) => {
-    Item.findByPk(req.params.id)
-        .then(found => {
+itemController.put('/completeTransaction/:id/:oid', (req: Request, res: Response) => {
+    Item.findAll({where: {
+        [Op.and] : [{orderId: req.params.oid}, , {approvedFlag: {[Op.gt]: 0}}]}
+         })
+         .then(found => {
             if (found != null) {
-                found.update({soldToId : req.params.uid}).then(updated => {
-                    res.status(200).send(updated);
+                found.map(value => {
+                    value.update({soldToId : req.params.id});
                 });
             } else {
                 res.sendStatus(404);
+            }
+         })
+         .catch(err => res.status(500).send(err));
+});
+
+itemController.put('/buy/:id/:oid', (req: Request, res: Response) => {
+    Item.findByPk(req.params.id)
+        .then(found => {
+            if (found != null) {
+                found.update({orderId : req.params.oid}).then(updated => {
+                    res.status(200).send(updated);
+                });
+            } else {
+                res.status(200).send();
             }
         })
         .catch(err => res.status(500).send(err));
@@ -55,7 +71,7 @@ itemController.delete('/delete/:id', (req: Request, res: Response) => {
 
 itemController.get('/getPro/', (req: Request, res: Response) => {
     Item.findAll({where: {
-        [Op.and] : [{productType: 'Product'}, {soldToId: 0}, , {approvedFlag: {[Op.gt]: 0}}]}
+        [Op.and] : [{productType: 'Product'}, {orderId: null}, {soldToId: 0} , {approvedFlag: {[Op.gt]: 0}}]}
          })
         .then(list => res.status(200).send(list))
         .catch(err => res.status(500).send(err));
@@ -63,7 +79,7 @@ itemController.get('/getPro/', (req: Request, res: Response) => {
 
 itemController.get('/getSer/', (req: Request, res: Response) => {
     Item.findAll({where: {
-        [Op.and] : [{productType: 'Service'}, {soldToId: 0}, , {approvedFlag: {[Op.gt]: 0}}]}
+        [Op.and] : [{productType: 'Service'}, {orderId: null}, {soldToId: 0} , {approvedFlag: {[Op.gt]: 0}}]}
          })
         .then(list => res.status(200).send(list))
         .catch(err => res.status(500).send(err));
@@ -74,6 +90,19 @@ itemController.get('/get/:id', (req: Request, res: Response) => {
         [Op.and] : [{userId: req.params.id}, {soldToId: 0}]}
          })
         .then(list => res.status(200).send(list))
+        .catch(err => res.status(500).send(err));
+});
+
+itemController.get('/getOrderItem/:id', (req: Request, res: Response) => {
+    Item.findAll({where: {orderId: req.params.id} })
+        .then(list => {
+            if (list != null) {
+                res.status(200).send(list);
+            } else {
+                res.sendStatus(404);
+
+            }
+        })
         .catch(err => res.status(500).send(err));
 });
 

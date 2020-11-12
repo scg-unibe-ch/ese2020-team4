@@ -19,6 +19,7 @@ export class BuyDialogComponent {
   }
   secureEndpointResponse = '';
   hide = true;
+  orderId;
   userId;
 
 
@@ -29,9 +30,21 @@ export class BuyDialogComponent {
     }
     else{
       this.userId = localStorage.getItem('userId')
-    console.log(this.data)
-    this.httpClient.put(environment.endpointURL + 'item/buy/'+this.data+ "/"+ this.userId, null).subscribe((res: any) => { });
-    this.dialogRef.close()
+      this.orderId = localStorage.getItem('orderId')
+
+      if (!localStorage.getItem('orderId')){
+        this.httpClient.post(environment.endpointURL + 'order/post', {userId: this.userId, status: "active"}).subscribe((res: any) => {
+          localStorage.setItem('orderId', res.orderId)
+          this.orderId = localStorage.getItem('orderId')
+          this.httpClient.put(environment.endpointURL + 'item/buy/'+this.data+ "/"+ this.orderId, null).subscribe((res: any) => { });
+        });
+        this.dialogRef.close()
+      } else {
+        this.orderId = localStorage.getItem('orderId')
+        this.httpClient.put(environment.endpointURL + 'item/buy/'+this.data+ "/"+ this.orderId, null).subscribe((res: any) => { });
+        this.dialogRef.close()
+      }
+      
     }
   }
 

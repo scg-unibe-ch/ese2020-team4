@@ -1,3 +1,4 @@
+import { Order } from './order.model';
 import { UserService } from './../services/user.service';
 import { Optional, Model, Sequelize, DataTypes, Association, HasManyAddAssociationMixin, HasManyGetAssociationsMixin } from 'sequelize';
 import { Role } from './role.model';
@@ -161,6 +162,10 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
         });
         User.hasMany(Item, {
             as: 'userItem',
+            foreignKey: 'userId'
+        });
+        User.hasMany(Order, {
+            as: 'orderItem',
             foreignKey: 'userId'
         });
     }

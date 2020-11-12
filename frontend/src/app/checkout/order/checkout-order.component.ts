@@ -1,12 +1,12 @@
+import { DeleteOrderItem } from './delete-order-item/delete-order-item.component';
 import { Observable, timer, Subscription } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 
-import { Item } from './../../models/item.model';
+import { Item } from '../../models/item.model';
 import { ChangeDetectorRef } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { BuyDialogComponent } from './buy-dialog/buy-dialog.component';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild, OnDestroy} from '@angular/core';
+import { Component, OnInit,AfterViewInit, ViewChild, OnDestroy} from '@angular/core';
 import { environment } from '../../../environments/environment';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource,MatTable} from '@angular/material/table';
@@ -17,11 +17,11 @@ export interface ItemData {
 }
 
 @Component({
-  selector: 'catalogue-products-list',
-  templateUrl: './catalogue-products-list.component.html',
-  styleUrls: ['./catalogue-products-list.component.css']
+  selector: 'checkout-order',
+  templateUrl: './checkout-order.component.html',
+  styleUrls: ['./checkout-order.component.css']
 })
-export class CatalogueProductsListComponent implements OnInit, OnDestroy{
+export class OrderComponent implements OnInit, OnDestroy{
   userId = localStorage.getItem("userId");
   itemId = 0;
   newUserItemName = '';
@@ -29,6 +29,9 @@ export class CatalogueProductsListComponent implements OnInit, OnDestroy{
   everyFiveSeconds: Observable<number> = timer(0, 15000);
   subscription : Subscription;
   dataSource = new MatTableDataSource();
+  finalCost;
+  orderId;
+  cost;
   constructor(private httpClient: HttpClient, private dialog: MatDialog, private changeDetectorRefs: ChangeDetectorRef) {}
 
   @ViewChild(MatSort) sort: MatSort;
@@ -37,18 +40,19 @@ export class CatalogueProductsListComponent implements OnInit, OnDestroy{
 
 
   ngOnInit(){
-    this.httpClient.get(environment.endpointURL + 'item/getPro/', {
+    this.httpClient.get(environment.endpointURL + 'item/getOrderItem/'+ localStorage.getItem('orderId'), {
     }).subscribe(data => {
         this.locData = data as Item[];
         this.dataSource = new MatTableDataSource(data as Item[]);
         this.changeDetectorRefs.detectChanges();
     }, (err: HttpErrorResponse) => {
         console.log(err.message)
-    }
-    );
+    });
+    this.changePrice()
     this.subscription = this.everyFiveSeconds.subscribe(()=> {
       this.refresh();
     })
+    
   }
  
   ngOnDestroy() {
@@ -56,25 +60,47 @@ export class CatalogueProductsListComponent implements OnInit, OnDestroy{
   }
 
   refresh(): void{
-    this.httpClient.get(environment.endpointURL + 'item/getPro/', {
+    this.httpClient.get(environment.endpointURL + 'item/getOrderItem/'+ localStorage.getItem('orderId'), {
     }).subscribe(data => {
+      this.locData = data as Item[];
       this.dataSource.data = data as Item[];
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     }, (err: HttpErrorResponse) => {
         console.log(err.message)
     });
+    this.changePrice()
     this.itemTable.renderRows();
   
   }
 
   openDialog(itemId): void {
     this.itemId = itemId
-    const dialogRef = this.dialog.open(BuyDialogComponent, {
+    const dialogRef = this.dialog.open(DeleteOrderItem, {
       width: '250px',
       data: this.itemId
     });
   }
+
+  calculateCost(): number {
+    this.cost = 0
+    for (let key in this.locData) {
+      let value = this.locData[key]
+      this.cost += value.price
+    }
+    return this.cost
+  }
+
+  calculateBCCosts() : number {
+    this.calculateCost();
+    return this.cost *1.2 * 0.00010219254;
+  }
+
+  public changePrice(): void {
+    this.httpClient.put(environment.endpointURL + 'order/change/'+ localStorage.getItem("orderId"), {price: this.calculateBCCosts()}).subscribe((res:any) =>{})
+  }
+
+
 }
 
 

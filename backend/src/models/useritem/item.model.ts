@@ -1,9 +1,11 @@
+import { Order } from './../order.model';
 import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 import { User } from '../user.model';
 
 export interface ItemAttributes {
     userId: number;
     itemId: number;
+    orderId: number;
     soldToId: number;
     productType: string;
     title: string;
@@ -17,6 +19,7 @@ export interface ItemAttributes {
     price: number;
     priceModel: string;
     approvedFlag: boolean;
+    count: number;
 }
 
 export interface ItemCreationAttributes extends Optional<Item, 'itemId'> { }
@@ -24,6 +27,7 @@ export interface ItemCreationAttributes extends Optional<Item, 'itemId'> { }
 export class Item extends Model<ItemAttributes, ItemCreationAttributes> implements ItemAttributes {
     userId!: number;
     itemId!: number;
+    orderId!: number;
     soldToId!: number;
     productType: string;
     title!: string;
@@ -37,17 +41,23 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
     price!: number;
     priceModel!: string;
     approvedFlag!: boolean;
+    count!: number;
 
     public static initialize(sequelize: Sequelize) {
         Item.init({
             userId: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: false
             },
             itemId: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true
+            },
+            orderId: {
+                type: DataTypes.INTEGER,
+                defaultValue: null,
+                allowNull: true
             },
             soldToId: {
                 type: DataTypes.STRING,
@@ -105,6 +115,11 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
                 type: DataTypes.STRING,
                 defaultValue: false,
                 allowNull: true
+            },
+            count: {
+                type: DataTypes.INTEGER,
+                defaultValue: 1,
+                allowNull: false
             }
 
         },
@@ -118,6 +133,13 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
                 as: 'userItem',
                 onDelete: 'cascade',
                 foreignKey: 'userId'
+            }),
+            Item.belongsTo(Order, {
+                targetKey: 'orderId',
+                as: 'orderItem',
+                onDelete: 'NO ACTION',
+                foreignKey: {name: 'orderId', allowNull: true},
+                constraints: false
             });
         }
 

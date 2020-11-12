@@ -42,7 +42,6 @@ export class EditProductsFormComponent implements OnInit {
   }
 
   edit(): void {
-    console.log(this.itemForm.value)
     this.httpClient.put(environment.endpointURL + 'item/'+this.itemForm.get('itemId').value, this.itemForm.value).subscribe((res: any) => { });
   }
 

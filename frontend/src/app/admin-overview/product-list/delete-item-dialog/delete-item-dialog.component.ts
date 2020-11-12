@@ -23,7 +23,6 @@ export class DeleteItemDialogComponent implements OnInit {
   }
 
   save() {
-    console.log(this.data)
     this.httpClient.delete(environment.endpointURL + 'item/delete/' + this.data ).subscribe((res: any) => {
       console.log('frontend 1');
     });

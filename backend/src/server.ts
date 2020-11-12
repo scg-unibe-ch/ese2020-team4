@@ -1,11 +1,10 @@
 import express, { Application , Request, Response } from 'express';
 import morgan from 'morgan';
-import {TodoItemController, TodoListController, UserController, SecuredController, ItemController} from './controllers/cindex';
+import {UserController, SecuredController, ItemController, OrderController} from './controllers/cindex';
 import { BelongsTo, Sequelize } from 'sequelize';
-import { TodoList } from './models/todolist.model';
-import { TodoItem } from './models/todoitem.model';
 import { User } from './models/user.model';
 import * as uitems from './models/useritem/index';
+import {Order} from './models/order.model';
 
 import cors from 'cors';
 import { Role } from './models/role.model';
@@ -19,12 +18,9 @@ export class Server {
         this.server = this.configureServer();
         this.sequelize = this.configureSequelize();
 
-        TodoItem.initialize(this.sequelize); // creates the tables if they dont exist
-        TodoList.initialize(this.sequelize);
-        TodoItem.createAssociations();
-        TodoList.createAssociations();
         Role.initialize(this.sequelize);
         User.initialize(this.sequelize);
+        Order.initialize(this.sequelize);
         uitems.Item.initialize(this.sequelize);
 
         Role.uBuild();
@@ -32,26 +28,13 @@ export class Server {
 
         Role.createAssociations();
         User.createAssociations();
+        Order.createAssociations();
         uitems.Item.createAssociations();
-
-
-
-        // Really ugly right now could be made better with a common Interface
-        // uitems.LentItem.initialize(this.sequelize);
-        // uitems.PostedItem.initialize(this.sequelize);
-        // uitems.PurchasedItem.initialize(this.sequelize);
-        // uitems.SoldItem.initialize(this.sequelize);
-
-        // uitems.LentItem.createAssociations();
-        // uitems.PostedItem.createAssociations();
-        // uitems.PurchasedItem.createAssociations();
-        // uitems.SoldItem.createAssociations();
 
         this.sequelize.sync({logging: console.log}).then(() => {
             this.server.listen(this.port, () => {                                   // start server on specified port
             console.log(`server listening at http://localhost:${this.port}`);
-            })
-            ;
+            });
         }).catch(err => console.log(err));
 
 
@@ -77,9 +60,8 @@ export class Server {
             .use(cors())
             .use(express.json())                    // parses an incoming json to an object
             .use(morgan('tiny'))                    // logs incoming requests
-            .use('/todoitem', TodoItemController)   // any request on this path is forwarded to the TodoItemController
-            .use('/todolist', TodoListController)
             .use('/item', ItemController)
+            .use('/order', OrderController)
             .use('/user', UserController)
             .use('/secured', SecuredController)
             .options('*', cors(options))
