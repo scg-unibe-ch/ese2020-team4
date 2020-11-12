@@ -1,16 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
-  selector: 'app-user-overview',
-  templateUrl: './user-overview.component.html',
-  styleUrls: ['./user-overview.component.css']
+  selector: 'app-user-account',
+  templateUrl: './user-account.component.html',
+  styleUrls: ['./user-account.component.css']
 })
-export class UserOverviewComponent implements OnInit {
+export class UserAccountComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
-
   userName = '';
   password = '';
 
@@ -74,4 +73,5 @@ export class UserOverviewComponent implements OnInit {
       this.secureEndpointResponse = 'Unauthorized';
     });
   }
+
 }

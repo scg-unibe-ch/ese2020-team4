@@ -1,45 +1,43 @@
 import { CheckoutComponent } from './../checkout/checkout.component';
-import { HttpClient } from '@angular/common/http';
-
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
-  selector: 'app-main-page',
-  templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
-export class MainPageComponent implements OnInit {
-
+export class HeaderComponent implements OnInit {
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
-
   userToken = "";
   userName = "";
   roleId = "";
 
-
-
-  constructor(private httpClient: HttpClient,private route: ActivatedRoute,) {}
+  constructor(private httpClient: HttpClient,private dialog: MatDialog) {}
 
   loggedIn() {
     this.checkUserStatus();
     return localStorage.getItem('userToken');
   }
 
+  existingOrder() {
+    return localStorage.getItem('orderId');
+  }
 
   logout(): void {
     // Remove user data from local storage
     localStorage.removeItem('userToken');
     localStorage.removeItem('userName');
     localStorage.removeItem('userId');
-    localStorage.removeItem('orderId');
     localStorage.removeItem('roleId');
 
     this.checkUserStatus();
 
   }
-
+  
   ngOnInit(): void {
     this.checkUserStatus();
   }
@@ -56,6 +54,13 @@ export class MainPageComponent implements OnInit {
 
   }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CheckoutComponent, {
+      width: '1200px',
+      height: '850px',
+      data: ''
+    });
+  }
 
   displayMenu(): void{
     this.trigger.openMenu();
@@ -64,4 +69,5 @@ export class MainPageComponent implements OnInit {
   hideMenu(): void{
     this.trigger.closeMenu();
   }
+
 }

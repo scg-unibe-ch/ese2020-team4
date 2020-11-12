@@ -26,8 +26,6 @@ import { MatCardModule } from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import {CatalogueComponent} from './catalogue/catalogue.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
-import { TodoItemComponent } from './todo-list/todo-item/todo-item.component';
 import { UserOverviewComponent} from './user-overview/user-overview.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -57,12 +55,15 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { MainPageComponent } from './main-page/main-page.component';
 import { DeleteItemDialogComponent } from './admin-overview/product-list/delete-item-dialog/delete-item-dialog.component';
 import { CheckoutComponent} from './checkout/checkout.component'
+import { MatMenuModule} from '@angular/material/menu';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { UserAccountComponent } from './user-overview/user-account/user-account.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoListComponent,
-    TodoItemComponent,
     UserLoginComponent,
     UserRegistrationComponent,
     UserProductsComponent,
@@ -94,8 +95,10 @@ import { CheckoutComponent} from './checkout/checkout.component'
     DeleteItemDialogComponent,
     CheckoutComponent,
     OrderComponent,
-    DeleteOrderItem
-
+    DeleteOrderItem,
+    UserAccountComponent,
+    HeaderComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -117,17 +120,21 @@ import { CheckoutComponent} from './checkout/checkout.component'
       {path: 'main', component: MainPageComponent},
       {path: 'checkout', component: CheckoutComponent},
       {path: 'reset/:id', component: PasswordResetComponent},
-      {path: '', redirectTo: '/main', pathMatch: 'full'},
-      {path: '**', component: PageNotFoundComponent},
-      
+      {path: '', redirectTo: '/main', pathMatch: 'full'},  
+      {path: 'main/your-product', component: UserProductsComponent},
+      {path: 'main/your-transaction', component: UserTransactionsComponent},
+      {path: 'main/account', component: UserAccountComponent},
+      {path: '**', component: PageNotFoundComponent}
     ]),
     MatDialogModule,
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
     MatStepperModule,
-    MatExpansionModule
-    
+    MatMenuModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     {
