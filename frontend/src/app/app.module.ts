@@ -125,6 +125,8 @@ import { HeaderComponent } from './header/header.component';
       {path: 'main/your-transaction', component: UserTransactionsComponent},
       {path: 'main/account', component: UserAccountComponent},
       {path: 'main/admin-overview', component: AdminOverviewComponent},
+      {path: 'login', component: UserLoginComponent},
+      {path: 'register', component: UserRegistrationComponent},
       {path: '**', component: PageNotFoundComponent}
     ]),
     MatDialogModule,

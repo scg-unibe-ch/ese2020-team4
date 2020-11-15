@@ -15,6 +15,23 @@ input.example-right-align {
   -moz-appearance: textfield;
 }
 
+.registerContainer{
+  margin: auto;
+  width: 450px;
+  padding: 10px;
+  margin-top: 75px;
+  border-style: solid;
+  border-width: thin;
+}
+
+.centerBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 #success {
   border-style: solid;
   border-color: green;
