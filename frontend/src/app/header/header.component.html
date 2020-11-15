@@ -1,21 +1,32 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row class="top team4-container">
-      <button mat-button [routerLink]="['/main']">Team4's secret bonanza</button>
+      <button mat-button class="homeButton" [routerLink]="['/main']">Team4's secret bonanza</button>
+
       <div class="container text-right" *ngIf="!!(loggedIn())">
         <button *ngIf="existingOrder()" mat-flat-button color="primary" (click) = "openDialog()">
           <mat-icon>shopping_cart</mat-icon>
         </button>
-        <span>Wallet Fr. </span>
-        <span>Hello, {{userName}}</span>
+        <span class="text-size">Wallet Fr. </span>
+        <span class="text-size">Hello, {{userName}}</span>
         <button mat-button [matMenuTriggerFor]="menu">
           <mat-icon class="icon-display">account_circle</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
+          <div *ngIf="!!(isAdmin())">
+            <button mat-menu-item [routerLink]="['/main/admin-overview']">Admin Overlay</button>
+          </div>
           <button mat-menu-item [routerLink]="['/main/account']">Account</button>
           <button mat-menu-item [routerLink]="['/main/your-product']">Your Products</button>
           <button mat-menu-item [routerLink]="['/main/your-transaction']">Your Transactions</button>
           <button mat-menu-item color="warn" (click)="logout()">Logout</button>
         </mat-menu>
       </div>
+
+      <div class="container text-right" *ngIf="!!!(loggedIn())">
+        <span> You see this shit? </span>
+        <button mat-button [routerLink]="['/login']">Login</button>
+        <button mat-button [routerLink]="['/register']">Register</button>
+      </div>
+
     </mat-toolbar-row>
 </mat-toolbar>

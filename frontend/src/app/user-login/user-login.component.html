@@ -1,3 +1,4 @@
+
 <mat-card class="loginContainer">
   <div *ngIf="!(loggedInMethod())">
     <div>
@@ -16,12 +17,7 @@
         <button mat-flat-button class="buttonForgot" (click)="reset()"> Forgot password?</button>
       </div> 
     </div>
-    
-
-  <br>
-  <button mat-flat-button color="primary"  (click)="reset()"> password forgotten?</button>
-  <br>
-
+  
 </div>
 
 <div *ngIf=!!(loggedInMethod())>

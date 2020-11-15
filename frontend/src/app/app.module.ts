@@ -133,6 +133,9 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
       {path: 'main/your-product', component: UserProductsComponent},
       {path: 'main/your-transaction', component: UserTransactionsComponent},
       {path: 'main/account', component: UserAccountComponent},
+      {path: 'main/admin-overview', component: AdminOverviewComponent},
+      {path: 'login', component: UserLoginComponent},
+      {path: 'register', component: UserRegistrationComponent},
       {path: '**', component: PageNotFoundComponent}
     ]),
     MatDialogModule,
