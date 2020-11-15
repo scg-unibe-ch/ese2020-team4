@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import {DeleteDialogComponent} from "../admin-overview/user-list/delete-dialog/delete-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {ResetDialogComponent} from "./reset-dialog/reset-dialog.component";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class UserLoginComponent implements OnInit {
 
 
 
-  constructor(private httpClient: HttpClient, private dialog: MatDialog) {
+  constructor(private httpClient: HttpClient, private dialog: MatDialog, private router: Router) {
 
 
   }
@@ -92,7 +93,7 @@ export class UserLoginComponent implements OnInit {
         
       })
     });
-    
+    this.router.navigateByUrl('/main');
   }
 
   newUser(): void {

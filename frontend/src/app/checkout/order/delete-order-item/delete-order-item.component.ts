@@ -17,6 +17,7 @@ export class DeleteOrderItem  {
     this.httpClient.put(environment.endpointURL + 'item/' + this.data, {orderId:null
     }).subscribe();
     this.dialogRef.close()
+    localStorage.removeItem('orderId');
   }
   close(): void{
     this.dialogRef.close()

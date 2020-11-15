@@ -15,7 +15,14 @@
           </mat-panel-title>
 
         </mat-expansion-panel-header>
-        <p><app-user-login></app-user-login></p>
+        <p *ngIf="!(loggedInMethod())">
+          <app-user-login></app-user-login>
+        </p>
+        <div *ngIf="!!(loggedInMethod())">
+          Already logged in.
+          <button mat-raised-button color='primary' matStepperNext (click) = "getAddress()">Next</button>
+        </div>
+
       </mat-expansion-panel>
     
       <mat-expansion-panel [expanded]="false">
