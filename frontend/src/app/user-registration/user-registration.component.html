@@ -1,4 +1,5 @@
-<div [formGroup]="userForm">
+<app-header></app-header>
+<div [formGroup]="userForm" class="registerContainer">
   <mat-form-field>
     <input matInput placeholder="Username" [type]="'userName'" formControlName="userName" required>
   </mat-form-field>
@@ -67,7 +68,8 @@
 
   <br>
 
-  <button mat-flat-button color="primary" [disabled]="!validForm()" (click)="register()">Register</button>
-
-
+  <div class="centerBtn">
+    <button mat-flat-button color="primary" [disabled]="!validForm()" (click)="register()">Register</button>
+  </div>
+  
 </div>

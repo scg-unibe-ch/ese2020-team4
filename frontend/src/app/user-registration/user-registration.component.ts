@@ -8,14 +8,13 @@ import {MatDialog} from "@angular/material/dialog";
 import {DialogSuccessfulComponent} from "./dialog-successful/dialog-successful.component";
 import {DialogErrorComponent} from "./dialog-error/dialog-error.component";
 import { ErrorStateMatcher } from '@angular/material/core';
+import { Router } from '@angular/router';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
-    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
-
-    return (invalidCtrl || invalidParent);
+    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty && control.parent.hasError('passwordNotMatch'));
+    return (invalidParent);
   }
 }
 
@@ -27,7 +26,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class UserRegistrationComponent implements OnInit {
   userForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private dialog: MatDialog, private httpClient: HttpClient) {
+  constructor(private formBuilder: FormBuilder, private dialog: MatDialog, private httpClient: HttpClient, private router: Router) {
     
   }
   secureEndpointResponse = 'response';
@@ -63,7 +62,7 @@ export class UserRegistrationComponent implements OnInit {
 
   register(): void {
     this.httpClient.post(environment.endpointURL + 'user/register', this.userForm.value).subscribe((res: any) => {
-      this.loginComponent = new UserLoginComponent(this.httpClient, this.dialog);
+      this.loginComponent = new UserLoginComponent(this.httpClient, this.dialog, this.router);
       this.loginComponent.setUserName(this.userForm.value.userName);
       this.loginComponent.setPassword(this.userForm.value.password);
       this.loginComponent.login();

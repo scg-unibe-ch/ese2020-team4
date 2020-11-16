@@ -15,7 +15,14 @@
           </mat-panel-title>
 
         </mat-expansion-panel-header>
-        <p><app-user-login></app-user-login></p>
+        <p *ngIf="!(loggedInMethod())">
+          <button mat-button [routerLink]="['/login']">Login</button>
+        </p>
+        <div *ngIf="!!(loggedInMethod())">
+          Already logged in.
+          <button mat-raised-button color='primary' matStepperNext (click) = "getAddress()">Next</button>
+        </div>
+
       </mat-expansion-panel>
     
       <mat-expansion-panel [expanded]="false">
@@ -25,7 +32,9 @@
           </mat-panel-title>
 
         </mat-expansion-panel-header>
-        <p><app-user-registration></app-user-registration></p>
+        <p>
+          <button mat-button [routerLink]="['/register']">Register</button>
+        </p>
         </mat-expansion-panel>
     
       </mat-accordion>
