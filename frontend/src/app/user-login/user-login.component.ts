@@ -83,6 +83,7 @@ export class UserLoginComponent implements OnInit {
       localStorage.setItem('userName', res.user.userName);
       localStorage.setItem('userId', res.user.userId);
       localStorage.setItem('roleId', res.user.roleId);
+      localStorage.setItem('currWallet', res.user.wallet);
       this.checkUserStatus();
       this.httpClient.get(environment.endpointURL+ 'order/getUserOrder/'+ localStorage.getItem('userId'), {       
       }).subscribe((res: any) => {
@@ -114,6 +115,7 @@ export class UserLoginComponent implements OnInit {
     localStorage.removeItem('userId');
     localStorage.removeItem('roleId');
     localStorage.removeItem('orderId');
+    localStorage.removeItem('currWallet');
 
     this.checkUserStatus();
 

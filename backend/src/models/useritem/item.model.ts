@@ -20,6 +20,7 @@ export interface ItemAttributes {
     priceModel: string;
     approvedFlag: boolean;
     count: number;
+    processed: boolean;
 }
 
 export interface ItemCreationAttributes extends Optional<Item, 'itemId'> { }
@@ -42,6 +43,7 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
     priceModel!: string;
     approvedFlag!: boolean;
     count!: number;
+    processed!: boolean;
 
     public static initialize(sequelize: Sequelize) {
         Item.init({
@@ -118,6 +120,11 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
             },
             count: {
                 type: DataTypes.INTEGER,
+                defaultValue: 1,
+                allowNull: false
+            },
+            processed: {
+                type: DataTypes.BOOLEAN,
                 defaultValue: 1,
                 allowNull: false
             }

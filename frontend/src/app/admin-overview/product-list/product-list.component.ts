@@ -1,3 +1,4 @@
+import { ApprovmentAllDialogComponent } from './approvmentAll-dialog/approvementAll-dialog.component';
 import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Observable, Subscription, timer} from "rxjs";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
@@ -72,6 +73,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
     });
   }
 
+  approveAllDialog(): void {
+    this.dialog.open(ApprovmentAllDialogComponent, {
+      width: '250px',
+      data: ""
+    });
+  }
 
   deleteDialog(itemId: any) {
     this.dialog.open(DeleteItemDialogComponent, {

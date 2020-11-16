@@ -20,6 +20,38 @@ userController.post('/login',
     }
 );
 
+userController.put('/charge/:id', (req: Request, res: Response) => {
+    User.findByPk(req.params.id)
+        .then(found => {
+            if (found != null) {
+                console.log(req.body);
+                found.update({'wallet': +found.wallet + +req.body.wallet}).then(updated => {
+                    res.status(200).send(updated);
+                });
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(err => res.status(500).send(err));
+
+});
+
+userController.put('/minusWallet/:id', (req: Request, res: Response) => {
+    User.findByPk(req.params.id)
+        .then(found => {
+            if (found != null) {
+                console.log(req.body.price);
+                found.update({'wallet': +found.wallet - +req.body.price}).then(updated => {
+                    res.status(200).send(updated);
+                });
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(err => res.status(500).send(err));
+
+});
+
 userController.get('/', verifyToken, // you can add middleware on specific requests like that
     (req: Request, res: Response) => {
         userService.getAll().then(users => res.send(users)).catch(err => res.status(500).send(err));

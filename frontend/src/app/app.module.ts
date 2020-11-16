@@ -1,3 +1,5 @@
+import { ApprovmentAllDialogComponent } from './admin-overview/product-list/approvmentAll-dialog/approvementAll-dialog.component';
+import { UserWalletComponent } from './user-overview/user-wallet/user-wallet.component';
 import { DeleteOrderItem } from './checkout/order/delete-order-item/delete-order-item.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -97,8 +99,9 @@ import { HeaderComponent } from './header/header.component';
     OrderComponent,
     DeleteOrderItem,
     UserAccountComponent,
-    HeaderComponent
-    
+    HeaderComponent,
+    UserWalletComponent,
+    ApprovmentAllDialogComponent    
   ],
   imports: [
     BrowserModule,

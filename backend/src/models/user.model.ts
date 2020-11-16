@@ -114,7 +114,7 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
                 allowNull: true
             },
             wallet: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.FLOAT,
                 defaultValue: 0,
                 allowNull: true
             },

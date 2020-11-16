@@ -5,7 +5,7 @@
         <button *ngIf="existingOrder()" mat-flat-button color="primary" (click) = "openDialog()">
           <mat-icon>shopping_cart</mat-icon>
         </button>
-        <span>Wallet Fr. </span>
+        <span> {{getCurrWallet() | currency: 'BC'}} </span>
         <span>Hello, {{userName}}</span>
         <button mat-button [matMenuTriggerFor]="menu">
           <mat-icon class="icon-display">account_circle</mat-icon>

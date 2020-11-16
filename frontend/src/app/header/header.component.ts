@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { CheckoutComponent } from './../checkout/checkout.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -18,6 +19,11 @@ export class HeaderComponent implements OnInit {
 
   constructor(private httpClient: HttpClient,private dialog: MatDialog) {}
 
+  getCurrWallet() {
+    this.checkUserStatus();
+    return localStorage.getItem('currWallet')
+  }
+  
   loggedIn() {
     this.checkUserStatus();
     return localStorage.getItem('userToken');
@@ -33,6 +39,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('userName');
     localStorage.removeItem('userId');
     localStorage.removeItem('roleId');
+    localStorage.removeItem('currWallet');
 
     this.checkUserStatus();
 
@@ -40,6 +47,9 @@ export class HeaderComponent implements OnInit {
   
   ngOnInit(): void {
     this.checkUserStatus();
+    this.httpClient.get(environment.endpointURL + 'user/getSpecific/' + localStorage.getItem('userId'), {}).subscribe((res2: any) =>{
+      localStorage.setItem('currWallet', res2.wallet)
+    });
   }
 
   isAdmin(): boolean {
@@ -51,6 +61,8 @@ export class HeaderComponent implements OnInit {
     this.userToken = localStorage.getItem('userToken');
     this.userName = localStorage.getItem('userName');
     this.roleId = localStorage.getItem('roleId');
+    
+
 
   }
 
