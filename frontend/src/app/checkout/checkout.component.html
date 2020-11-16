@@ -16,7 +16,7 @@
 
         </mat-expansion-panel-header>
         <p *ngIf="!(loggedInMethod())">
-          <app-user-login></app-user-login>
+          <button mat-button [routerLink]="['/login']">Login</button>
         </p>
         <div *ngIf="!!(loggedInMethod())">
           Already logged in.
@@ -32,7 +32,9 @@
           </mat-panel-title>
 
         </mat-expansion-panel-header>
-        <p><app-user-registration></app-user-registration></p>
+        <p>
+          <button mat-button [routerLink]="['/register']">Register</button>
+        </p>
         </mat-expansion-panel>
     
       </mat-accordion>
