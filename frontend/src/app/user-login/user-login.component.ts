@@ -85,6 +85,7 @@ export class UserLoginComponent implements OnInit {
       localStorage.setItem('userId', res.user.userId);
       localStorage.setItem('roleId', res.user.roleId);
       localStorage.setItem('currWallet', res.user.wallet);
+      console.log(res.user.userId)
       this.checkUserStatus();
       this.httpClient.get(environment.endpointURL+ 'order/getUserOrder/'+ localStorage.getItem('userId'), {       
       }).subscribe((res: any) => {

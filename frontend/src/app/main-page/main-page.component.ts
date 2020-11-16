@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { CheckoutComponent } from './../checkout/checkout.component';
 import { HttpClient } from '@angular/common/http';
 
@@ -42,6 +43,9 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkUserStatus();
+    this.httpClient.get(environment.endpointURL + 'user/getWallet/' + localStorage.getItem('userId'), {}).subscribe((res2: any) =>{
+    localStorage.setItem('currWallet', res2.wallet)
+    });
   }
 
   isAdmin(): boolean {

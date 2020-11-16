@@ -39,6 +39,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('userName');
     localStorage.removeItem('userId');
     localStorage.removeItem('roleId');
+    localStorage.removeItem('orderId');
     localStorage.removeItem('currWallet');
 
     this.checkUserStatus();
@@ -47,9 +48,7 @@ export class HeaderComponent implements OnInit {
   
   ngOnInit(): void {
     this.checkUserStatus();
-    this.httpClient.get(environment.endpointURL + 'user/getSpecific/' + localStorage.getItem('userId'), {}).subscribe((res2: any) =>{
-      localStorage.setItem('currWallet', res2.wallet)
-    });
+
   }
 
   isAdmin(): boolean {
