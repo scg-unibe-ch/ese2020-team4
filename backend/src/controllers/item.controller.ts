@@ -1,9 +1,11 @@
+import { TransactionHandler } from './../services/transactionhandler.service';
 import { Op } from 'sequelize';
 import express, { Request, Response, Router } from 'express';
 import { Item } from '../models/useritem/item.model';
 import { regexp } from 'sequelize/types/lib/operators';
 
 const itemController: Router = express.Router();
+const transactionHandler = new TransactionHandler();
 
 itemController.post('/post', (req: Request, res: Response) => {
     Item.create(req.body)
@@ -34,7 +36,8 @@ itemController.put('/completeTransaction/:id/:oid', (req: Request, res: Response
          .then(found => {
             if (found != null) {
                 found.map(value => {
-                    value.update({soldToId : req.params.id});
+                    value.update({soldToId : req.params.id, processed: '0'});
+                    transactionHandler.processTransactions();
                 });
             } else {
                 res.sendStatus(404);
@@ -136,6 +139,20 @@ itemController.post('/changeFlag/:id', (req: Request, res: Response) => {
             if (found != null) {
                 found.update({approvedFlag : !(found.approvedFlag)}).then(updated => {
                     res.status(200).send(updated);
+                });
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(err => res.status(500).send(err));
+});
+
+itemController.post('/changeAllFlag/', (req: Request, res: Response) => {
+    Item.findAll()
+        .then(found => {
+            if (found != null) {
+                found.map(value => {
+                    value.update({approvedFlag : 1});
                 });
             } else {
                 res.sendStatus(404);

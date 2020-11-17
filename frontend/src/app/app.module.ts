@@ -1,3 +1,5 @@
+import { ApprovmentAllDialogComponent } from './admin-overview/product-list/approvmentAll-dialog/approvementAll-dialog.component';
+import { UserWalletComponent } from './user-overview/user-wallet/user-wallet.component';
 import { DeleteOrderItem } from './checkout/order/delete-order-item/delete-order-item.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -14,6 +16,7 @@ import { UserSoldComponent } from './user-overview/user-transactions/user-sold/u
 import { UserBoughtComponent } from './user-overview/user-transactions/user-bought/user-bought.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -107,6 +110,9 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     ItemCardComponent,
     ProductsComponent
 
+    HeaderComponent,
+    UserWalletComponent,
+    ApprovmentAllDialogComponent
   ],
   imports: [
     BrowserModule,

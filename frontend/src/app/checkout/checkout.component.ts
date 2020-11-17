@@ -1,3 +1,4 @@
+import { UserWalletComponent } from './../user-overview/user-wallet/user-wallet.component';
 import { environment } from './../../environments/environment.prod';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Component, OnInit, Inject} from '@angular/core';
@@ -21,7 +22,10 @@ export class CheckoutComponent implements OnInit  {
   userId;
   itemIds;
   data;
+  notifier = false;
+  price;
   disableAnimation = true;
+  wallet;
   
   account = false;
   address: any;
@@ -72,12 +76,29 @@ export class CheckoutComponent implements OnInit  {
     this.dialogRef.close()
   }
   completeTransaction(){
-    this.httpClient.put(environment.endpointURL + 'order/change/'+ localStorage.getItem('orderId'), {status: "complete"}).subscribe((res: any) => {});
-    this.httpClient.put(environment.endpointURL + 'item/completeTransaction/'+ localStorage.getItem('userId')+"/"+localStorage.getItem("orderId"), null).subscribe((res: any) => {
+    this.httpClient.get(environment.endpointURL + 'user/getSpecific/' + localStorage.getItem('userId'), {}).subscribe((res: any) =>{
+      this.wallet = res.wallet;
     });
-    localStorage.removeItem("orderId")
-    this.dialogRef.close()
+    this.httpClient.get(environment.endpointURL + 'order/getUserOrder/' + localStorage.getItem('userId'), {}).subscribe((res: any) =>{
+      this.price = res.price
+      if(this.wallet >= this.price){
+        this.httpClient.put(environment.endpointURL + 'user/minusWallet/'+ localStorage.getItem('userId'), { "price": this.price}).subscribe((res:any) => {});
+        
+        this.httpClient.put(environment.endpointURL + 'order/change/'+ localStorage.getItem('orderId'), {status: "complete"}).subscribe((res: any) => {});
+        this.httpClient.put(environment.endpointURL + 'item/completeTransaction/'+ localStorage.getItem('userId')+"/"+localStorage.getItem("orderId"), null).subscribe((res: any) => {
 
+        });
+       
+
+
+        localStorage.removeItem("orderId")
+        this.notifier = false;
+        this.dialogRef.close()
+      } else {
+        this.notifier = true;
+      }
+
+    });
   }
   
 }

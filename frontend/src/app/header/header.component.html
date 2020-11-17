@@ -6,7 +6,7 @@
         <button *ngIf="existingOrder()" mat-flat-button color="primary" (click) = "openDialog()">
           <mat-icon>shopping_cart</mat-icon>
         </button>
-        <span class="text-size">Wallet Fr. </span>
+        <span class="text-size">{{getCurrWallet() | currency: 'BC'}} </span>
         <span class="text-size">Hello, {{userName}}</span>
         <button mat-button [matMenuTriggerFor]="menu">
           <mat-icon class="icon-display">account_circle</mat-icon>
@@ -23,9 +23,8 @@
       </div>
 
       <div class="container text-right" *ngIf="!!!(loggedIn())">
-        <span> You see this shit? </span>
-        <button mat-button [routerLink]="['/login']">Login</button>
-        <button mat-button [routerLink]="['/register']">Register</button>
+        <button mat-button class="loginBtn" [routerLink]="['/login']">Login</button>
+        <button mat-button class="loginBtn" [routerLink]="['/register']">Register</button>
       </div>
 
     </mat-toolbar-row>

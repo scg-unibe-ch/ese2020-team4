@@ -1,8 +1,10 @@
+import { environment } from './../../environments/environment';
 import { CheckoutComponent } from './../checkout/checkout.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,8 +18,13 @@ export class HeaderComponent implements OnInit {
   userName = "";
   roleId = "";
 
-  constructor(private httpClient: HttpClient,private dialog: MatDialog) {}
+  constructor(private httpClient: HttpClient,private dialog: MatDialog, private router: Router) {}
 
+  getCurrWallet() {
+    this.checkUserStatus();
+    return localStorage.getItem('currWallet')
+  }
+  
   loggedIn() {
     this.checkUserStatus();
     return localStorage.getItem('userToken');
@@ -33,13 +40,18 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('userName');
     localStorage.removeItem('userId');
     localStorage.removeItem('roleId');
+    localStorage.removeItem('orderId');
+    localStorage.removeItem('currWallet');
 
     this.checkUserStatus();
-
+    
+    //After Logout to Main
+    this.router.navigateByUrl('/main');
   }
   
   ngOnInit(): void {
     this.checkUserStatus();
+
   }
 
   isAdmin(): boolean {
@@ -51,6 +63,8 @@ export class HeaderComponent implements OnInit {
     this.userToken = localStorage.getItem('userToken');
     this.userName = localStorage.getItem('userName');
     this.roleId = localStorage.getItem('roleId');
+    
+
 
   }
 

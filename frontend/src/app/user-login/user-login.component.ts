@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import {DeleteDialogComponent} from "../admin-overview/user-list/delete-dialog/delete-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {ResetDialogComponent} from "./reset-dialog/reset-dialog.component";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class UserLoginComponent implements OnInit {
 
 
 
-  constructor(private httpClient: HttpClient, private dialog: MatDialog) {
+  constructor(private httpClient: HttpClient, private dialog: MatDialog, private router: Router) {
 
 
   }
@@ -83,6 +84,8 @@ export class UserLoginComponent implements OnInit {
       localStorage.setItem('userName', res.user.userName);
       localStorage.setItem('userId', res.user.userId);
       localStorage.setItem('roleId', res.user.roleId);
+      localStorage.setItem('currWallet', res.user.wallet);
+      console.log(res.user.userId)
       this.checkUserStatus();
       this.httpClient.get(environment.endpointURL+ 'order/getUserOrder/'+ localStorage.getItem('userId'), {       
       }).subscribe((res: any) => {
@@ -92,7 +95,7 @@ export class UserLoginComponent implements OnInit {
         
       })
     });
-    
+    this.router.navigateByUrl('/main');
   }
 
   newUser(): void {
@@ -114,6 +117,7 @@ export class UserLoginComponent implements OnInit {
     localStorage.removeItem('userId');
     localStorage.removeItem('roleId');
     localStorage.removeItem('orderId');
+    localStorage.removeItem('currWallet');
 
     this.checkUserStatus();
 

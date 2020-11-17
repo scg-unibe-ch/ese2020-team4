@@ -24,7 +24,6 @@ export class DeleteItemDialogComponent implements OnInit {
 
   save() {
     this.httpClient.delete(environment.endpointURL + 'item/delete/' + this.data ).subscribe((res: any) => {
-      console.log('frontend 1');
     });
     this.dialogRef.close();
 

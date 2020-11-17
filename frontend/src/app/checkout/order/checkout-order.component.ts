@@ -4,9 +4,9 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import { Item } from '../../models/item.model';
 import { ChangeDetectorRef } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog,  } from '@angular/material/dialog';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit,AfterViewInit, ViewChild, OnDestroy} from '@angular/core';
+import { Component,Output, OnInit, ViewChild, OnDestroy} from '@angular/core';
 import { environment } from '../../../environments/environment';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource,MatTable} from '@angular/material/table';
@@ -88,6 +88,7 @@ export class OrderComponent implements OnInit, OnDestroy{
       let value = this.locData[key]
       this.cost += value.price
     }
+
     return this.cost
   }
 
