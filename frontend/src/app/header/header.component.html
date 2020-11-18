@@ -30,8 +30,8 @@
       </div>
 
       <div class="container text-right" *ngIf="!!!(loggedIn())">
-        <button mat-button [routerLink]="['/login']">Login</button>
-        <button mat-button [routerLink]="['/register']">Register</button>
+        <button mat-button class="loginBtn" [routerLink]="['/login']">Login</button>
+        <button mat-button class="loginBtn" [routerLink]="['/register']">Register</button>
       </div>
 
     </mat-toolbar-row>

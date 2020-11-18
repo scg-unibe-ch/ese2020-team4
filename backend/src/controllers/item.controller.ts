@@ -88,6 +88,8 @@ itemController.get('/getSer/', (req: Request, res: Response) => {
         .catch(err => res.status(500).send(err));
 });
 
+
+
 itemController.get('/get/:id', (req: Request, res: Response) => {
     Item.findAll({where: {
         [Op.and] : [{userId: req.params.id}, {soldToId: 0}]}

@@ -4,6 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit {
   userName = "";
   roleId = "";
 
-  constructor(private httpClient: HttpClient,private dialog: MatDialog) {}
+  constructor(private httpClient: HttpClient,private dialog: MatDialog, private router: Router) {}
 
   getCurrWallet() {
     this.checkUserStatus();
@@ -43,7 +44,9 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('currWallet');
 
     this.checkUserStatus();
-
+    
+    //After Logout to Main
+    this.router.navigateByUrl('/main');
   }
   
   ngOnInit(): void {
