@@ -11,6 +11,9 @@
     <p>
       {{item.description}}
     </p>
+    <p>
+      Place: {{item.location}}
+    </p>
   </mat-card-content>
   <mat-card-actions>
     <button mat-flat-button color="primary" (click)= "openDialog(item.itemId)">Buy</button>

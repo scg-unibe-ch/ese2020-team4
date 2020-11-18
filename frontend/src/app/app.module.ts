@@ -129,7 +129,10 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     MatIconModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {path: 'main', component: MainPageComponent},
+      {path: 'main', component: MainPageComponent, 
+      children: [
+        { path: 'Available-Products', component: CatalogueProductsListComponent },
+        { path: 'Available-Services', component: CatalogueServiceListComponent }]},
       {path: 'main/search', component: SearchComponent},
       {path: 'checkout', component: CheckoutComponent},
       {path: 'reset/:id', component: PasswordResetComponent},
@@ -142,6 +145,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
       {path: 'register', component: UserRegistrationComponent},
       {path: '**', component: PageNotFoundComponent}
     ]),
+  
     MatDialogModule,
     MatTableModule,
     MatSortModule,
