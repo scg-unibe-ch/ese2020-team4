@@ -1,16 +1,12 @@
-import { Observable, timer, Subscription } from 'rxjs';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, OnInit } from '@angular/core';
+import {Item} from "../../models/item";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
+import {from} from "rxjs";
+import {filter} from "rxjs/operators";
+import { Options } from "@angular-slider/ngx-slider";
 
-import { Item } from './../../models/item.model';
-import { ChangeDetectorRef } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { BuyDialogComponent } from './buy-dialog/buy-dialog.component';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild, OnDestroy} from '@angular/core';
-import { environment } from '../../../environments/environment';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource,MatTable} from '@angular/material/table';
-import { DataSource } from '@angular/cdk/table';
+
 
 export interface ItemData {
   item: any;
@@ -21,60 +17,151 @@ export interface ItemData {
   templateUrl: './catalogue-products-list.component.html',
   styleUrls: ['./catalogue-products-list.component.css']
 })
-export class CatalogueProductsListComponent implements OnInit, OnDestroy{
-  userId = localStorage.getItem("userId");
-  itemId = 0;
-  newUserItemName = '';
-  locData;
-  everyFiveSeconds: Observable<number> = timer(0, 15000);
-  subscription : Subscription;
-  dataSource = new MatTableDataSource();
-  constructor(private httpClient: HttpClient, private dialog: MatDialog, private changeDetectorRefs: ChangeDetectorRef) {}
+export class CatalogueProductsListComponent implements OnInit{
 
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('itemTable') itemTable: MatTable<Item>;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  itemList: Item[] = [];
+  itemListFiltered: Item[] = [];
 
 
-  ngOnInit(){
-    this.httpClient.get(environment.endpointURL + 'item/getPro/', {
-    }).subscribe(data => {
-        this.locData = data as Item[];
-        this.dataSource = new MatTableDataSource(data as Item[]);
-        this.changeDetectorRefs.detectChanges();
-    }, (err: HttpErrorResponse) => {
-        console.log(err.message)
+  searchString = '';
+  location = '';
+  delivery = false;
+  available: boolean; //change backend first!
+  itemRank: number;
+  sell= false;
+  rent= false;
+
+  results: number;
+
+  attachOutsideOnClick = true;
+
+  value: number = 0;
+  highValue: number = 10000;
+  options: Options = {
+    floor: 0,
+    ceil: 10000
+  };
+
+
+
+
+  constructor(private httpClient: HttpClient ) {
+
+
+  }
+
+
+
+  ngOnInit(): void {
+    this.httpClient.get(environment.endpointURL + 'item/getPro/').subscribe((instances: any) => {
+      this.itemList = instances.map((instance: any) => {
+        return new Item(instance.itemId, instance.title, instance.description, instance.location, instance.price,
+          instance.transactionType, instance.delivery, instance.createdAt);
+      })
+
+      this.itemListFiltered = this.itemList;
+      this.results = this.itemListFiltered.length;
+
+      this.value = this.getMax(this.itemListFiltered);
+      this.highValue = this.getMin(this.itemListFiltered);
+
+
+
+
+
+    });
+
+
+  }
+
+  onClickReset() {
+    this.value = 0;
+    this.highValue = 10000;
+    this.location = '';
+    this.delivery = false;
+    this.sell= false;
+    this.rent= false;
+
+    this.onClickFilter()
+  }
+
+
+
+
+
+  onClickFilter() {
+
+    var that = this;
+
+    setTimeout(function() {
+      that.itemListFiltered = that.itemList.filter(item =>
+        (item.title.toLowerCase().includes(that.searchString) || item.description.toLowerCase().includes(this.searchString))
+        && (item.location.toLowerCase().includes(that.location))
+        && (item.delivery === true || item.delivery === that.delivery)
+        && (item.transactionType === that.getTransactionType())
+        && (item.price >= that.value && item.price <= that.highValue)
+      )
+
+      that.results = that.itemListFiltered.length;
+
+
+
+    },1000)
+
+  }
+
+
+  onClickedOutside(e: Event) {
+
+    this.onClickFilter()
+
+
+  }
+
+  getMin(list: Item[]) {
+
+    if(list.length === 0){
+      return 0;
     }
-    );
-    this.subscription = this.everyFiveSeconds.subscribe(()=> {
-      this.refresh();
-    })
-  }
- 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+
+    let min = list[0].price
+
+    for(let i = 0; i < list.length; i++){
+      if(min > list[i].price){
+        min = list[i].price;
+      }
+    }
+
+    return min;
   }
 
-  refresh(): void{
-    this.httpClient.get(environment.endpointURL + 'item/getPro/', {
-    }).subscribe(data => {
-      this.dataSource.data = data as Item[];
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-    }, (err: HttpErrorResponse) => {
-        console.log(err.message)
-    });
-    this.itemTable.renderRows();
-  
+  getMax(list: Item[]) {
+
+    if(list.length === 0){
+      return 0;
+    }
+
+    let max = list[0].price;
+
+    for(let i = 0; i < list.length; i++){
+      if(max < list[i].price){
+        max = list[i].price;
+      }
+    }
+
+    return max;
   }
 
-  openDialog(itemId): void {
-    this.itemId = itemId
-    const dialogRef = this.dialog.open(BuyDialogComponent, {
-      width: '250px',
-      data: this.itemId
-    });
+
+  private getTransactionType() {
+    if(this.sell === false && this.rent === true )
+      return 'Rent';
+    else if(this.sell === true && this.rent === false)
+      return 'Sell';
+    else
+      return 'Sell' || 'Rent';
   }
+
 }
 
 

@@ -108,9 +108,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     HeaderComponent,
     SearchComponent,
     ItemCardComponent,
-    ProductsComponent
-
-    HeaderComponent,
+    ProductsComponent,
     UserWalletComponent,
     ApprovmentAllDialogComponent
   ],

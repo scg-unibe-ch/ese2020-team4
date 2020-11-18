@@ -1,8 +1,8 @@
 <input [(ngModel)]="searchString" (keyup.enter)="onClickFilter()" type="text" placeholder="Search">
 <button (click)="onClickFilter()">Search</button>
 
-<p>{{minPrice}}</p>
-<p>{{maxPrice}}</p>
+<p>{{options.floor}}</p>
+<p>{{highValue}}</p>
 
 
 
@@ -15,7 +15,17 @@
       <mat-panel-description>
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider>
+    <ngx-slider (click)="onClickFilter()" [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider>
+    <section class="example-section">
+      <mat-form-field class="example-margin">
+        <mat-label>Min price</mat-label>
+        <input matInput type="number" [(ngModel)]="value">
+      </mat-form-field>
+      <mat-form-field class="example-margin">
+        <mat-label>Max price</mat-label>
+        <input matInput type="number" [(ngModel)]="highValue">
+      </mat-form-field>
+    </section>
   </mat-expansion-panel>
 
   <mat-expansion-panel>
@@ -41,8 +51,7 @@
       <mat-panel-description>
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <mat-checkbox class="example-margin" [(ngModel)]="postalService">Postal service</mat-checkbox>
-    <mat-checkbox class="example-margin" [(ngModel)]="pickUp">pick-up</mat-checkbox>
+    <mat-checkbox class="example-margin" [(ngModel)]="delivery">Postal service</mat-checkbox>
   </mat-expansion-panel>
 
   <mat-expansion-panel>
@@ -53,7 +62,7 @@
       <mat-panel-description>
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <mat-checkbox class="example-margin" [(ngModel)]="buy">buy</mat-checkbox>
+    <mat-checkbox class="example-margin" [(ngModel)]="sell">sell</mat-checkbox>
     <mat-checkbox class="example-margin" [(ngModel)]="rent">rent</mat-checkbox>
   </mat-expansion-panel>
 </mat-accordion>
@@ -63,7 +72,7 @@
 <mat-checkbox class="example-margin" [(ngModel)]="available">Only show available products</mat-checkbox>
 
 
-
+<p>{{results}} results</p>
 
 <app-item-card *ngFor="let itemCard of itemListFiltered" [item]="itemCard">
 </app-item-card>

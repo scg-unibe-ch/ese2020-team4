@@ -20,62 +20,59 @@ export class ProductsComponent implements OnInit {
   itemListFiltered: Item[] = [];
 
 
-  searchString: string;
-  minPrice: number;
-  maxPrice: number;
-  location: string;
-  postalService: boolean;
-  pickUp: boolean;
+  searchString = '';
+  location = '';
+  delivery = false;
   available: boolean;
-  buy: boolean;
-  rent: boolean;
+  transactionType: string //buy or rent
+  itemRank: number;
 
-
+  results: number;
 
   attachOutsideOnClick = true;
 
-  min;
-  max;
+  value: number = 0;
+  highValue: number = 100000;
+  options: Options = {
+    floor: 0,
+    ceil: 100000
+  };
 
-  value: number = 40;
-  highValue: number = 60;
-  options: Options;
 
-
-
+  sell= false;
+  rent= false;
 
 
 
 
   constructor(private httpClient: HttpClient ) {
 
-    this.min = 0;
-    this.max = 1000;
-    this.options = {
-      floor: this.min,
-      ceil: this.max
-    };
+
   }
+
+
 
   ngOnInit(): void {
     this.httpClient.get(environment.endpointURL + 'item/getPro/').subscribe((instances: any) => {
       this.itemList = instances.map((instance: any) => {
-        return new Item(instance.itemId, instance.title, instance.description, instance.location, instance.price)
+        return new Item(instance.itemId, instance.title, instance.description, instance.location, instance.price,
+          instance.transactionType, instance.delivery, instance.createdAt);
       })
 
       this.itemListFiltered = this.itemList;
-      this.maxPrice = this.getMax(this.itemListFiltered);
-      this.minPrice = this.getMin(this.itemListFiltered);
+      this.results = this.itemListFiltered.length;
 
-      console.log(this.minPrice);
-      console.log(this.maxPrice);
+      this.value = this.getMax(this.itemListFiltered);
+      this.highValue = this.getMin(this.itemListFiltered);
+
+      this.options.floor = this.value
+      this.options.ceil = this.highValue
+
+
+
 
 
     });
-
-
-
-
 
 
   }
@@ -86,34 +83,26 @@ export class ProductsComponent implements OnInit {
 
   onClickFilter() {
 
-    console.log(this.searchString)
-    this.itemListFiltered =  this.itemList.filter(i =>
-      i.itemId > 50 && (i.title.includes(this.searchString) || i.description.includes(this.searchString)
-      ))
+    console.log(this.delivery);
+    console.log(this.sell);
+    console.log(this.rent);
+    this.itemListFiltered =  this.itemList.filter(item =>
+      (item.title.toLowerCase().includes(this.searchString) || item.description.toLowerCase().includes(this.searchString))
+      && (item.location.toLowerCase().includes(this.location))
+      && (item.delivery === true || item.delivery === this.delivery)
+      && (item.transactionType === this.getTransactionType())
+      && (item.price >= this.value && item.price <= this.highValue)
+     )
 
+    this.results = this.itemListFiltered.length;
 
-
-
-
-    // console.log(this.itemList)
-    // this.itemListFiltered = [];
-    //
-    // console.log(1);
-
-
-    // const array3 = this.itemList;
-    // const obsfrom1 = from(array3);
-    // obsfrom1.pipe(filter(data => data.itemId > 50)).subscribe(instance =>
-    //   this.itemListFiltered.push(instance),
-    //   error => console.log('error'),
-    //   () => console.log('complete'));
 
   }
 
 
   onClickedOutside(e: Event) {
 
-    console.log('test')
+
 
 
   }
@@ -153,6 +142,12 @@ export class ProductsComponent implements OnInit {
   }
 
 
-
-
+  private getTransactionType() {
+    if(this.sell === false && this.rent === true )
+      return 'Rent';
+    else if(this.sell === true && this.rent === false)
+      return 'Sell';
+    else
+      return 'Sell' || 'Rent'
+  }
 }

@@ -1,63 +1,75 @@
+<input [(ngModel)]="searchString" (keyup.enter)="onClickReset()" type="text" placeholder="Search">
+<button (click)="onClickReset()">Search</button>
 
-<script>
-  
-</script>
-<pre style="margin:5px;"></pre>
-<div>
-    <div class="container">
-    <table #itemTable mat-table  [dataSource]="dataSource" matSort class="mat-elevation-z8">
-        
-        <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Title </th>
-            <td mat-cell *matCellDef="let item"> {{item.title}} </td>
-        </ng-container>
 
-        <ng-container matColumnDef="transactionType">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Transaction </th>
-            <td mat-cell *matCellDef="let item"> {{item.transactionType}} </td>
-        </ng-container>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Price
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <ngx-slider (click)="onClickFilter()" [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider>
+    <section class="example-section">
+      <mat-form-field class="example-margin">
+        <mat-label>Min price</mat-label>
+        <input matInput type="number" [(ngModel)]="value" (keyup.enter)="onClickFilter()" (clickOutside)="onClickedOutside($event)" [attachOutsideOnClick]="attachOutsideOnClick">
+      </mat-form-field>
+      <mat-form-field class="example-margin">
+        <mat-label>Max price</mat-label>
+        <input matInput type="number" [(ngModel)]="highValue" (keyup.enter)="onClickFilter()" (clickOutside)="onClickedOutside($event)" [attachOutsideOnClick]="attachOutsideOnClick">
+      </mat-form-field>
+    </section>
+  </mat-expansion-panel>
 
-        <ng-container matColumnDef="location">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Location </th>
-            <td mat-cell *matCellDef="let item"> {{item.location}} </td>
-        </ng-container>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Location
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-form-field>
+      <mat-label>City</mat-label>
+      <input matInput [(ngModel)]="location" (keyup.enter)="onClickFilter()" (clickOutside)="onClickedOutside($event)" [attachOutsideOnClick]="attachOutsideOnClick">
 
-        <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Status </th>
-            <td mat-cell *matCellDef="let item"> {{item.status}} </td>
-        </ng-container>
+    </mat-form-field>
+  </mat-expansion-panel>
 
-        <ng-container matColumnDef="description">
-             <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Description </th>
-             <td mat-cell *matCellDef="let item"> {{item.description}} </td>
-         </ng-container>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Delivery
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-checkbox class="example-margin" [(ngModel)]="delivery" (click)="onClickFilter()">Postal service</mat-checkbox>
+  </mat-expansion-panel>
 
-        <ng-container matColumnDef="delivery">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Delivery </th>
-            <td mat-cell *matCellDef="let item"> {{item.delivery}} </td>
-         </ng-container>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Type
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-checkbox class="example-margin" [(ngModel)]="sell" (click)="onClickFilter()">sell</mat-checkbox>
+    <mat-checkbox class="example-margin" [(ngModel)]="rent" (click)="onClickFilter()">rent</mat-checkbox>
+  </mat-expansion-panel>
+</mat-accordion>
 
-         <ng-container matColumnDef="price">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Price </th>
-             <td mat-cell *matCellDef="let item"> {{item.price}} </td>
-         </ng-container>
+<p>results: {{results}}</p>
 
-         <ng-container matColumnDef="priceModel">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Price Model </th>
-             <td mat-cell *matCellDef="let item"> {{item.priceModel}} </td>
-        </ng-container>
+<app-item-card *ngFor="let itemCard of itemListFiltered" [item]="itemCard">
+</app-item-card>
 
-        <ng-container matColumnDef="options">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-container"> Options </th>
-             <td mat-cell *matCellDef="let item"> <button mat-flat-button color="primary" (click)= "openDialog(item.itemId)">Buy</button>  </td>      
-        </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="['title', 'transactionType', 'location', 'status', 'description','delivery','price', 'priceModel', 'options']"></tr>
-            <tr mat-row *matRowDef="let row; columns: ['title', 'transactionType', 'location', 'status', 'description','delivery','price', 'priceModel', 'options'];"></tr>
-    </table>
-    </div>
-    <br>
-</div>
+<button (click)="onClickReset()">Search</button>
 
 
 
