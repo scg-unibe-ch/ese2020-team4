@@ -1,8 +1,7 @@
 <input [(ngModel)]="searchString" (keyup.enter)="onClickReset()" type="text" placeholder="Search">
 <button (click)="onClickReset()">Search</button>
 
-
-<mat-accordion>
+<mat-accordion class="example-headers-align" multi="False">
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
