@@ -62,6 +62,12 @@ import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { UserAccountComponent } from './user-overview/user-account/user-account.component';
 import { HeaderComponent } from './header/header.component';
+import { SearchComponent } from './search/search.component';
+import { ItemCardComponent } from './item-card/item-card.component';
+import { ProductsComponent } from './search/products/products.component';
+import { MultiRangeSliderModule } from '@vijayliebe/multi-range-slider';
+import { ClickOutsideModule } from 'ng-click-outside';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 @NgModule({
   declarations: [
@@ -100,8 +106,11 @@ import { HeaderComponent } from './header/header.component';
     DeleteOrderItem,
     UserAccountComponent,
     HeaderComponent,
+    SearchComponent,
+    ItemCardComponent,
+    ProductsComponent,
     UserWalletComponent,
-    ApprovmentAllDialogComponent    
+    ApprovmentAllDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -121,9 +130,10 @@ import { HeaderComponent } from './header/header.component';
     ReactiveFormsModule,
     RouterModule.forRoot([
       {path: 'main', component: MainPageComponent},
+      {path: 'main/search', component: SearchComponent},
       {path: 'checkout', component: CheckoutComponent},
       {path: 'reset/:id', component: PasswordResetComponent},
-      {path: '', redirectTo: '/main', pathMatch: 'full'},  
+      {path: '', redirectTo: '/main', pathMatch: 'full'},
       {path: 'main/your-product', component: UserProductsComponent},
       {path: 'main/your-transaction', component: UserTransactionsComponent},
       {path: 'main/account', component: UserAccountComponent},
@@ -140,7 +150,11 @@ import { HeaderComponent } from './header/header.component';
     MatMenuModule,
     MatExpansionModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MultiRangeSliderModule,
+    ClickOutsideModule,
+    NgxSliderModule
+
   ],
   providers: [
     {
