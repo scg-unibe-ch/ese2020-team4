@@ -29,7 +29,7 @@ export class CatalogueProductsListComponent implements OnInit{
   available: boolean; //change backend first!
   itemRank: number;
   sell= false;
-  rent= false;
+  lend= false;
 
   results: number;
 
@@ -41,6 +41,16 @@ export class CatalogueProductsListComponent implements OnInit{
     floor: 0,
     ceil: 10000
   };
+
+
+  foods = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ];
+
+  selectedFood = this.foods[2].value;
+
 
 
 
@@ -80,8 +90,8 @@ export class CatalogueProductsListComponent implements OnInit{
     this.highValue = 10000;
     this.location = '';
     this.delivery = false;
-    this.sell= false;
-    this.rent= false;
+    this.sell = false;
+    this.lend = false;
 
     this.onClickFilter()
   }
@@ -99,11 +109,13 @@ export class CatalogueProductsListComponent implements OnInit{
         (item.title.toLowerCase().includes(that.searchString) || item.description.toLowerCase().includes(that.searchString))
         && (item.location.toLowerCase().includes(that.location))
         && (item.delivery === true || item.delivery === that.delivery)
-        && (item.transactionType === that.getTransactionType())
+        && (that.getTransactionType().includes(item.transactionType))
         && (item.price >= that.value && item.price <= that.highValue)
       )
 
       that.results = that.itemListFiltered.length;
+
+      console.log('filter')
 
 
 
@@ -157,12 +169,12 @@ export class CatalogueProductsListComponent implements OnInit{
 
 
   private getTransactionType() {
-    if(this.sell === false && this.rent === true )
-      return 'Rent';
-    else if(this.sell === true && this.rent === false)
+    if(this.sell === false && this.lend === true )
+      return 'Lend';
+    else if(this.sell === true && this.lend === false)
       return 'Sell';
     else
-      return 'Sell' || 'Rent';
+      return ['Sell' , 'Lend'];
   }
 
   onClickSortHighest() {
