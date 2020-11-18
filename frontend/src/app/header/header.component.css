@@ -50,7 +50,7 @@
   }
 
   .home-Button{
-    font-size: 2.7vw;
+    font-size: 2.7v;
   }
 
   .loginBtn{
@@ -77,3 +77,10 @@
     width: 80px;
     height: 50px;
   }
+
+  .img-responsive {
+    height: auto;
+    width: auto;
+    max-height: 55px;
+    max-width: 230px;
+}

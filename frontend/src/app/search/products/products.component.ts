@@ -8,16 +8,13 @@ import { Options } from "@angular-slider/ngx-slider";
 
 
 
-export interface ItemData {
-  item: any;
-}
-
 @Component({
-  selector: 'catalogue-products-list',
-  templateUrl: './catalogue-products-list.component.html',
-  styleUrls: ['./catalogue-products-list.component.css']
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.css']
 })
-export class CatalogueProductsListComponent implements OnInit{
+export class ProductsComponent implements OnInit {
+
 
   itemList: Item[] = [];
   itemListFiltered: Item[] = [];
@@ -26,21 +23,24 @@ export class CatalogueProductsListComponent implements OnInit{
   searchString = '';
   location = '';
   delivery = false;
-  available: boolean; //change backend first!
+  available: boolean;
+  transactionType: string //buy or rent
   itemRank: number;
-  sell= false;
-  rent= false;
 
   results: number;
 
   attachOutsideOnClick = true;
 
   value: number = 0;
-  highValue: number = 10000;
+  highValue: number = 100000;
   options: Options = {
     floor: 0,
-    ceil: 10000
+    ceil: 100000
   };
+
+
+  sell= false;
+  rent= false;
 
 
 
@@ -62,9 +62,11 @@ export class CatalogueProductsListComponent implements OnInit{
       this.itemListFiltered = this.itemList;
       this.results = this.itemListFiltered.length;
 
-
       this.value = this.getMax(this.itemListFiltered);
       this.highValue = this.getMin(this.itemListFiltered);
+
+      this.options.floor = this.value
+      this.options.ceil = this.highValue
 
 
 
@@ -75,48 +77,32 @@ export class CatalogueProductsListComponent implements OnInit{
 
   }
 
-  onClickReset() {
-    this.value = 0;
-    this.highValue = 10000;
-    this.location = '';
-    this.delivery = false;
-    this.sell= false;
-    this.rent= false;
-
-    this.onClickFilter()
-  }
-
 
 
 
 
   onClickFilter() {
 
-    var that = this;
+    console.log(this.delivery);
+    console.log(this.sell);
+    console.log(this.rent);
+    this.itemListFiltered =  this.itemList.filter(item =>
+      (item.title.toLowerCase().includes(this.searchString) || item.description.toLowerCase().includes(this.searchString))
+      && (item.location.toLowerCase().includes(this.location))
+      && (item.delivery === true || item.delivery === this.delivery)
+      && (item.transactionType === this.getTransactionType())
+      && (item.price >= this.value && item.price <= this.highValue)
+     )
 
-    setTimeout(function() {
-      that.itemListFiltered = that.itemList.filter(item =>
-        (item.title.toLowerCase().includes(that.searchString) || item.description.toLowerCase().includes(that.searchString))
-        && (item.location.toLowerCase().includes(that.location))
-        && (item.delivery === true || item.delivery === that.delivery)
-        && (item.transactionType === that.getTransactionType())
-        && (item.price >= that.value && item.price <= that.highValue)
-      )
+    this.results = this.itemListFiltered.length;
 
-      that.results = that.itemListFiltered.length;
-
-
-
-
-
-    },1000)
 
   }
 
 
   onClickedOutside(e: Event) {
 
-    this.onClickFilter()
+
 
 
   }
@@ -124,7 +110,7 @@ export class CatalogueProductsListComponent implements OnInit{
   getMin(list: Item[]) {
 
     if(list.length === 0){
-      return 0;
+     return 0;
     }
 
     let min = list[0].price
@@ -162,20 +148,6 @@ export class CatalogueProductsListComponent implements OnInit{
     else if(this.sell === true && this.rent === false)
       return 'Sell';
     else
-      return 'Sell' || 'Rent';
-  }
-
-  onClickSortHighest() {
-    this.itemListFiltered.sort((a, b) => (a.price >= b.price ? -1 : 1))
-
-  }
-
-
-  onClickSortLowest() {
-
-    this.itemListFiltered.sort((a, b) => (a.price < b.price ? -1 : 1))
-
+      return 'Sell' || 'Rent'
   }
 }
-
-

@@ -71,4 +71,5 @@ export class ProductsFormComponent implements OnInit {
   flagCheck(param): boolean {
     return this.flags[param]
   }
+  
 }
