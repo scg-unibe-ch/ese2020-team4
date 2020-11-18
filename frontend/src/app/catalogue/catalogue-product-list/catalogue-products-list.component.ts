@@ -62,6 +62,7 @@ export class CatalogueProductsListComponent implements OnInit{
       this.itemListFiltered = this.itemList;
       this.results = this.itemListFiltered.length;
 
+
       this.value = this.getMax(this.itemListFiltered);
       this.highValue = this.getMin(this.itemListFiltered);
 
@@ -95,7 +96,7 @@ export class CatalogueProductsListComponent implements OnInit{
 
     setTimeout(function() {
       that.itemListFiltered = that.itemList.filter(item =>
-        (item.title.toLowerCase().includes(that.searchString) || item.description.toLowerCase().includes(this.searchString))
+        (item.title.toLowerCase().includes(that.searchString) || item.description.toLowerCase().includes(that.searchString))
         && (item.location.toLowerCase().includes(that.location))
         && (item.delivery === true || item.delivery === that.delivery)
         && (item.transactionType === that.getTransactionType())
@@ -103,6 +104,8 @@ export class CatalogueProductsListComponent implements OnInit{
       )
 
       that.results = that.itemListFiltered.length;
+
+
 
 
 
@@ -162,6 +165,17 @@ export class CatalogueProductsListComponent implements OnInit{
       return 'Sell' || 'Rent';
   }
 
+  onClickSortHighest() {
+    this.itemListFiltered.sort((a, b) => (a.price >= b.price ? -1 : 1))
+
+  }
+
+
+  onClickSortLowest() {
+
+    this.itemListFiltered.sort((a, b) => (a.price < b.price ? -1 : 1))
+
+  }
 }
 
 

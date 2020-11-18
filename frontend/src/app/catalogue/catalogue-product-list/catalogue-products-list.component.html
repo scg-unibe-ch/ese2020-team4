@@ -64,11 +64,14 @@
 
 <p>results: {{results}}</p>
 
+
 <app-item-card *ngFor="let itemCard of itemListFiltered" [item]="itemCard">
 </app-item-card>
 
 
-<button (click)="onClickReset()">Search</button>
+<button (click)="onClickSortLowest()">Search</button>
+
+<button (click)="onClickSortHighest()">Search Highest</button>
 
 
 
