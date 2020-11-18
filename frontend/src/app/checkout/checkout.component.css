@@ -6,3 +6,27 @@
     background-color: #388E3C;
     color: white;
 }
+
+.centerBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.topPadding{
+    padding-top: 24px;
+}
+
+.topMargin{
+    margin-top: 24px;
+}
+
+.padBottom{
+    padding-bottom: 24px;
+}
+
+.next{
+    float: right;
+}
