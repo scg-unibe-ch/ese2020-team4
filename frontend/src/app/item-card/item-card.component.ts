@@ -3,11 +3,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Item} from '../models/item';
 import {BuyServiceComponent} from "../catalogue/catalogue-service-list/buy-dialog/buy-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
-<<<<<<< HEAD
-
-=======
-import {BuyDialogComponent} from "../catalogue/catalogue-product-list/buy-dialog/buy-dialog.component";
->>>>>>> 07db221c8f129806f94de356f3f6d27a8be5aa1d
 
 @Component({
   selector: 'app-item-card',
