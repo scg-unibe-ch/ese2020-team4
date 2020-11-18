@@ -120,7 +120,10 @@ import { HeaderComponent } from './header/header.component';
     MatIconModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {path: 'main', component: MainPageComponent},
+      {path: 'main', component: MainPageComponent, 
+      children: [
+        { path: 'Available-Products', component: CatalogueProductsListComponent },
+        { path: 'Available-Services', component: CatalogueServiceListComponent }]},
       {path: 'checkout', component: CheckoutComponent},
       {path: 'reset/:id', component: PasswordResetComponent},
       {path: '', redirectTo: '/main', pathMatch: 'full'},  
@@ -132,6 +135,7 @@ import { HeaderComponent } from './header/header.component';
       {path: 'register', component: UserRegistrationComponent},
       {path: '**', component: PageNotFoundComponent}
     ]),
+  
     MatDialogModule,
     MatTableModule,
     MatSortModule,
