@@ -31,25 +31,25 @@ export class CatalogueProductsListComponent implements OnInit{
   sell= false;
   lend= false;
 
+  maxPrice: number;
+  minPrice: number;
+
+
   results: number;
+
+  sortBy = '';
 
   attachOutsideOnClick = true;
 
   value: number = 0;
-  highValue: number = 10000;
+  highValue: number = 1000;
   options: Options = {
-    floor: 0,
-    ceil: 10000
+    floor: this.value,
+    ceil: this.highValue
   };
 
 
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
 
-  selectedFood = this.foods[2].value;
 
 
 
@@ -72,10 +72,13 @@ export class CatalogueProductsListComponent implements OnInit{
       this.itemListFiltered = this.itemList;
       this.results = this.itemListFiltered.length;
 
+      this.minPrice = this.getMin(this.itemList);
+      this.maxPrice = this.getMax(this.itemList);
 
-      this.value = this.getMax(this.itemListFiltered);
-      this.highValue = this.getMin(this.itemListFiltered);
+      this.value = this.getMin(this.itemListFiltered);
+      this.highValue = this.getMax(this.itemListFiltered);
 
+      this.onClickSortMostRecent();
 
 
 
@@ -86,14 +89,14 @@ export class CatalogueProductsListComponent implements OnInit{
   }
 
   onClickReset() {
-    this.value = 0;
-    this.highValue = 10000;
+    this.value = this.minPrice;
+    this.highValue = this.maxPrice;
     this.location = '';
     this.delivery = false;
     this.sell = false;
     this.lend = false;
 
-    this.onClickFilter()
+    this.onClickFilter();
   }
 
 
@@ -107,7 +110,7 @@ export class CatalogueProductsListComponent implements OnInit{
     setTimeout(function() {
       that.itemListFiltered = that.itemList.filter(item =>
         (item.title.toLowerCase().includes(that.searchString) || item.description.toLowerCase().includes(that.searchString))
-        && (item.location.toLowerCase().includes(that.location))
+        && (item.location.toLowerCase() === that.location)
         && (item.delivery === true || item.delivery === that.delivery)
         && (that.getTransactionType().includes(item.transactionType))
         && (item.price >= that.value && item.price <= that.highValue)
@@ -125,13 +128,6 @@ export class CatalogueProductsListComponent implements OnInit{
 
   }
 
-
-  onClickedOutside(e: Event) {
-
-    this.onClickFilter()
-
-
-  }
 
   getMin(list: Item[]) {
 
@@ -178,15 +174,22 @@ export class CatalogueProductsListComponent implements OnInit{
   }
 
   onClickSortHighest() {
-    this.itemListFiltered.sort((a, b) => (a.price >= b.price ? -1 : 1))
+    this.itemListFiltered.sort((a, b) => (a.price >= b.price ? -1 : 1));
+    this.sortBy = 'Price: High to Low';
 
   }
 
 
   onClickSortLowest() {
 
-    this.itemListFiltered.sort((a, b) => (a.price < b.price ? -1 : 1))
+    this.itemListFiltered.sort((a, b) => (a.price < b.price ? -1 : 1));
+    this.sortBy = 'Price: Low to High';
 
+  }
+
+  onClickSortMostRecent() {
+    this.itemListFiltered.sort((a, b) => (a.date >= b.date ? -1 : 1));
+    this.sortBy = 'Most recent products';
   }
 }
 
