@@ -106,14 +106,18 @@
     
     <div class="topPadding">
       <button mat-raised-button color='primary' matStepperPrevious>Back</button>
-      <button mat-raised-button class="next" color='primary' matStepperNext>Next</button>
+      <button mat-raised-button class="next" color='primary' matStepperNext (click)= 'updateCost()'>Next</button>
     </div>
 
   </mat-step>
 
-  <mat-step [stepControl]="payment">
+  <mat-step [stepControl]="payment" (click) = 'updateCost()'>
     <ng-template matStepLabel>Payment</ng-template>
     <div class="topPadding">
+      <div>
+        <h3 style= "font-weight:bold" >{{this.finalCost | currency: 'BTC' }} or {{this.vatCost | currency: 'USD'}}</h3>
+      </div>
+
       <mat-accordion class="example-headers-align" multi="false">
       
         <mat-expansion-panel hideToggle>
@@ -123,7 +127,10 @@
             </mat-panel-title>
   
           </mat-expansion-panel-header>
-          <p><app-user-wallet></app-user-wallet></p>
+          <p></p>
+          <h4 style= "font-weight:bold">Available funds: {{this.wallet | currency: 'BTC'}}</h4>
+          <button class='complete' mat-raised-button color='green' (click)= "completeTransaction()">Complete Order</button>
+          <h3 *ngIf="notifier">Please recharge your Wallet or sell Products to gain more Currency</h3>
         </mat-expansion-panel>
       
         <mat-expansion-panel hideToggle>
@@ -133,7 +140,7 @@
             </mat-panel-title>
   
           </mat-expansion-panel-header>
-          <p></p>
+          <p><app-paypal [orderPrice] = "this.vatCost" [dialogRef] = 'this.dialogRef'></app-paypal></p>
           </mat-expansion-panel>
       
         </mat-accordion>
@@ -141,8 +148,6 @@
     
     <div class="topPadding">
       <button mat-raised-button color='primary' matStepperPrevious>Back</button>
-      <button class='complete next' mat-raised-button color='green' (click)= "completeTransaction()">Complete Order</button>
-      <h3 *ngIf="notifier">Please recharge your Wallet or sell Products to gain more Currency</h3>
     </div>
   </mat-step>
 

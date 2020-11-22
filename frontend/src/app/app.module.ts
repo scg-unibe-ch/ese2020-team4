@@ -1,3 +1,4 @@
+import { PaypalComponent } from './checkout/paypal/paypal.component';
 import { ApprovmentAllDialogComponent } from './admin-overview/product-list/approvmentAll-dialog/approvementAll-dialog.component';
 import { UserWalletComponent } from './user-overview/user-wallet/user-wallet.component';
 import { DeleteOrderItem } from './checkout/order/delete-order-item/delete-order-item.component';
@@ -110,7 +111,8 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     ItemCardComponent,
     ProductsComponent,
     UserWalletComponent,
-    ApprovmentAllDialogComponent
+    ApprovmentAllDialogComponent,
+    PaypalComponent
   ],
   imports: [
     BrowserModule,

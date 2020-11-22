@@ -1,12 +1,11 @@
-import { UserWalletComponent } from './../user-overview/user-wallet/user-wallet.component';
+import { PaypalComponent } from './paypal/paypal.component';
+import { OrderComponent } from './order/checkout-order.component';
 import { environment } from './../../environments/environment.prod';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Component, OnInit, Inject} from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-
 import { HttpClient } from '@angular/common/http';
-import { PrintSharp } from '@material-ui/icons';
 
 
 @Component({
@@ -15,6 +14,9 @@ import { PrintSharp } from '@material-ui/icons';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit  {
+
+  @ViewChild(OrderComponent) orderChild;
+  @ViewChild(PaypalComponent) paypalChild;
   isLinear = true;
   panelOpenState = false;
   userToken;
@@ -23,9 +25,11 @@ export class CheckoutComponent implements OnInit  {
   itemIds;
   data;
   notifier = false;
-  price;
+  vatCost = 0;
+  finalCost = 0;
   disableAnimation = true;
   wallet;
+
   
   account = false;
   address: any;
@@ -79,25 +83,26 @@ export class CheckoutComponent implements OnInit  {
     this.httpClient.get(environment.endpointURL + 'user/getSpecific/' + localStorage.getItem('userId'), {}).subscribe((res: any) =>{
       this.wallet = res.wallet;
     });
-    this.httpClient.get(environment.endpointURL + 'order/getUserOrder/' + localStorage.getItem('userId'), {}).subscribe((res: any) =>{
-      this.price = res.price
-      if(this.wallet >= this.price){
-        this.httpClient.put(environment.endpointURL + 'user/minusWallet/'+ localStorage.getItem('userId'), { "price": this.price}).subscribe((res:any) => {});
-        
-        this.httpClient.put(environment.endpointURL + 'order/change/'+ localStorage.getItem('orderId'), {status: "complete"}).subscribe((res: any) => {});
-        this.httpClient.put(environment.endpointURL + 'item/completeTransaction/'+ localStorage.getItem('userId')+"/"+localStorage.getItem("orderId"), null).subscribe((res: any) => {
+    
+    if(this.wallet >= this.orderChild.finalCost){
+      this.httpClient.put(environment.endpointURL + 'user/minusWallet/'+ localStorage.getItem('userId'), { "price": this.orderChild.finalCost}).subscribe((res:any) => {});
+      
+      this.httpClient.put(environment.endpointURL + 'order/change/'+ localStorage.getItem('orderId'), {status: "complete"}).subscribe((res: any) => {});
+      this.httpClient.put(environment.endpointURL + 'item/completeTransaction/'+ localStorage.getItem('userId')+"/"+localStorage.getItem("orderId"), null).subscribe((res: any) => {});
+      localStorage.removeItem("orderId")
+      this.notifier = false;
+      this.dialogRef.close()
+    } else {
+      this.notifier = true;
+    }
 
-        });
-       
 
-
-        localStorage.removeItem("orderId")
-        this.notifier = false;
-        this.dialogRef.close()
-      } else {
-        this.notifier = true;
-      }
-
+  }
+  updateCost(){
+    this.vatCost = this.orderChild.vatCost;
+    this.finalCost = this.orderChild.finalCost;
+    this.httpClient.get(environment.endpointURL + 'user/getSpecific/' + localStorage.getItem('userId'), {}).subscribe((res: any) =>{
+      this.wallet = res.wallet;
     });
   }
   
