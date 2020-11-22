@@ -110,7 +110,7 @@ export class CatalogueProductsListComponent implements OnInit{
     setTimeout(function() {
       that.itemListFiltered = that.itemList.filter(item =>
         (item.title.toLowerCase().includes(that.searchString) || item.description.toLowerCase().includes(that.searchString))
-        && (item.location.toLowerCase() === that.location)
+        && (item.location.toLowerCase().includes(that.location))
         && (item.delivery === true || item.delivery === that.delivery)
         && (that.getTransactionType().includes(item.transactionType))
         && (item.price >= that.value && item.price <= that.highValue)
