@@ -31,7 +31,6 @@ export class BuyDialogComponent {
     else{
       this.userId = localStorage.getItem('userId')
       this.orderId = localStorage.getItem('orderId')
-
       if (!localStorage.getItem('orderId')){
         this.httpClient.post(environment.endpointURL + 'order/post', {userId: this.userId, status: "active"}).subscribe((res: any) => {
           localStorage.setItem('orderId', res.orderId)

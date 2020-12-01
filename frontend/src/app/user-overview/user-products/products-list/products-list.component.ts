@@ -89,7 +89,7 @@ export class UserItemListComponent implements OnInit, OnDestroy{
   }
   postDialog(): void {
     const dialogRef = this.dialog.open(ProductsFormComponent, {
-      width: '250px',
+      width: '320px',
     });
   }
 }
