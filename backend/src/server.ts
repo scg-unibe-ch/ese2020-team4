@@ -31,7 +31,7 @@ export class Server {
         Order.createAssociations();
         uitems.Item.createAssociations();
 
-        this.sequelize.sync({ logging: console.log}).then(() => {
+        this.sequelize.sync({logging: console.log}).then(() => {
             this.server.listen(this.port, () => {                                   // start server on specified port
             console.log(`server listening at http://localhost:${this.port}`);
             });
