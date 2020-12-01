@@ -11,7 +11,7 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class ItemCardComponent implements OnInit {
   @Input()
-  item: Item = new Item(null,null,null,null,null,null,null, null);
+  item: Item = new Item(null,null,null,null,null,null,null, null,null);
 
   constructor(private dialog: MatDialog) { }
 

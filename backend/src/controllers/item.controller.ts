@@ -3,11 +3,16 @@ import { Op } from 'sequelize';
 import express, { Request, Response, Router } from 'express';
 import { Item } from '../models/useritem/item.model';
 import { regexp } from 'sequelize/types/lib/operators';
+import fs from 'fs';
 
 const itemController: Router = express.Router();
 const transactionHandler = new TransactionHandler();
 
 itemController.post('/post', (req: Request, res: Response) => {
+
+    console.log(req.body);
+
+
     Item.create(req.body)
         .then(inserted => res.send(inserted))
         .catch(err => res.status(500).send(err));
