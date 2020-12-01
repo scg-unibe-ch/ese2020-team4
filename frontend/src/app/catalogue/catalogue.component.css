@@ -6,6 +6,10 @@
 
 .catalogue-content-container {
     padding: 100px;
+    padding-top: 50px;
+    width: 89%;
+    display: flex;
+    justify-content: center;
 }
 
 .sidebar {

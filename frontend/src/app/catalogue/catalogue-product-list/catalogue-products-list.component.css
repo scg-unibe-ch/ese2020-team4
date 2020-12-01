@@ -1,0 +1,9 @@
+.searchbar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.accord{
+    padding: 10px;
+}
