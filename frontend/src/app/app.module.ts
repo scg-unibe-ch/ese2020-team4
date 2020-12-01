@@ -1,3 +1,4 @@
+import { PaypalComponent } from './checkout/paypal/paypal.component';
 import { ApprovmentAllDialogComponent } from './admin-overview/product-list/approvmentAll-dialog/approvementAll-dialog.component';
 import { UserWalletComponent } from './user-overview/user-wallet/user-wallet.component';
 import { DeleteOrderItem } from './checkout/order/delete-order-item/delete-order-item.component';
@@ -112,6 +113,7 @@ import { LoginDialogComponent } from './user-login/login-dialog/login-dialog.com
     ProductsComponent,
     UserWalletComponent,
     ApprovmentAllDialogComponent,
+    PaypalComponent,
     LoginDialogComponent
   ],
   imports: [

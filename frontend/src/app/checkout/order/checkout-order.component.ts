@@ -29,9 +29,11 @@ export class OrderComponent implements OnInit, OnDestroy{
   everyFiveSeconds: Observable<number> = timer(0, 15000);
   subscription : Subscription;
   dataSource = new MatTableDataSource();
-  finalCost;
-  orderId;
   cost;
+  orderId;
+  vatCost;
+  finalCost;
+  
   constructor(private httpClient: HttpClient, private dialog: MatDialog, private changeDetectorRefs: ChangeDetectorRef) {}
 
   @ViewChild(MatSort) sort: MatSort;
@@ -93,8 +95,10 @@ export class OrderComponent implements OnInit, OnDestroy{
   }
 
   calculateBCCosts() : number {
-    this.calculateCost();
-    return this.cost *1.2 * 0.00010219254;
+    this.calculateCost(); 
+    this.vatCost = this.cost *1.2
+    this.finalCost = this.vatCost * 0.00010219254
+    return this.finalCost;
   }
 
   public changePrice(): void {
