@@ -16,7 +16,7 @@ userController.post('/register',
 
 userController.post('/login',
     (req: Request, res: Response) => {
-        userService.login(req.body).then(login => res.send(login)).catch(err => res.status(500).send(err));
+        userService.login(req.body).then(login => res.send(login)).catch(err => res.status(404).send('Wrong credentials'));
     }
 );
 

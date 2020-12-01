@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import {DeleteDialogComponent} from "../admin-overview/user-list/delete-dialog/delete-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
-import {ResetDialogComponent} from "./reset-dialog/reset-dialog.component";
+import { DeleteDialogComponent } from "../admin-overview/user-list/delete-dialog/delete-dialog.component";
+import { MatDialog } from "@angular/material/dialog";
+import { ResetDialogComponent } from "./reset-dialog/reset-dialog.component";
 import { Router } from '@angular/router';
+import { DialogErrorComponent } from "./dialog-error/dialog-error.component";
 
 
 @Component({
@@ -21,7 +22,7 @@ export class UserLoginComponent implements OnInit {
 
   }
 
-  userName =  '';
+  userName = '';
   userId = '';
   password = '';
   orderId = null;
@@ -30,7 +31,6 @@ export class UserLoginComponent implements OnInit {
   loggedIn = false;
   admin = false;
   roleId = '';
-
 
   secureEndpointResponse = '';
 
@@ -44,11 +44,11 @@ export class UserLoginComponent implements OnInit {
     return this.userToken;
   }
 
-  setUserName(userName: string): void{
+  setUserName(userName: string): void {
     this.userName = userName;
   }
 
-  setPassword(password: string): void{
+  setPassword(password: string): void {
     this.password = password;
   }
 
@@ -87,15 +87,19 @@ export class UserLoginComponent implements OnInit {
       localStorage.setItem('currWallet', res.user.wallet);
       console.log(res.user.userId)
       this.checkUserStatus();
-      this.httpClient.get(environment.endpointURL+ 'order/getUserOrder/'+ localStorage.getItem('userId'), {       
+      this.router.navigateByUrl('/main');
+      this.httpClient.get(environment.endpointURL + 'order/getUserOrder/' + localStorage.getItem('userId'), {
       }).subscribe((res: any) => {
-        if(this.orderId != undefined) {
+        if (this.orderId != undefined) {
           localStorage.setItem('orderId', this.orderId)
         }
-        
       })
+    }, (err: any) => {
+
+      this.openDialogError('Wrong username or password');
+
     });
-    this.router.navigateByUrl('/main');
+
   }
 
   newUser(): void {
@@ -136,19 +140,24 @@ export class UserLoginComponent implements OnInit {
   }
 
   moveToSelectedTab(tabName: string) {
-    for (let i =0; i < document.querySelectorAll('.mat-tab-label').length; i++) {
-      if ((<HTMLElement> document.querySelectorAll('.mat-tab-label')[i]).innerText === tabName) {
-        (<HTMLElement> document.querySelectorAll('.mat-tab-label')[i]).click();
+    for (let i = 0; i < document.querySelectorAll('.mat-tab-label').length; i++) {
+      if ((<HTMLElement>document.querySelectorAll('.mat-tab-label')[i]).innerText === tabName) {
+        (<HTMLElement>document.querySelectorAll('.mat-tab-label')[i]).click();
       }
     }
   }
 
 
   reset() {
-
-
     this.dialog.open(ResetDialogComponent, {
       width: '250px'
+    });
+  }
+
+  private openDialogError(message) {
+    this.dialog.open(DialogErrorComponent, {
+      width: '250px',
+      data: message
     });
   }
 }
