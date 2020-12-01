@@ -5,7 +5,8 @@ import { DeleteDialogComponent } from "../admin-overview/user-list/delete-dialog
 import { MatDialog } from "@angular/material/dialog";
 import { ResetDialogComponent } from "./reset-dialog/reset-dialog.component";
 import { Router } from '@angular/router';
-import { DialogErrorComponent } from "./dialog-error/dialog-error.component";
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+
 
 
 @Component({
@@ -155,9 +156,10 @@ export class UserLoginComponent implements OnInit {
   }
 
   private openDialogError(message) {
-    this.dialog.open(DialogErrorComponent, {
+    this.dialog.open(LoginDialogComponent, {
       width: '250px',
       data: message
     });
   }
+  
 }

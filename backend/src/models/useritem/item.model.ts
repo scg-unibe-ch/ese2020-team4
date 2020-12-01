@@ -1,6 +1,7 @@
 import { Order } from './../order.model';
 import { DataTypes, Model, Optional, Sequelize } from 'sequelize';
 import { User } from '../user.model';
+import {defaultPicture} from '../../public/images/defaultPicture';
 
 export interface ItemAttributes {
     userId: number;
@@ -11,7 +12,7 @@ export interface ItemAttributes {
     title: string;
     transactionType: string;
     description: string;
-    pictureId: number;
+    encodedPicture: string;
     location: string;
     status: string;
     delivery: boolean;
@@ -34,7 +35,7 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
     title!: string;
     transactionType!: string;
     description!: string;
-    pictureId!: number;
+    encodedPicture!: string;
     location!: string;
     status!: string;
     delivery!: boolean;
@@ -82,8 +83,9 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            pictureId: {
-                type: DataTypes.INTEGER,
+            encodedPicture: {
+                type: DataTypes.STRING,
+                defaultValue: defaultPicture.base64Value,
                 allowNull: true
             },
             location: {

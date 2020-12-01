@@ -56,7 +56,7 @@ export class ProductsComponent implements OnInit {
     this.httpClient.get(environment.endpointURL + 'item/getPro/').subscribe((instances: any) => {
       this.itemList = instances.map((instance: any) => {
         return new Item(instance.itemId, instance.title, instance.description, instance.location, instance.price,
-          instance.transactionType, instance.delivery, instance.createdAt);
+          instance.transactionType, instance.delivery, instance.createdAt, instance.encodedPicture);
       })
 
       this.itemListFiltered = this.itemList;

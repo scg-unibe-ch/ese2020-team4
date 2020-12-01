@@ -42,7 +42,7 @@ export class CatalogueProductsListComponent implements OnInit{
   attachOutsideOnClick = true;
 
   value: number = 0;
-  highValue: number = 1000;
+  highValue: number = 10000;
   options: Options = {
     floor: this.value,
     ceil: this.highValue
@@ -66,7 +66,7 @@ export class CatalogueProductsListComponent implements OnInit{
     this.httpClient.get(environment.endpointURL + 'item/getPro/').subscribe((instances: any) => {
       this.itemList = instances.map((instance: any) => {
         return new Item(instance.itemId, instance.title, instance.description, instance.location, instance.price,
-          instance.transactionType, instance.delivery, instance.createdAt);
+          instance.transactionType, instance.delivery, instance.createdAt, instance.encodedPicture);
       })
 
       this.itemListFiltered = this.itemList;
@@ -79,7 +79,6 @@ export class CatalogueProductsListComponent implements OnInit{
       this.highValue = this.getMax(this.itemListFiltered);
 
       this.onClickSortMostRecent();
-
 
 
 
@@ -109,8 +108,9 @@ export class CatalogueProductsListComponent implements OnInit{
 
     setTimeout(function() {
       that.itemListFiltered = that.itemList.filter(item =>
-        (item.title.toLowerCase().includes(that.searchString) || item.description.toLowerCase().includes(that.searchString))
-        && (item.location.toLowerCase().includes(that.location))
+        (item.title.toLowerCase().includes(that.searchString.toLowerCase())
+          || item.description.toLowerCase().includes(that.searchString.toLowerCase()))
+        && (item.location.toLowerCase().includes(that.location.toLowerCase()))
         && (item.delivery === true || item.delivery === that.delivery)
         && (that.getTransactionType().includes(item.transactionType))
         && (item.price >= that.value && item.price <= that.highValue)

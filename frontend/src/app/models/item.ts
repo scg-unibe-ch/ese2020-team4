@@ -8,7 +8,8 @@ export class Item {
     public price: number,
     public transactionType: string,
     public delivery: boolean,
-    public date: Date
+    public date: Date,
+    public picture: string
 
 
 

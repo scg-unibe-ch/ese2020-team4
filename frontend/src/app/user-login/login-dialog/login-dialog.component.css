@@ -1,0 +1,10 @@
+.mat-card {
+    justify-content: center;
+    align-items: center;
+}
+
+.middleBtn{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}

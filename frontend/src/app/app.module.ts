@@ -69,6 +69,7 @@ import { ProductsComponent } from './search/products/products.component';
 import { MultiRangeSliderModule } from '@vijayliebe/multi-range-slider';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { LoginDialogComponent } from './user-login/login-dialog/login-dialog.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     ProductsComponent,
     UserWalletComponent,
     ApprovmentAllDialogComponent,
-    PaypalComponent
+    PaypalComponent,
+    LoginDialogComponent
   ],
   imports: [
     BrowserModule,
