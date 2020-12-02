@@ -1,5 +1,5 @@
 <div class="searchbar">
-  <input [(ngModel)]="searchString" (keyup.enter)="onClickReset()" type="text" placeholder="Search">
+  <input [(ngModel)]="stringInTab" (keyup.enter)="onClickReset()" type="text" placeholder="Search">
   <button (click)="onClickReset()">Search</button>
 </div>
 
@@ -84,4 +84,7 @@
 
 <app-item-card *ngFor="let itemCard of itemListFiltered" [item]="itemCard">
 </app-item-card>
+
+
+
 

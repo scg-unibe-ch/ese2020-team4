@@ -24,10 +24,11 @@ export class CatalogueProductsListComponent implements OnInit{
 
 
   searchString = '';
+  stringInTab = '';
   location = '';
   delivery = false;
   available: boolean; //change backend first!
-  itemRank: number;
+  itemRank: number;  // idea was to add an attribute to product/services which corresponds to their itemRank (similarly to pageRank)
   sell= false;
   lend= false;
 
@@ -88,6 +89,7 @@ export class CatalogueProductsListComponent implements OnInit{
   }
 
   onClickReset() {
+    this.searchString = this.stringInTab
     this.value = this.minPrice;
     this.highValue = this.maxPrice;
     this.location = '';

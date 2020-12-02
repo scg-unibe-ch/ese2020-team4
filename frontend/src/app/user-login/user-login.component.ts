@@ -103,9 +103,7 @@ export class UserLoginComponent implements OnInit {
 
   }
 
-  newUser(): void {
-    this.moveToSelectedTab('Registration');
-  }
+
 
   test(): string {
     return 'test123';
@@ -161,5 +159,5 @@ export class UserLoginComponent implements OnInit {
       data: message
     });
   }
-  
+
 }

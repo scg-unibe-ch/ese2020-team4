@@ -17,6 +17,7 @@ import { UserSoldComponent } from './user-overview/user-transactions/user-sold/u
 import { UserBoughtComponent } from './user-overview/user-transactions/user-bought/user-bought.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {BuyComponent} from "./item-card/buy-dialog/buy-dialog.component";
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -115,7 +116,8 @@ import {Guard} from './auth/guard';
     UserWalletComponent,
     ApprovmentAllDialogComponent,
     PaypalComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
+    BuyComponent
   ],
   imports: [
     BrowserModule,

@@ -38,12 +38,14 @@
       <mat-option  [disableControl]="!flagCheck(1)" value="Daily">Daily</mat-option>
     </mat-select>
   </mat-form-field>
-  
+
 </div>
 <pre style="margin:6px;"></pre>
 <input type="file" accept="image/*"  name="image" (change)="selectImage($event)"/>
 <pre style="margin:6px;"></pre>
 <button class="post" mat-flat-button color="primary" [disabled]="!validForm()" (click)="post(); close()">Post</button>
+<button class="post" mat-flat-button color="primary"  (click)="post(); close()">Post</button>
+
 <button class="buttonR" mat-flat-button color="primary" (click)="close()">Cancel</button>
 <pre style="margin:6px;"></pre>
 <h5>Posted Items will undergo Approval for up to 2 Days!</h5>
