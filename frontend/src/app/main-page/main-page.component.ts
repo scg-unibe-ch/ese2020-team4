@@ -57,6 +57,9 @@ export class MainPageComponent implements OnInit {
     this.userToken = localStorage.getItem('userToken');
     this.userName = localStorage.getItem('userName');
     this.roleId = localStorage.getItem('roleId');
+    this.httpClient.get(environment.endpointURL + 'user/getSpecific/' + localStorage.getItem('userId'), {}).subscribe((res: any) =>{
+      localStorage.setItem('userName', res.userName);
+    });
 
   }
 
