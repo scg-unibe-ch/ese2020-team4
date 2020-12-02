@@ -115,12 +115,6 @@ export class CatalogueProductsListComponent implements OnInit {
 
       that.results = that.itemListFiltered.length;
 
-      console.log('filter')
-
-
-
-
-
     }, 1000)
 
   }

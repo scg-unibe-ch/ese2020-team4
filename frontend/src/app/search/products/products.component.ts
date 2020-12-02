@@ -79,9 +79,6 @@ export class ProductsComponent implements OnInit {
 
   onClickFilter() {
 
-    console.log(this.delivery);
-    console.log(this.sell);
-    console.log(this.rent);
     this.itemListFiltered =  this.itemList.filter(item =>
       (item.title.toLowerCase().includes(this.searchString) || item.description.toLowerCase().includes(this.searchString))
       && (item.location.toLowerCase().includes(this.location))

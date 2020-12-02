@@ -44,7 +44,6 @@ export class ProductsFormComponent implements OnInit {
   }
 
   post(): void {
-    console.log(this.itemForm)
     this.httpClient.post(environment.endpointURL + 'item/post', this.itemForm.value).subscribe((res: any) => { });
   }
 
@@ -83,7 +82,6 @@ export class ProductsFormComponent implements OnInit {
     reader.readAsDataURL(file);
     reader.onload = () => {
       // @ts-ignore
-      // console.log(reader.result.split(',')[1]);
       // @ts-ignore
       this.imageAsBase64 = reader.result.split(',')[1];
       // this.itemForm.patchValue({
