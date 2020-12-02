@@ -15,6 +15,7 @@
     "@types/cors": "^2.8.7",
     "@types/nodemailer": "^6.4.0",
     "bcrypt": "^5.0.0",
+    "clarifai-nodejs-grpc": "^6.11.0",
     "cors": "^2.8.5",
     "express": "~4.16.1",
     "jsonwebtoken": "^8.5.1",

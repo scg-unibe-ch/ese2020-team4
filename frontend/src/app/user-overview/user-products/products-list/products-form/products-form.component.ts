@@ -77,13 +77,13 @@ export class ProductsFormComponent implements OnInit {
 
   selectImage(event) {
     if (event.target.files.length > 0) {
-
+      
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
       // @ts-ignore
-      console.log(reader.result.split(',')[1]);
+      // console.log(reader.result.split(',')[1]);
       // @ts-ignore
       this.imageAsBase64 = reader.result.split(',')[1];
       // this.itemForm.patchValue({

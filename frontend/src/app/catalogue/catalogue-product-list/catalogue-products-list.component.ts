@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Item} from "../../models/item";
-import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
-import {from} from "rxjs";
-import {filter} from "rxjs/operators";
+import { Item } from "../../models/item";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "../../../environments/environment";
+import { from } from "rxjs";
+import { filter } from "rxjs/operators";
 import { Options } from "@angular-slider/ngx-slider";
 
 
@@ -17,19 +17,20 @@ export interface ItemData {
   templateUrl: './catalogue-products-list.component.html',
   styleUrls: ['./catalogue-products-list.component.css']
 })
-export class CatalogueProductsListComponent implements OnInit{
+export class CatalogueProductsListComponent implements OnInit {
 
   itemList: Item[] = [];
   itemListFiltered: Item[] = [];
 
 
   searchString = '';
+  imageSearchString = '';
   location = '';
   delivery = false;
   available: boolean; //change backend first!
   itemRank: number;
-  sell= false;
-  lend= false;
+  sell = false;
+  lend = false;
 
   maxPrice: number;
   minPrice: number;
@@ -48,25 +49,16 @@ export class CatalogueProductsListComponent implements OnInit{
     ceil: this.highValue
   };
 
-
-
-
-
-
-
-
-  constructor(private httpClient: HttpClient ) {
+  constructor(private httpClient: HttpClient) {
 
 
   }
-
-
 
   ngOnInit(): void {
     this.httpClient.get(environment.endpointURL + 'item/getPro/').subscribe((instances: any) => {
       this.itemList = instances.map((instance: any) => {
         return new Item(instance.itemId, instance.title, instance.description, instance.location, instance.price,
-          instance.transactionType, instance.delivery, instance.createdAt, instance.encodedPicture);
+          instance.transactionType, instance.delivery, instance.createdAt, instance.encodedPicture, instance.jsonstring);
       })
 
       this.itemListFiltered = this.itemList;
@@ -106,10 +98,11 @@ export class CatalogueProductsListComponent implements OnInit{
 
     var that = this;
 
-    setTimeout(function() {
+    setTimeout(function () {
       that.itemListFiltered = that.itemList.filter(item =>
         (item.title.toLowerCase().includes(that.searchString.toLowerCase())
           || item.description.toLowerCase().includes(that.searchString.toLowerCase()))
+        // && (item.labels.toLowerCase().includes(that.imageSearchString.toLowerCase()))
         && (item.location.toLowerCase().includes(that.location.toLowerCase()))
         && (item.delivery === true || item.delivery === that.delivery)
         && (that.getTransactionType().includes(item.transactionType))
@@ -124,21 +117,21 @@ export class CatalogueProductsListComponent implements OnInit{
 
 
 
-    },1000)
+    }, 1000)
 
   }
 
 
   getMin(list: Item[]) {
 
-    if(list.length === 0){
+    if (list.length === 0) {
       return 0;
     }
 
     let min = list[0].price
 
-    for(let i = 0; i < list.length; i++){
-      if(min > list[i].price){
+    for (let i = 0; i < list.length; i++) {
+      if (min > list[i].price) {
         min = list[i].price;
       }
     }
@@ -148,14 +141,14 @@ export class CatalogueProductsListComponent implements OnInit{
 
   getMax(list: Item[]) {
 
-    if(list.length === 0){
+    if (list.length === 0) {
       return 0;
     }
 
     let max = list[0].price;
 
-    for(let i = 0; i < list.length; i++){
-      if(max < list[i].price){
+    for (let i = 0; i < list.length; i++) {
+      if (max < list[i].price) {
         max = list[i].price;
       }
     }
@@ -165,12 +158,12 @@ export class CatalogueProductsListComponent implements OnInit{
 
 
   private getTransactionType() {
-    if(this.sell === false && this.lend === true )
+    if (this.sell === false && this.lend === true)
       return 'Lend';
-    else if(this.sell === true && this.lend === false)
+    else if (this.sell === true && this.lend === false)
       return 'Sell';
     else
-      return ['Sell' , 'Lend'];
+      return ['Sell', 'Lend'];
   }
 
   onClickSortHighest() {
