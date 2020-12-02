@@ -4,6 +4,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ItemData} from "../../catalogue/catalogue-service-list/catalogue-service-list.component";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-buy-dialog',
@@ -13,7 +14,8 @@ import {environment} from "../../../environments/environment";
 export class BuyComponent {
   itemForm: FormGroup;
   public constructor(public dialogRef: MatDialogRef<BuyComponent>,
-                     @Inject(MAT_DIALOG_DATA) public data: ItemData, private httpClient: HttpClient) {
+                     @Inject(MAT_DIALOG_DATA) public data: ItemData, private httpClient: HttpClient,
+                     private router: Router) {
   }
   secureEndpointResponse = '';
   hide = true;
@@ -22,9 +24,10 @@ export class BuyComponent {
 
 
   buyProduct(): void {
+
     if(localStorage.getItem('userId') == null){
       this.dialogRef.close();
-      this.moveToSelectedTab('Login');
+      this.router.navigate(['/login']);
     }
     else{
       this.userId = localStorage.getItem('userId')
@@ -50,11 +53,4 @@ export class BuyComponent {
     this.dialogRef.close()
   }
 
-  moveToSelectedTab(tabName: string) {
-    for (let i =0; i < document.querySelectorAll('.mat-tab-label').length; i++) {
-      if ((<HTMLElement> document.querySelectorAll('.mat-tab-label')[i]).innerText === tabName) {
-        (<HTMLElement> document.querySelectorAll('.mat-tab-label')[i]).click();
-      }
-    }
-  }
 }

@@ -14,6 +14,33 @@ userController.post('/register',
     }
 );
 
+userController.put('/edit/:id',
+    (req: Request, res: Response) => {
+        User.findByPk(req.params.id)
+        .then(found => {
+            if (found != null) {
+                console.log(req.body);
+                found.update({
+                    'userName': req.body.userName,
+                    'firstName': req.body.firstName,
+                    'lastName': req.body.lastName,
+                    'street': req.body.street,
+                    'zipCode': req.body.zipCode,
+                    'city': req.body.city,
+                    'country': req.body.country,
+                    'tNumber': req.body.tNumber,
+                }).then(updated => {
+                    res.status(200).send(updated);
+                });
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(err => res.status(500).send(err));
+
+    }
+);
+
 userController.post('/login',
     (req: Request, res: Response) => {
         userService.login(req.body).then(login => res.send(login)).catch(err => res.status(404).send('Wrong credentials'));

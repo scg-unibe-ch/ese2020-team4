@@ -24,13 +24,15 @@ export class CatalogueProductsListComponent implements OnInit {
 
 
   searchString = '';
+  stringInTab = '';
+  imageSearchStringTemp = '';
   imageSearchString = '';
   location = '';
   delivery = false;
   available: boolean; //change backend first!
-  itemRank: number;
-  sell = false;
-  lend = false;
+  itemRank: number;  // idea was to add an attribute to product/services which corresponds to their itemRank (similarly to pageRank)
+  sell= false;
+  lend= false;
 
   maxPrice: number;
   minPrice: number;
@@ -58,7 +60,7 @@ export class CatalogueProductsListComponent implements OnInit {
     this.httpClient.get(environment.endpointURL + 'item/getPro/').subscribe((instances: any) => {
       this.itemList = instances.map((instance: any) => {
         return new Item(instance.itemId, instance.title, instance.description, instance.location, instance.price,
-          instance.transactionType, instance.delivery, instance.createdAt, instance.encodedPicture, instance.jsonstring);
+          instance.transactionType, instance.delivery, instance.createdAt, instance.encodedPicture, instance.labeljson);
       })
 
       this.itemListFiltered = this.itemList;
@@ -80,6 +82,8 @@ export class CatalogueProductsListComponent implements OnInit {
   }
 
   onClickReset() {
+    this.searchString = this.stringInTab
+    this.imageSearchString = this.imageSearchStringTemp
     this.value = this.minPrice;
     this.highValue = this.maxPrice;
     this.location = '';
@@ -102,7 +106,7 @@ export class CatalogueProductsListComponent implements OnInit {
       that.itemListFiltered = that.itemList.filter(item =>
         (item.title.toLowerCase().includes(that.searchString.toLowerCase())
           || item.description.toLowerCase().includes(that.searchString.toLowerCase()))
-        // && (item.labels.toLowerCase().includes(that.imageSearchString.toLowerCase()))
+        && (item.labels.toLowerCase().includes(that.imageSearchString.toLowerCase()))
         && (item.location.toLowerCase().includes(that.location.toLowerCase()))
         && (item.delivery === true || item.delivery === that.delivery)
         && (that.getTransactionType().includes(item.transactionType))

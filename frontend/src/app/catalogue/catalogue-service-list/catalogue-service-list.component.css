@@ -1,31 +1,14 @@
-
-th {
-    font-weight:bold;
-    align-self: center;
-    align-content: center;
-    text-align: center;
+.searchbar{
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    max-height: 2000px;
-    min-width: 1000px;
-}
-  
-.mat-table {
-    overflow: auto;
-    max-height: 500px;
+.searchfield{
+  width: 80%;
 }
 
-th.mat-header-cell {
-    text-align: left !important;
-  }
 
-button {    
-    height:25px;
-    width:1px;
-    font-size:10px;
-    line-height: 0.8;
+.accord{
+  padding: 10px;
 }

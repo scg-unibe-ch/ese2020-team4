@@ -4,6 +4,10 @@
     justify-content: center;
 }
 
+.searchfield{
+    width: 80%;
+}
+
 .accord{
     padding: 10px;
 }

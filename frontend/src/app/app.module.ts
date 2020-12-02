@@ -17,6 +17,7 @@ import { UserSoldComponent } from './user-overview/user-transactions/user-sold/u
 import { UserBoughtComponent } from './user-overview/user-transactions/user-bought/user-bought.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {BuyComponent} from "./item-card/buy-dialog/buy-dialog.component";
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -70,6 +71,7 @@ import { MultiRangeSliderModule } from '@vijayliebe/multi-range-slider';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { LoginDialogComponent } from './user-login/login-dialog/login-dialog.component';
+import {Guard} from './auth/guard';
 
 @NgModule({
   declarations: [
@@ -114,7 +116,8 @@ import { LoginDialogComponent } from './user-login/login-dialog/login-dialog.com
     UserWalletComponent,
     ApprovmentAllDialogComponent,
     PaypalComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
+    BuyComponent
   ],
   imports: [
     BrowserModule,
@@ -133,7 +136,7 @@ import { LoginDialogComponent } from './user-login/login-dialog/login-dialog.com
     MatIconModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {path: 'main', component: MainPageComponent, 
+      {path: 'main', component: MainPageComponent,
       children: [
         { path: 'Available-Products', component: CatalogueProductsListComponent },
         { path: 'Available-Services', component: CatalogueServiceListComponent }]},
@@ -141,15 +144,16 @@ import { LoginDialogComponent } from './user-login/login-dialog/login-dialog.com
       {path: 'checkout', component: CheckoutComponent},
       {path: 'reset/:id', component: PasswordResetComponent},
       {path: '', redirectTo: '/main', pathMatch: 'full'},
-      {path: 'main/your-product', component: UserProductsComponent},
-      {path: 'main/your-transaction', component: UserTransactionsComponent},
-      {path: 'main/account', component: UserAccountComponent},
-      {path: 'main/admin-overview', component: AdminOverviewComponent},
+      {path: 'main/your-product', component: UserProductsComponent, canActivate: [Guard]},
+      {path: 'main/your-transaction', component: UserTransactionsComponent, canActivate: [Guard]},
+      {path: 'main/account', component: UserAccountComponent, canActivate: [Guard]},
+      {path: 'main/admin-overview', component: AdminOverviewComponent, canActivate: [Guard],
+        data: { expectedRole: 'admin' }},
       {path: 'login', component: UserLoginComponent},
       {path: 'register', component: UserRegistrationComponent},
       {path: '**', component: PageNotFoundComponent}
     ]),
-  
+
     MatDialogModule,
     MatTableModule,
     MatSortModule,
