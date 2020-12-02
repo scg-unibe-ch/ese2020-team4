@@ -4,12 +4,12 @@
   "module": "commonjs",
   "target": "es6",
   "esModuleInterop": true,
-  "noImplicitAny": true,
+  "noImplicitAny": false,
   "removeComments": true,
   "preserveConstEnums": true,
   "outDir": "./build",
   "sourceMap": true,
 },
-"include": ["./src/**/*"],
+"include": ["./src/**/*", "src/models/useritem/.ts"],
 "exclude": ["node_modules", "**/*.spec.ts"]
 }

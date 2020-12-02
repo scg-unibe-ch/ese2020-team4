@@ -13,6 +13,7 @@ export interface ItemAttributes {
     transactionType: string;
     description: string;
     encodedPicture: string;
+    labeljson: string;
     location: string;
     status: string;
     delivery: boolean;
@@ -36,6 +37,7 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
     transactionType!: string;
     description!: string;
     encodedPicture!: string;
+    labeljson!: string;
     location!: string;
     status!: string;
     delivery!: boolean;
@@ -86,6 +88,11 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
             encodedPicture: {
                 type: DataTypes.STRING,
                 defaultValue: defaultPicture.base64Value,
+                allowNull: true
+            },
+            labeljson: {
+                type: DataTypes.STRING,
+                defaultValue: null,
                 allowNull: true
             },
             location: {

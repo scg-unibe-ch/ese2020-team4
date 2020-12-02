@@ -9,8 +9,8 @@ export class Item {
     public transactionType: string,
     public delivery: boolean,
     public date: Date,
-    public picture: string
-
+    public picture: string,
+    public labels: string
 
 
     ) { }

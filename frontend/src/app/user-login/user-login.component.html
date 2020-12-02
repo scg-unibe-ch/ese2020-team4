@@ -9,13 +9,13 @@
         <input matInput placeholder="Password" [(ngModel)]="password" name="password" type="password">
       </mat-form-field>
     </div>
-    
+
     <div class="center">
       <button mat-flat-button color="primary" class="button" (click)="login()">Login</button>
-      <button mat-flat-button color="primary" class="button" (click)="newUser()"> SignUp</button>
+      <button mat-flat-button color="primary" class="button" [routerLink]="['/register']"> SignUp</button>
       <div>
         <button mat-flat-button class="buttonForgot" (click)="reset()"> Forgot password?</button>
-      </div> 
+      </div>
     </div>
   </div>
 </mat-card>

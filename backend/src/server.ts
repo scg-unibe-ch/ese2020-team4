@@ -22,7 +22,6 @@ export class Server {
         User.initialize(this.sequelize);
         Order.initialize(this.sequelize);
         uitems.Item.initialize(this.sequelize);
-
         Role.uBuild();
         User.uBuild();
 
@@ -42,6 +41,7 @@ export class Server {
 
     private configureServer(): Application {
         // options for cors middleware
+        const myParser  = require('body-parser');
         const options: cors.CorsOptions = {
             allowedHeaders: [
                 'Origin',
@@ -58,7 +58,9 @@ export class Server {
 
         return express()
             .use(cors())
-            .use(express.json())                    // parses an incoming json to an object
+            // .use(express.json())
+            .use(myParser.json({limit: '5mb'}))
+            .use(myParser.urlencoded({limit: '5mb', extended: true}))                    // parses an incoming json to an object
             .use(morgan('tiny'))                    // logs incoming requests
             .use('/item', ItemController)
             .use('/order', OrderController)

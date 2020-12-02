@@ -1,3 +1,4 @@
+import { DataLabelCycle } from './../services/dataLabeler.service';
 import { TransactionHandler } from './../services/transactionhandler.service';
 import { Op } from 'sequelize';
 import express, { Request, Response, Router } from 'express';
@@ -7,15 +8,14 @@ import fs from 'fs';
 
 const itemController: Router = express.Router();
 const transactionHandler = new TransactionHandler();
+const dataLabelCycle = new DataLabelCycle();
 
 itemController.post('/post', (req: Request, res: Response) => {
-
-    console.log(req.body);
-
-
     Item.create(req.body)
         .then(inserted => res.send(inserted))
         .catch(err => res.status(500).send(err));
+
+    dataLabelCycle.processToLabels();
 });
 
 
