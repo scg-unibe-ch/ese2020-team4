@@ -19,6 +19,8 @@
               <mat-label>Username</mat-label>
               <input matInput placeholder={{userName}} [type]="'userName'" formControlName="userName" [(ngModel)]="userName">
             </mat-form-field>
+
+            <br>
         
             <mat-form-field>
               <mat-label>First Name</mat-label>
@@ -44,9 +46,11 @@
             </mat-expansion-panel-header>
         
             <mat-form-field>
-              <mat-label>Street</mat-label>
+              <mat-label>Street Name & Number</mat-label>
               <input matInput placeholder={{street}} formControlName="street" [(ngModel)]="street">
             </mat-form-field>
+
+            <br>
 
             <mat-form-field>
               <mat-label>Zip Code</mat-label>
@@ -58,11 +62,15 @@
               <input matInput placeholder={{city}} formControlName="city" [(ngModel)]="city">
             </mat-form-field>
 
+            <br>
+
             <mat-form-field>
               <mat-label>Country</mat-label>
               <input matInput placeholder={{country}} formControlName="country" [(ngModel)]="country">
             </mat-form-field>
 
+            <br>
+            
             <mat-form-field>
               <mat-label>Phone Number</mat-label>
               <input matInput placeholder={{tNumber}} formControlName="tNumber" [(ngModel)]="tNumber">
@@ -71,7 +79,7 @@
         </mat-accordion>
       </mat-card>
       <div class="submitBtn">
-        <button type="submit" value="Submit" (click)=submit() >Submit</button>
+        <button type="submit" mat-flat-button color="primary" value="Submit" (click)=submit() >Submit</button>
       </div>
     </mat-tab>
     <mat-tab label="Wallet">

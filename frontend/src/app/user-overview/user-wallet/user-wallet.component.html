@@ -1,5 +1,22 @@
 
-<mat-form-field>
-  <input matInput placeholder="Charge Account" [(ngModel)]="wallet" name="wallet" pattern="[0-9.]{1,}">
-</mat-form-field>
-<button mat-flat-button color="primary" (click)="chargeAccount()">Charge</button>
+<div class="charge-container">
+  
+  <div class="inner-container">
+
+    <h1 class="title">Charge your wallet</h1>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Charge Account" [(ngModel)]="wallet" name="wallet" pattern="[0-9.]{1,}">
+      </mat-form-field>
+      <button mat-flat-button color="primary" class="charge-btn" (click)="chargeAccount()">Charge</button>
+      
+    </div>
+    
+    <div>
+      <img class="spar" src="assets/sparschwein.png">
+    </div>
+    
+    
+  </div>
+  
+</div>

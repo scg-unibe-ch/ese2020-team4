@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import { MatAccordion } from '@angular/material/expansion';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-account',
@@ -30,7 +31,7 @@ export class UserAccountComponent implements OnInit {
 
   secureEndpointResponse = '';
 
-  constructor(private httpClient: HttpClient, private formBuilder: FormBuilder) { }
+  constructor(private httpClient: HttpClient, private formBuilder: FormBuilder, private router: Router) { }
 
 
   getUserName() {
@@ -115,6 +116,7 @@ export class UserAccountComponent implements OnInit {
       
     })
     this.checkUserStatus();
+    this.router.navigateByUrl('/main');
   }
   
 
