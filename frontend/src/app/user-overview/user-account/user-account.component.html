@@ -1,69 +1,83 @@
 <app-header></app-header>
 <mat-tab-group animationDuration="1ms" staticHeight>
+  <div [formGroup]="editInfo">
     <mat-tab label="Account">
-      <mat-card>
-        <mat-accordion class="example-headers-align" multi>
+      <mat-card class="edit-container">
+        <mat-accordion class="example-headers-align accord" multi>
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Personal data
               </mat-panel-title>
               <mat-panel-description>
-                Type your name and age
+                Change your personal information
                 <mat-icon>account_circle</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
         
             <mat-form-field>
-              <mat-label>First name</mat-label>
-              <input matInput>
+              <mat-label>Username</mat-label>
+              <input matInput placeholder={{userName}} [type]="'userName'" formControlName="userName" [(ngModel)]="userName">
             </mat-form-field>
         
             <mat-form-field>
-              <mat-label>Age</mat-label>
-              <input matInput type="number" min="1">
+              <mat-label>First Name</mat-label>
+              <input matInput placeholder= {{first}} [type]="'firstName'" formControlName="firstName" [(ngModel)]="first">
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Last Name</mat-label>
+              <input matInput placeholder={{last}} [type]="'lastName'" formControlName="lastName" [(ngModel)]="last">
             </mat-form-field>
         
           </mat-expansion-panel>
-          <mat-expansion-panel disabled>
+
+          <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Destination
+                Shipping Information
               </mat-panel-title>
               <mat-panel-description>
-                Type the country name
+                Change your address
                 <mat-icon>map</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
         
             <mat-form-field>
-              <mat-label>Country</mat-label>
-              <input matInput>
+              <mat-label>Street</mat-label>
+              <input matInput placeholder={{street}} formControlName="street" [(ngModel)]="street">
             </mat-form-field>
-          </mat-expansion-panel>
-        
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Day of the trip
-              </mat-panel-title>
-              <mat-panel-description>
-                Inform the date you wish to travel
-                <mat-icon>date_range</mat-icon>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-        
+
             <mat-form-field>
-              <mat-label>Date</mat-label>
-              <input matInput [matDatepicker]="picker" (focus)="picker.open()" readonly>
+              <mat-label>Zip Code</mat-label>
+              <input matInput placeholder={{zipCode}} formControlName="zipCode" [(ngModel)]="zipCode">
             </mat-form-field>
-            <mat-datepicker #picker></mat-datepicker>
+
+            <mat-form-field>
+              <mat-label>City</mat-label>
+              <input matInput placeholder={{city}} formControlName="city" [(ngModel)]="city">
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Country</mat-label>
+              <input matInput placeholder={{country}} formControlName="country" [(ngModel)]="country">
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Phone Number</mat-label>
+              <input matInput placeholder={{tNumber}} formControlName="tNumber" [(ngModel)]="tNumber">
+            </mat-form-field>
           </mat-expansion-panel>
         </mat-accordion>
       </mat-card>
+      <div class="submitBtn">
+        <button type="submit" value="Submit" (click)=submit() >Submit</button>
+      </div>
     </mat-tab>
     <mat-tab label="Wallet">
       <app-user-wallet></app-user-wallet>
     </mat-tab>
+    
+    </div>
   </mat-tab-group>
 

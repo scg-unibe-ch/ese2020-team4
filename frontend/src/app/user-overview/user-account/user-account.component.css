@@ -15,3 +15,18 @@
   .example-headers-align .mat-form-field + .mat-form-field {
     margin-left: 8px;
   }
+
+  .edit-container{
+    display: flex;
+    justify-content: center;
+    box-shadow: none;
+  }
+
+  .accord{
+    width: 50%;
+  }
+
+  .submitBtn{
+    display: flex;
+    justify-content: center;
+  }
