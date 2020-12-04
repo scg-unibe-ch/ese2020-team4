@@ -1,3 +1,4 @@
+import { ScrollTopComponent } from './catalogue/scroll-to-top/scroll-to-top.component';
 import { PaypalComponent } from './checkout/paypal/paypal.component';
 import { ApprovmentAllDialogComponent } from './admin-overview/product-list/approvmentAll-dialog/approvementAll-dialog.component';
 import { UserWalletComponent } from './user-overview/user-wallet/user-wallet.component';
@@ -72,6 +73,8 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { LoginDialogComponent } from './user-login/login-dialog/login-dialog.component';
 import {Guard} from './auth/guard';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 @NgModule({
   declarations: [
@@ -117,7 +120,8 @@ import {Guard} from './auth/guard';
     ApprovmentAllDialogComponent,
     PaypalComponent,
     LoginDialogComponent,
-    BuyComponent
+    BuyComponent,
+    ScrollTopComponent
   ],
   imports: [
     BrowserModule,
@@ -138,12 +142,12 @@ import {Guard} from './auth/guard';
     RouterModule.forRoot([
       {path: 'main', component: MainPageComponent,
       children: [
-        { path: 'Available-Products', component: CatalogueProductsListComponent },
-        { path: 'Available-Services', component: CatalogueServiceListComponent }]},
+        { path: 'available-products', component: CatalogueProductsListComponent },
+        { path: 'available-services', component: CatalogueServiceListComponent }]},
       {path: 'main/search', component: SearchComponent},
       {path: 'checkout', component: CheckoutComponent},
       {path: 'reset/:id', component: PasswordResetComponent},
-      {path: '', redirectTo: '/main', pathMatch: 'full'},
+      {path: '', redirectTo: '/main/available-products', pathMatch: 'full'},
       {path: 'main/your-product', component: UserProductsComponent, canActivate: [Guard]},
       {path: 'main/your-transaction', component: UserTransactionsComponent, canActivate: [Guard]},
       {path: 'main/account', component: UserAccountComponent, canActivate: [Guard]},
@@ -165,7 +169,8 @@ import {Guard} from './auth/guard';
     MatNativeDateModule,
     MultiRangeSliderModule,
     ClickOutsideModule,
-    NgxSliderModule
+    NgxSliderModule,
+    MatTooltipModule,
 
   ],
   providers: [

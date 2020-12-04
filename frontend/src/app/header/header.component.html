@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row class="top team4-container">
 
-      <button mat-button class="homeButton" [routerLink]="['/main']">
+      <button mat-button class="homeButton" [routerLink]="['/main/available-products']">
         <div class="navbar-brand">
           <a class="navbar-item">
             <img class="img-responsive" src="assets/t4Icon.png">
@@ -10,13 +10,16 @@
         Team4's secret bonanza</button>
 
       <div class="container text-right" *ngIf="!!(loggedIn())">
+        
         <button *ngIf="existingOrder()" mat-flat-button color="primary" (click) = "openDialog()">
+          <span class="text-size">{{getCurrOrderSize()}}</span>
           <mat-icon>shopping_cart</mat-icon>
         </button>
-        <span class="text-size">{{getCurrWallet() | currency: 'BC'}} </span>
-        <span class="text-size">Hello, {{userName}}</span>
+        <span class="text-size">{{getCurrWallet() | currency: 'BTC'}} </span>
+        <span class="text-size">  {{userName}}</span>
         <button mat-button [matMenuTriggerFor]="menu">
-          <mat-icon class="icon-display">account_circle</mat-icon>
+          <mat-icon *ngIf="NoCustomIcon; else elseBlock"  class="icon-display">account_circle</mat-icon>
+          <ng-template #elseBlock><img  src="data:image/jpeg;base64,{{picture}}" width="40" height="50">  </ng-template> 
         </button>
         <mat-menu #menu="matMenu">
           <div *ngIf="!!(isAdmin())">

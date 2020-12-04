@@ -3,33 +3,24 @@
   <div class = "sidebar">
     <div class = catalogue-items>
 
-      <a [routerLink]="['Available-Products']" routerLinkActive="selected" class="catalogue-item">
+      <a [routerLink]="['available-products']" routerLinkActive="selected" class="catalogue-item">
       <i class="material-icons">keyboard_arrow_right</i>
       Available Products
-     </a>
+      </a>
 
-       <a [routerLink]="['Available-Services']" routerLinkActive= "selected" class="catalogue-item">
+       <a [routerLink]="['available-services']" routerLinkActive= "selected" class="catalogue-item">
       <i class="material-icons">keyboard_arrow_right</i>
       Available Services
       </a>
+
+
+      
    </div>
+
+   <app-scroll-to-top></app-scroll-to-top>
+
  </div>
  <div class="catalogue-content-container">
   <router-outlet></router-outlet>
 </div>
 </div>
-
-<!--
-  <mat-tab-group animationDuration="1ms" staticHeight>
-    <mat-tab label="Available Products">
-      <mat-card><catalogue-products-list></catalogue-products-list></mat-card>
-      
-    </mat-tab>
-
-    <mat-tab label="Available Services">
-      <mat-card> <catalogue-service-list></catalogue-service-list></mat-card>
-     
-    </mat-tab>
-
-  </mat-tab-group>
--->

@@ -11,6 +11,7 @@ export interface OrderAttributes {
     city: string;
     country: string;
     price: number;
+    count: number;
 }
 
 export interface OrderCreationAttributes extends Optional<Order, 'orderId'> { }
@@ -24,6 +25,7 @@ export class Order extends Model<OrderAttributes, OrderCreationAttributes> imple
     city!: string;
     country!: string;
     price!: number;
+    count!: number;
 
     public static initialize(sequelize: Sequelize) {
         Order.init({
@@ -59,6 +61,11 @@ export class Order extends Model<OrderAttributes, OrderCreationAttributes> imple
             },
             price: {
                 type: DataTypes.FLOAT,
+                allowNull: true
+            },
+            count: {
+                type: DataTypes.FLOAT,
+                defaultValue: 0,
                 allowNull: true
             }
         },

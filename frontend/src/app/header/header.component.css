@@ -28,6 +28,8 @@
   }
   
   .team4-container{
+    padding-left: 0 !important;
+    z-index: 7;
     padding: 0.01em 16px;
   }
   
@@ -46,6 +48,7 @@
   }
 
   .icon-display{
+    padding-top:100;
     transform: scale(2);
   }
 

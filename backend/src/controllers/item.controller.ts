@@ -1,3 +1,4 @@
+import { OrderItemCount } from './../services/orderItemCount.service';
 import { DataLabelCycle } from './../services/dataLabeler.service';
 import { TransactionHandler } from './../services/transactionhandler.service';
 import { Op } from 'sequelize';
@@ -9,6 +10,7 @@ import fs from 'fs';
 const itemController: Router = express.Router();
 const transactionHandler = new TransactionHandler();
 const dataLabelCycle = new DataLabelCycle();
+const oCount = new OrderItemCount();
 
 itemController.post('/post', (req: Request, res: Response) => {
     Item.create(req.body)
@@ -26,6 +28,7 @@ itemController.put('/:id', (req: Request, res: Response) => {
                 found.update(req.body).then(updated => {
                     res.status(200).send(updated);
                 });
+
             } else {
                 res.sendStatus(404);
             }
@@ -43,12 +46,16 @@ itemController.put('/completeTransaction/:id/:oid', (req: Request, res: Response
                 found.map(value => {
                     value.update({soldToId : req.params.id, processed: '0'});
                     transactionHandler.processTransactions();
+
                 });
+
             } else {
                 res.sendStatus(404);
             }
+            oCount.getOrderItemCount(req.params.oid);
          })
          .catch(err => res.status(500).send(err));
+
 });
 
 itemController.put('/buy/:id/:oid', (req: Request, res: Response) => {
@@ -61,8 +68,10 @@ itemController.put('/buy/:id/:oid', (req: Request, res: Response) => {
             } else {
                 res.status(200).send();
             }
+            oCount.getOrderItemCount(req.params.oid);
         })
         .catch(err => res.status(500).send(err));
+
 });
 
 itemController.delete('/delete/:id', (req: Request, res: Response) => {

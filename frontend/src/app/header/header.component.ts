@@ -1,3 +1,4 @@
+import { defaultPicture } from './../../../../backend/src/public/images/defaultPicture';
 import { environment } from './../../environments/environment';
 import { CheckoutComponent } from './../checkout/checkout.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -17,6 +18,8 @@ export class HeaderComponent implements OnInit {
   userToken = "";
   userName = "";
   roleId = "";
+  picture = "";
+  NoCustomIcon = true;
 
   constructor(private httpClient: HttpClient,private dialog: MatDialog, private router: Router) {}
 
@@ -24,7 +27,12 @@ export class HeaderComponent implements OnInit {
     this.checkUserStatus();
     return localStorage.getItem('currWallet')
   }
-  
+
+  getCurrOrderSize() {
+    this.checkUserStatus();
+    return localStorage.getItem('orderSize')
+  }
+
   loggedIn() {
     this.checkUserStatus();
     return localStorage.getItem('userToken');
@@ -42,16 +50,18 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('roleId');
     localStorage.removeItem('orderId');
     localStorage.removeItem('currWallet');
+    localStorage.removeItem('orderSize');
+    localStorage.removeItem('picture');
 
     this.checkUserStatus();
     
     //After Logout to Main
-    this.router.navigateByUrl('/main');
+    this.router.navigateByUrl('/main/available-products');
   }
   
   ngOnInit(): void {
     this.checkUserStatus();
-
+    this.picture = localStorage.getItem('picture')
   }
 
   isAdmin(): boolean {
@@ -63,8 +73,11 @@ export class HeaderComponent implements OnInit {
     this.userToken = localStorage.getItem('userToken');
     this.userName = localStorage.getItem('userName');
     this.roleId = localStorage.getItem('roleId');
+    if (localStorage.getItem('picture') != defaultPicture.base64Value) {
+      this.NoCustomIcon = false;
+      this.picture = localStorage.getItem('picture')
+    }
     
-
 
   }
 

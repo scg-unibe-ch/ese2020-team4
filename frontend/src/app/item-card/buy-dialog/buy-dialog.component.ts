@@ -37,12 +37,20 @@ export class BuyComponent {
         this.httpClient.post(environment.endpointURL + 'order/post', {userId: this.userId, status: "active"}).subscribe((res: any) => {
           localStorage.setItem('orderId', res.orderId)
           this.orderId = localStorage.getItem('orderId')
-          this.httpClient.put(environment.endpointURL + 'item/buy/'+this.data+ "/"+ this.orderId, null).subscribe((res: any) => { });
+          this.httpClient.put(environment.endpointURL + 'item/buy/'+this.data+ "/"+ this.orderId, null).subscribe((res: any) => { 
+            this.httpClient.get(environment.endpointURL + 'order/getCount/' + localStorage.getItem('userId'), {}).subscribe((res: any) =>{
+              localStorage.setItem('orderSize', res)
+              });
+          });
         });
         this.dialogRef.close()
       } else {
         this.orderId = localStorage.getItem('orderId')
-        this.httpClient.put(environment.endpointURL + 'item/buy/'+this.data+ "/"+ this.orderId, null).subscribe((res: any) => { });
+        this.httpClient.put(environment.endpointURL + 'item/buy/'+this.data+ "/"+ this.orderId, null).subscribe((res: any) => {  
+          this.httpClient.get(environment.endpointURL + 'order/getCount/' + localStorage.getItem('userId'), {}).subscribe((res: any) =>{
+            localStorage.setItem('orderSize', res)
+            });
+        });
         this.dialogRef.close()
       }
 

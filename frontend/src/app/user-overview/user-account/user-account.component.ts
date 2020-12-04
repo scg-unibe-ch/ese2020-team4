@@ -34,6 +34,8 @@ export class UserAccountComponent implements OnInit {
   constructor(private httpClient: HttpClient, private formBuilder: FormBuilder, private router: Router) { }
 
 
+
+
   getUserName() {
     return this.userName;
   }
@@ -41,9 +43,8 @@ export class UserAccountComponent implements OnInit {
   getToken() {
     return this.userToken;
   }
-
+  
   ngOnInit(): void {
-    this.checkUserStatus();
     this.editInfo = this.formBuilder.group({
       userName: [''],
       firstName: [''],
@@ -54,6 +55,7 @@ export class UserAccountComponent implements OnInit {
       country: [''],
       tNumber: ['']
     })
+    this.checkUserStatus();
   }
 
   checkUserStatus(): void {
@@ -71,8 +73,19 @@ export class UserAccountComponent implements OnInit {
       this.country = res.country;
       this.tNumber = res.tNumber;
       localStorage.setItem('userName', res.userName);
-    });
 
+      this.editInfo.patchValue({
+        userName : (this.userName),
+        firstName : (this.first),
+        lastName : (this.last),
+        street : (this.street),
+        zipCode : (this.zipCode),
+        city : (this.city),
+        country : (this.country),
+        tNumber : (this.tNumber)
+        })
+    });
+    
     this.userName = localStorage.getItem('userName');
     // Set boolean whether a user is logged in or not
     this.loggedIn = !!(this.userToken);
@@ -100,7 +113,6 @@ export class UserAccountComponent implements OnInit {
   }
 
   submit():void{
-    console.log(this.editInfo);
     this.httpClient.put(environment.endpointURL + 'user/edit/'+ localStorage.getItem('userId'), 
     {
       "userName" : this.editInfo.get('userName').value!=null ? this.editInfo.get('userName').value : this.userName,
@@ -116,7 +128,7 @@ export class UserAccountComponent implements OnInit {
       
     })
     this.checkUserStatus();
-    this.router.navigateByUrl('/main');
+    this.router.navigateByUrl('/main/available-products');
   }
   
 
