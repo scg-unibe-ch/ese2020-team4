@@ -8,6 +8,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectorRef, ViewChild, OnDestroy } from '@angular/core';
 import { environment } from '../../../../environments/environment';
+import {DeleteDialogComponent} from "../../../admin-overview/user-list/delete-dialog/delete-dialog.component";
+import {RatingDialogComponent} from "./rating-dialog/rating-dialog.component";
 
 @Component({
   selector: 'user-bought',
@@ -46,7 +48,7 @@ export class UserBoughtComponent implements OnInit, OnDestroy{
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-  
+
   refresh(): void{
     this.httpClient.get(environment.endpointURL + 'item/getTranBou/' + this.userId, {
     }).subscribe(data => {
@@ -57,9 +59,17 @@ export class UserBoughtComponent implements OnInit, OnDestroy{
         console.log(err.message)
     });
     this.itemTable.renderRows();
-  
+
   }
 
+
+  openDialog(itemId: any) {
+
+    this.dialog.open(RatingDialogComponent, {
+      width: '250px',
+      data: itemId
+    });
+  }
 }
 
 

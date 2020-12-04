@@ -1,6 +1,8 @@
 
 export interface Item {
     itemId: number;
+    orderId: number;
+    soldToId: number;
     productType: string;
     title: string;
     transactionType: string;
@@ -9,7 +11,7 @@ export interface Item {
     location: string;
     status: string;
     delivery: boolean;
-    userReviews: string;
+    userReviews: number;
     price: number;
     priceModel: string;
     approvedFlag: boolean;

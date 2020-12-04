@@ -123,7 +123,7 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
                 allowNull: true
             },
             userReviews: {
-                type: DataTypes.STRING,
+                type: DataTypes.INTEGER,
                 defaultValue: false,
                 allowNull: true
             },

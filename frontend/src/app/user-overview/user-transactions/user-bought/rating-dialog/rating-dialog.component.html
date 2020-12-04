@@ -1,0 +1,11 @@
+<div class="center">
+  <h2>Rate the product</h2>
+  <ngb-rating [(rate)]="currentRate" max="5"></ngb-rating>
+  <pre style="margin:10px;"></pre>
+  <small> {{response}}</small>
+  <pre style="margin:10px;"></pre>
+  <button mat-flat-button color="primary" (click)= "rate()">Confirm</button>
+  <button class="buttonR" mat-flat-button color="primary" (click)= "close()">Close</button>
+
+
+</div>

@@ -37,6 +37,22 @@ itemController.put('/:id', (req: Request, res: Response) => {
 
 });
 
+itemController.post('/rating/:id', (req: Request, res: Response) => {
+    Item.findByPk(req.params.id)
+        .then(found => {
+            if (found != null) {
+                found.update({userReviews : req.body.stars }).then(updated => {
+                    res.status(200).send(updated);
+                });
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(err => res.status(500).send(err));
+
+});
+
+
 itemController.put('/completeTransaction/:id/:oid', (req: Request, res: Response) => {
     Item.findAll({where: {
         [Op.and] : [{orderId: req.params.oid}, , {approvedFlag: {[Op.gt]: 0}}]}

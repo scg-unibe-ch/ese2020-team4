@@ -17,7 +17,7 @@ export class DataLabelCycle {
                     const metadata = new grpc.Metadata();
                     let finalName = ' ';
 
-                    metadata.set('authorization', 'Key dd0105c9feed42db942bc5cbf24ed3ce');
+                    metadata.set('authorization', 'Key');
 
                     stub.PostModelOutputs(
                         {
