@@ -65,9 +65,7 @@ import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { UserAccountComponent } from './user-overview/user-account/user-account.component';
 import { HeaderComponent } from './header/header.component';
-import { SearchComponent } from './search/search.component';
 import { ItemCardComponent } from './item-card/item-card.component';
-import { ProductsComponent } from './search/products/products.component';
 import { MultiRangeSliderModule } from '@vijayliebe/multi-range-slider';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
@@ -75,6 +73,9 @@ import { LoginDialogComponent } from './user-login/login-dialog/login-dialog.com
 import {Guard} from './auth/guard';
 import { RatingDialogComponent } from './user-overview/user-transactions/user-bought/rating-dialog/rating-dialog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DetailedItemComponent } from './detailed-item/detailed-item.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -113,67 +114,74 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DeleteOrderItem,
     UserAccountComponent,
     HeaderComponent,
-    SearchComponent,
     ItemCardComponent,
-    ProductsComponent,
     UserWalletComponent,
     ApprovmentAllDialogComponent,
     PaypalComponent,
     LoginDialogComponent,
     BuyComponent,
-    RatingDialogComponent
+    RatingDialogComponent,
+    DetailedItemComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpClientModule,
-    MatButtonModule,
-    MatListModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatCardModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot([
-      {path: 'main', component: MainPageComponent,
-      children: [
-        { path: 'Available-Products', component: CatalogueProductsListComponent },
-        { path: 'Available-Services', component: CatalogueServiceListComponent }]},
-      {path: 'main/search', component: SearchComponent},
-      {path: 'checkout', component: CheckoutComponent},
-      {path: 'reset/:id', component: PasswordResetComponent},
-      {path: '', redirectTo: '/main', pathMatch: 'full'},
-      {path: 'main/your-product', component: UserProductsComponent, canActivate: [Guard]},
-      {path: 'main/your-transaction', component: UserTransactionsComponent, canActivate: [Guard]},
-      {path: 'main/account', component: UserAccountComponent, canActivate: [Guard]},
-      {path: 'main/admin-overview', component: AdminOverviewComponent, canActivate: [Guard],
-        data: { expectedRole: 'admin' }},
-      {path: 'login', component: UserLoginComponent},
-      {path: 'register', component: UserRegistrationComponent},
-      {path: '**', component: PageNotFoundComponent}
-    ]),
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        HttpClientModule,
+        MatButtonModule,
+        MatListModule,
+        MatInputModule,
+        MatCheckboxModule,
+        MatCardModule,
+        MatTabsModule,
+        MatToolbarModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        RouterModule.forRoot([
+            {
+                path: 'main', component: MainPageComponent,
+                children: [
+                    {path: 'Available-Products', component: CatalogueProductsListComponent},
+                    {path: 'Available-Services', component: CatalogueServiceListComponent},
+                    {path: 'Available-Products/:id', component: DetailedItemComponent},
+                    {path: 'Available-Services/:id', component: DetailedItemComponent}]
+            },
+            {path: 'checkout', component: CheckoutComponent},
+            {path: 'reset/:id', component: PasswordResetComponent},
+            {path: '', redirectTo: '/main', pathMatch: 'full'},
+            {path: 'main/your-product', component: UserProductsComponent, canActivate: [Guard]},
+            {path: 'main/your-transaction', component: UserTransactionsComponent, canActivate: [Guard]},
+            {path: 'main/account', component: UserAccountComponent, canActivate: [Guard]},
+            {
+                path: 'main/admin-overview', component: AdminOverviewComponent, canActivate: [Guard],
+                data: {expectedRole: 'admin'}
+            },
+            {path: 'login', component: UserLoginComponent},
+            {path: 'register', component: UserRegistrationComponent},
+            {path: '**', component: PageNotFoundComponent},
+            {path: 'pageNotFound', component: PageNotFoundComponent}
+        ]),
 
-    MatDialogModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatStepperModule,
-    MatMenuModule,
-    MatExpansionModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MultiRangeSliderModule,
-    ClickOutsideModule,
-    NgxSliderModule,
-    MatSliderModule,
-    NgbModule
+        MatDialogModule,
+        MatTableModule,
+        MatSortModule,
+        MatPaginatorModule,
+        MatStepperModule,
+        MatMenuModule,
+        MatExpansionModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MultiRangeSliderModule,
+        ClickOutsideModule,
+        NgxSliderModule,
+        MatSliderModule,
+        NgbModule,
+        MatTooltipModule,
+        MatChipsModule
 
-  ],
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

@@ -101,6 +101,8 @@ itemController.get('/getPro/', (req: Request, res: Response) => {
         .catch(err => res.status(500).send(err));
 });
 
+
+
 itemController.get('/getSer/', (req: Request, res: Response) => {
     Item.findAll({where: {
         [Op.and] : [{productType: 'Service'}, {orderId: null}, {soldToId: 0} , {approvedFlag: {[Op.gt]: 0}}]}
@@ -116,6 +118,19 @@ itemController.get('/get/:id', (req: Request, res: Response) => {
         [Op.and] : [{userId: req.params.id}, {soldToId: 0}]}
          })
         .then(list => res.status(200).send(list))
+        .catch(err => res.status(500).send(err));
+});
+
+itemController.get('/getItem/:id', (req: Request, res: Response) => {
+    Item.findByPk(req.params.id)
+        .then(found => {
+            if (found != null) {
+
+                    res.status(200).send(found);
+            } else {
+                res.sendStatus(404);
+            }
+        })
         .catch(err => res.status(500).send(err));
 });
 
@@ -135,6 +150,27 @@ itemController.get('/getOrderItem/:id', (req: Request, res: Response) => {
 itemController.get('/getTranBou/:id', (req: Request, res: Response) => {
     Item.findAll({where: {soldToId: req.params.id} })
         .then(list => res.status(200).send(list))
+        .catch(err => res.status(500).send(err));
+});
+
+itemController.get('/getReviews/:id', (req: Request, res: Response) => {
+    Item.findAll({where: {
+            [Op.and] : [{userId: req.params.id}, {userReviews: {[Op.ne]: 0}}]}
+    }).then(found => {
+        if (found.length !== 0) {
+            let average = 0;
+            for (let i = 0; i < found.length; i++) {
+                average = average + found[i].userReviews;
+            }
+
+            average = average / (found.length);
+            console.log(average);
+            res.status(200).send([average, found.length]);
+
+        } else {
+            res.status(200).send([0]);
+        }
+    })
         .catch(err => res.status(500).send(err));
 });
 

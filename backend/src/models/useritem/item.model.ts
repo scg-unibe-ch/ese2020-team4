@@ -17,7 +17,7 @@ export interface ItemAttributes {
     location: string;
     status: string;
     delivery: boolean;
-    userReviews: string;
+    userReviews: number;
     price: number;
     priceModel: string;
     approvedFlag: boolean;
@@ -41,7 +41,7 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
     location!: string;
     status!: string;
     delivery!: boolean;
-    userReviews!: string;
+    userReviews!: number;
     price!: number;
     priceModel!: string;
     approvedFlag!: boolean;

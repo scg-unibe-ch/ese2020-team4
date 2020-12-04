@@ -1,0 +1,22 @@
+
+
+<img src="data:image/jpeg;base64,{{item.picture}}" width="400" >
+<hr>
+<h1><b>{{item.title}}</b></h1>
+<hr>
+<p><b>Price: </b>{{item.price}}    <button mat-flat-button color="primary" (click)= "openDialog(item.itemId)"  align="right">Buy</button></p>
+<hr>
+<p><b>Vendor: </b>{{seller.userName}}   (<ngb-rating [(rate)]="sellerRating" [readonly]="true" [max]="5">
+  </ngb-rating>)
+</p>
+<hr>
+<p><b>Type: </b>{{item.transactionType}}</p>
+<hr>
+<p><b>Location: </b>{{item.location}}</p>
+<hr>
+<br>
+<br>
+<br>
+<p><b>Description</b></p>
+<hr>
+<p>{{item.description}}</p>

@@ -65,9 +65,8 @@ export class CatalogueServiceListComponent implements OnInit{
   ngOnInit(): void {
     this.httpClient.get(environment.endpointURL + 'item/getSer/').subscribe((instances: any) => {
       this.itemList = instances.map((instance: any) => {
-        return new Item(instance.itemId, instance.title, instance.description, instance.location, instance.price,
-          instance.transactionType, instance.delivery, instance.createdAt, instance.encodedPicture, instance.labeljson);
-      })
+        return new Item(instance.itemId, instance.title, instance.description, instance.location, instance.price, instance.productType,
+          instance.transactionType, instance.delivery, instance.createdAt, instance.encodedPicture, instance.labeljson);      })
 
       this.itemListFiltered = this.itemList;
       this.results = this.itemListFiltered.length;
