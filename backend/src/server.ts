@@ -8,6 +8,7 @@ import {Order} from './models/order.model';
 
 import cors from 'cors';
 import { Role } from './models/role.model';
+import {Rating} from './models/rating.model';
 
 export class Server {
     private server: Application;
@@ -24,11 +25,13 @@ export class Server {
         uitems.Item.initialize(this.sequelize);
         Role.uBuild();
         User.uBuild();
+        Rating.initialize(this.sequelize);
 
         Role.createAssociations();
         User.createAssociations();
         Order.createAssociations();
         uitems.Item.createAssociations();
+        Rating.createAssociations();
 
         this.sequelize.sync({logging: console.log}).then(() => {
             this.server.listen(this.port, () => {                                   // start server on specified port

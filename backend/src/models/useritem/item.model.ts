@@ -92,8 +92,8 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
             },
             labeljson: {
                 type: DataTypes.STRING,
-                defaultValue: null,
-                allowNull: true
+                defaultValue: '',
+                allowNull: false
             },
             location: {
                 type: DataTypes.STRING,
@@ -123,7 +123,7 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
                 allowNull: true
             },
             userReviews: {
-                type: DataTypes.STRING,
+                type: DataTypes.INTEGER,
                 defaultValue: false,
                 allowNull: true
             },

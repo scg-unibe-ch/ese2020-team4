@@ -18,6 +18,7 @@ import { UserBoughtComponent } from './user-overview/user-transactions/user-boug
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BuyComponent} from "./item-card/buy-dialog/buy-dialog.component";
+import {MatSliderModule} from '@angular/material/slider';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -72,6 +73,8 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { LoginDialogComponent } from './user-login/login-dialog/login-dialog.component';
 import {Guard} from './auth/guard';
+import { RatingDialogComponent } from './user-overview/user-transactions/user-bought/rating-dialog/rating-dialog.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -117,7 +120,8 @@ import {Guard} from './auth/guard';
     ApprovmentAllDialogComponent,
     PaypalComponent,
     LoginDialogComponent,
-    BuyComponent
+    BuyComponent,
+    RatingDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -165,7 +169,9 @@ import {Guard} from './auth/guard';
     MatNativeDateModule,
     MultiRangeSliderModule,
     ClickOutsideModule,
-    NgxSliderModule
+    NgxSliderModule,
+    MatSliderModule,
+    NgbModule
 
   ],
   providers: [

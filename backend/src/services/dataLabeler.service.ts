@@ -8,7 +8,7 @@ import {Op} from 'sequelize';
 export class DataLabelCycle {
     public processToLabels(): void {
         Item.findAll({where: {
-            [Op.and] : [{labeljson : null}, , {encodedPicture: {[Op.ne]: defaultPicture.base64Value}}]}
+            [Op.and] : [{labeljson : ''}, , {encodedPicture: {[Op.ne]: defaultPicture.base64Value}}]}
              })
         .then(found => {
             if (found != null) {
