@@ -1,3 +1,4 @@
+import { defaultPicture } from './../../../../backend/src/public/images/defaultPicture';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -27,6 +28,8 @@ export class UserLoginComponent implements OnInit {
   userId = '';
   password = '';
   orderId = null;
+  NoCustomIcon = false;
+  picture = ""
 
   userToken: string;
   loggedIn = false;
@@ -64,6 +67,10 @@ export class UserLoginComponent implements OnInit {
     // Get user data from local storage
     this.userToken = localStorage.getItem('userToken');
     this.userName = localStorage.getItem('userName');
+    if (localStorage.getItem('picture') != defaultPicture.base64Value) {
+      this.NoCustomIcon = false;
+      this.picture = localStorage.getItem('picture')
+    }
 
     // Set boolean whether a user is logged in or not
     this.loggedIn = !!(this.userToken);
@@ -86,13 +93,14 @@ export class UserLoginComponent implements OnInit {
       localStorage.setItem('userId', res.user.userId);
       localStorage.setItem('roleId', res.user.roleId);
       localStorage.setItem('currWallet', res.user.wallet);
-      console.log(res.user.userId)
+      localStorage.setItem('picture', res.user.encodedPicture)
       this.checkUserStatus();
-      this.router.navigateByUrl('/main');
+      this.router.navigateByUrl('/main/available-products');
       this.httpClient.get(environment.endpointURL + 'order/getUserOrder/' + localStorage.getItem('userId'), {
       }).subscribe((res: any) => {
-        if (this.orderId != undefined) {
-          localStorage.setItem('orderId', this.orderId)
+        if (res.orderId != undefined) {
+          localStorage.setItem('orderId', res.orderId)
+          localStorage.setItem('orderSize', res.count)
         }
       })
     }, (err: any) => {
@@ -101,12 +109,6 @@ export class UserLoginComponent implements OnInit {
 
     });
 
-  }
-
-
-
-  test(): string {
-    return 'test123';
   }
 
   loggedInMethod(): string {
@@ -121,6 +123,7 @@ export class UserLoginComponent implements OnInit {
     localStorage.removeItem('roleId');
     localStorage.removeItem('orderId');
     localStorage.removeItem('currWallet');
+    localStorage.removeItem('picture');
 
     this.checkUserStatus();
 

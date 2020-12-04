@@ -1,8 +1,9 @@
 img {
   height: auto;
   width: auto;
-  max-width: 300px;
-  max-height: 100px;
+  /* position: relative; */
+  max-width: 500px;
+  max-height: 300px;
 }
 
 mat-card{ cursor: pointer; }

@@ -49,3 +49,9 @@ input.example-right-align {
   width: 80px;
   height: 50px;
 }
+
+.mainPage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

@@ -1,3 +1,4 @@
+import { OrderItemCount } from './../services/orderItemCount.service';
 
 import { Op } from 'sequelize';
 import express, { Request, Response, Router } from 'express';
@@ -6,11 +7,13 @@ import {Order} from '../models/order.model';
 import { regexp } from 'sequelize/types/lib/operators';
 
 const orderController: Router = express.Router();
+const oCount = new OrderItemCount();
 
 orderController.post('/post', (req: Request, res: Response) => {
     Order.create(req.body)
         .then(inserted => res.send(inserted))
         .catch(err => res.status(500).send(err));
+
 });
 
 
@@ -21,6 +24,7 @@ orderController.put('/change/:id', (req: Request, res: Response) => {
                 found.update(req.body).then(updated => {
                     res.status(200).send(updated);
                 });
+                oCount.getOrderItemCount(req.params.id);
             } else {
                 res.sendStatus(404);
             }
@@ -48,27 +52,23 @@ orderController.delete('/delete/:id', (req: Request, res: Response) => {
         .then(found => {
             if (found != null) {
                 found.destroy().then(() => res.status(200).send());
+                oCount.getOrderItemCount(req.params.id);
             } else {
                 res.sendStatus(404);
             }
+
         })
         .catch(err => res.status(500).send(err));
+
 });
 
-orderController.get('/getPro/', (req: Request, res: Response) => {
-    Order.findAll({where: {
-        [Op.and] : [{productType: 'Product'}, {soldToId: 0}, , {approvedFlag: {[Op.gt]: 0}}]}
+orderController.get('/getCount/:id', (req: Request, res: Response) => {
+    Order.findOne({where: {
+        [Op.and] : [{userId: req.params.id}, {status: 'active'}]}
          })
-        .then(list => res.status(200).send(list))
-        .catch(err => res.status(500).send(err));
-});
 
-orderController.get('/getSer/', (req: Request, res: Response) => {
-    Order.findAll({where: {
-        [Op.and] : [{productType: 'Service'}, {soldToId: 0}, , {approvedFlag: {[Op.gt]: 0}}]}
-         })
-        .then(list => res.status(200).send(list))
-        .catch(err => res.status(500).send(err));
+        .then(found => res.status(200).send(found.count.toString()))
+        .catch(err => err);
 });
 
 orderController.get('/get/:id', (req: Request, res: Response) => {
@@ -87,20 +87,6 @@ orderController.get('/getUserOrder/:id', (req: Request, res: Response) => {
         .catch(err => res.status(500).send(err));
 });
 
-orderController.get('/getTranBou/:id', (req: Request, res: Response) => {
-    Order.findAll({where: {orderId: req.params.id} })
-        .then(list => res.status(200).send(list))
-        .catch(err => res.status(500).send(err));
-});
-
-orderController.get('/getTranSol/:id', (req: Request, res: Response) => {
-    Order.findAll({where: {
-        [Op.and] : [{userId: req.params.id}, {soldToId: req.params.id}]}
-         })
-        .then(list => res.status(200).send(list))
-        .catch(err => res.status(500).send(err));
-});
-
 orderController.get('/getAllOrders', (req: Request, res: Response) => {
     Order.findAll({where: {
         [Op.and] : [{soldToId: {[Op.eq]: 0}}]}
@@ -108,8 +94,6 @@ orderController.get('/getAllOrders', (req: Request, res: Response) => {
         .then(list => res.status(200).send(list))
         .catch(err => res.status(500).send(err));
 });
-
-
 
 
 export const OrderController: Router = orderController;

@@ -1,3 +1,4 @@
+import { ScrollTopComponent } from './catalogue/scroll-to-top/scroll-to-top.component';
 import { PaypalComponent } from './checkout/paypal/paypal.component';
 import { ApprovmentAllDialogComponent } from './admin-overview/product-list/approvmentAll-dialog/approvementAll-dialog.component';
 import { UserWalletComponent } from './user-overview/user-wallet/user-wallet.component';
@@ -65,7 +66,9 @@ import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { UserAccountComponent } from './user-overview/user-account/user-account.component';
 import { HeaderComponent } from './header/header.component';
+import { SearchComponent } from './search/search.component';
 import { ItemCardComponent } from './item-card/item-card.component';
+import { ProductsComponent } from './search/products/products.component';
 import { MultiRangeSliderModule } from '@vijayliebe/multi-range-slider';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
@@ -114,7 +117,9 @@ import {MatChipsModule} from '@angular/material/chips';
     DeleteOrderItem,
     UserAccountComponent,
     HeaderComponent,
+    SearchComponent,
     ItemCardComponent,
+    ProductsComponent,
     UserWalletComponent,
     ApprovmentAllDialogComponent,
     PaypalComponent,
@@ -122,6 +127,8 @@ import {MatChipsModule} from '@angular/material/chips';
     BuyComponent,
     RatingDialogComponent,
     DetailedItemComponent
+    ScrollTopComponent,
+    RatingDialogComponent
   ],
     imports: [
         BrowserModule,
@@ -164,6 +171,21 @@ import {MatChipsModule} from '@angular/material/chips';
             {path: 'pageNotFound', component: PageNotFoundComponent}
         ]),
 
+    MatDialogModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatStepperModule,
+    MatMenuModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MultiRangeSliderModule,
+    ClickOutsideModule,
+    NgxSliderModule,
+    MatTooltipModule,
+    MatSliderModule,
+    NgbModule
         MatDialogModule,
         MatTableModule,
         MatSortModule,
@@ -181,7 +203,7 @@ import {MatChipsModule} from '@angular/material/chips';
         MatTooltipModule,
         MatChipsModule
 
-    ],
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

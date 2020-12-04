@@ -92,7 +92,7 @@ export class Item extends Model<ItemAttributes, ItemCreationAttributes> implemen
             },
             labeljson: {
                 type: DataTypes.STRING,
-                defaultValue: '',
+                defaultValue: ' ',
                 allowNull: false
             },
             location: {

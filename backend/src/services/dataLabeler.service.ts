@@ -1,7 +1,4 @@
-
 import { defaultPicture } from './../public/images/defaultPicture';
-import { groupCollapsed } from 'console';
-import { any } from 'sequelize/types/lib/operators';
 import { Item } from './../models/useritem/item.model';
 import {Op} from 'sequelize';
 
@@ -18,9 +15,9 @@ export class DataLabelCycle {
 
                     const stub = ClarifaiStub.grpc();
                     const metadata = new grpc.Metadata();
-                    let finalName = '';
+                    let finalName = ' ';
 
-                    metadata.set('authorization', 'Key aecd8f90a99344c2a22014a94f4e0af5');
+                    metadata.set('authorization', 'Key');
 
                     stub.PostModelOutputs(
                         {

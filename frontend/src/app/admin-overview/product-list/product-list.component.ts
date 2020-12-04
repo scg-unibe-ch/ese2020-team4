@@ -18,11 +18,7 @@ import {DeleteItemDialogComponent} from "./delete-item-dialog/delete-item-dialog
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit, OnDestroy {
-
-  // displayedColumns: string[] = ['UserId', 'roleId', 'email', 'username', 'firstname', 'lastname', 'gender', 'city'];
-  // userId = localStorage.getItem("userId");
-  // itemId = 0;
-  // newUserItemName = '';
+  
   locData;
   everyFiveSeconds: Observable<number> = timer(0, 15000);
   subscription: Subscription;

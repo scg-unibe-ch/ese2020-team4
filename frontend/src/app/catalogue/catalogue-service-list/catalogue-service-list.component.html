@@ -16,7 +16,7 @@
       </mat-expansion-panel-header>
       <div class="searchbar">
         <input class="searchfield" [(ngModel)]="imageSearchStringTemp" (keyup.enter)="onClickReset()" type="text" placeholder="Image Search">
-        <button (click)="onClickReset()">Search</button>
+        <button (click)="onClickReset()" matTooltip="Searches for specific Image Labels in Product" matTooltipPosition="below" matTooltipShowDelay= "500">Search</button>
       </div>
     </mat-expansion-panel>
 

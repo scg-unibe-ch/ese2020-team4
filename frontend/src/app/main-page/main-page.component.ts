@@ -46,6 +46,9 @@ export class MainPageComponent implements OnInit {
     this.httpClient.get(environment.endpointURL + 'user/getWallet/' + localStorage.getItem('userId'), {}).subscribe((res2: any) =>{
     localStorage.setItem('currWallet', res2.wallet)
     });
+    this.httpClient.get(environment.endpointURL + 'order/getCount/' + localStorage.getItem('userId'), {}).subscribe((res: any) =>{
+    localStorage.setItem('orderSize', res)
+    });
   }
 
   isAdmin(): boolean {

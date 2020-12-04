@@ -4,6 +4,7 @@ import { Optional, Model, Sequelize, DataTypes, Association, HasManyAddAssociati
 import { Role } from './role.model';
 import { Item } from './useritem/item.model';
 import bcrypt from 'bcrypt';
+import {defaultPicture} from '../public/images/defaultPicture';
 
 export interface UserAttributes {
     userId: number;
@@ -20,6 +21,7 @@ export interface UserAttributes {
     city: string;
     country: String;
     wallet: number;
+    encodedPicture: string;
     resetPasswordToken: String;
     resetPasswordExpires: number;
 
@@ -50,6 +52,7 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     country!: String;
     wallet!: number;
     resetPasswordToken: String;
+    encodedPicture!: string;
     resetPasswordExpires: number;
 
 
@@ -118,6 +121,11 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
                 defaultValue: 0,
                 allowNull: true
             },
+            encodedPicture: {
+                type: DataTypes.STRING,
+                defaultValue: defaultPicture.base64Value,
+                allowNull: true
+            },
             resetPasswordToken: {
                 type: DataTypes.STRING,
                 allowNull: true
@@ -140,13 +148,13 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
                 email: 'Administrator@hotmail.ch', firstName: 'Ad',
                 lastName: 'min', password: bcrypt.hashSync('Admin!123', 12), gender: 'male',
                 tNumber: '0323223232', street: 'AdminStreet', zipCode: 2222,
-                city: 'Administratium', country: 'BossCountry', wallet: 999999,
+                city: 'Administratium', country: 'BossCountry', wallet: 999999, encodedPicture: defaultPicture.base64Value,
                 resetPasswordToken: null, resetPasswordExpires: null}).catch(error => console.log(error)),
                 User.create({userName: 'User', roleId: 2,
                 email: 'User@hotmail.ch', firstName: 'Us',
                 lastName: 'er', password: bcrypt.hashSync('User!123', 12), gender: 'male',
                 tNumber: '0323223233', street: 'UserStreet', zipCode: 2222,
-                city: 'Userium', country: 'PlebianCountry', wallet: 0,
+                city: 'Userium', country: 'PlebianCountry', wallet: 0, encodedPicture: defaultPicture.base64Value,
                 resetPasswordToken: null, resetPasswordExpires: null}).catch(error => console.log(error));
             }
         }).catch(error => console.error('Error when building a predefined role Table'));
