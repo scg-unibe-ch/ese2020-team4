@@ -18,7 +18,7 @@ import { UserSoldComponent } from './user-overview/user-transactions/user-sold/u
 import { UserBoughtComponent } from './user-overview/user-transactions/user-bought/user-bought.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BuyComponent} from "./item-card/buy-dialog/buy-dialog.component";
+import {BuyComponent} from './item-card/buy-dialog/buy-dialog.component';
 import {MatSliderModule} from '@angular/material/slider';
 
 import { AppComponent } from './app.component';
@@ -66,9 +66,7 @@ import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { UserAccountComponent } from './user-overview/user-account/user-account.component';
 import { HeaderComponent } from './header/header.component';
-import { SearchComponent } from './search/search.component';
 import { ItemCardComponent } from './item-card/item-card.component';
-import { ProductsComponent } from './search/products/products.component';
 import { MultiRangeSliderModule } from '@vijayliebe/multi-range-slider';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
@@ -117,16 +115,14 @@ import {MatChipsModule} from '@angular/material/chips';
     DeleteOrderItem,
     UserAccountComponent,
     HeaderComponent,
-    SearchComponent,
     ItemCardComponent,
-    ProductsComponent,
     UserWalletComponent,
     ApprovmentAllDialogComponent,
     PaypalComponent,
     LoginDialogComponent,
     BuyComponent,
     RatingDialogComponent,
-    DetailedItemComponent
+    DetailedItemComponent,
     ScrollTopComponent,
     RatingDialogComponent
   ],
@@ -147,13 +143,12 @@ import {MatChipsModule} from '@angular/material/chips';
         MatIconModule,
         ReactiveFormsModule,
         RouterModule.forRoot([
-            {
-                path: 'main', component: MainPageComponent,
+            {path: 'main', component: MainPageComponent,
                 children: [
-                    {path: 'Available-Products', component: CatalogueProductsListComponent},
-                    {path: 'Available-Services', component: CatalogueServiceListComponent},
-                    {path: 'Available-Products/:id', component: DetailedItemComponent},
-                    {path: 'Available-Services/:id', component: DetailedItemComponent}]
+                    {path: 'available-products', component: CatalogueProductsListComponent},
+                    {path: 'available-services', component: CatalogueServiceListComponent},
+                    {path: 'available-products/:id', component: DetailedItemComponent},
+                    {path: 'available-services/:id', component: DetailedItemComponent}]
             },
             {path: 'checkout', component: CheckoutComponent},
             {path: 'reset/:id', component: PasswordResetComponent},
@@ -161,10 +156,7 @@ import {MatChipsModule} from '@angular/material/chips';
             {path: 'main/your-product', component: UserProductsComponent, canActivate: [Guard]},
             {path: 'main/your-transaction', component: UserTransactionsComponent, canActivate: [Guard]},
             {path: 'main/account', component: UserAccountComponent, canActivate: [Guard]},
-            {
-                path: 'main/admin-overview', component: AdminOverviewComponent, canActivate: [Guard],
-                data: {expectedRole: 'admin'}
-            },
+            {path: 'main/admin-overview', component: AdminOverviewComponent, canActivate: [Guard], data: {expectedRole: 'admin'}},
             {path: 'login', component: UserLoginComponent},
             {path: 'register', component: UserRegistrationComponent},
             {path: '**', component: PageNotFoundComponent},
@@ -185,7 +177,7 @@ import {MatChipsModule} from '@angular/material/chips';
     NgxSliderModule,
     MatTooltipModule,
     MatSliderModule,
-    NgbModule
+    NgbModule,
         MatDialogModule,
         MatTableModule,
         MatSortModule,

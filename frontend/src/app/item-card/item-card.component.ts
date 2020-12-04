@@ -33,13 +33,13 @@ export class ItemCardComponent implements OnInit {
   detailedView(itemId: number, productType: string) {
     if(productType == 'Product'){
       console.log('product route')
-      this.router.navigate(['/main/Available-Products', itemId]);
+      this.router.navigate(['/main/available-products', itemId]);
 
     }
     else{
       console.log('service route')
       console.log(productType)
-      this.router.navigate(['/main/Available-Services', itemId]);
+      this.router.navigate(['/main/available-services', itemId]);
 
     }
   }
