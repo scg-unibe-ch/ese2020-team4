@@ -57,18 +57,30 @@
   }
 
   .loginBtn{
-    margin-top: 5px;
-    outline-style: solid;
-    outline-width: 2px;
-    margin-right: 5px;
-    margin-left: 5px;
-    padding: 5px;
+    background-color: #2b387c;
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .loginBtn:hover{
+    background-color: #7c2b38;
   }
 
   .mat-button{
     font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: 2vw;
     font-weight: 500;
+  }
+
+  .registerBtn{
+    margin-left: 40px;
+    background-color: #2b387c;
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .registerBtn:hover{
+    background-color: #7280ce;
   }
 
   .text-size{

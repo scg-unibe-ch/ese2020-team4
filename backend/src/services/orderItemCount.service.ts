@@ -1,4 +1,4 @@
-import { Item } from './../../../backend/build/models/useritem/item.model';
+import { Item } from '../models/useritem/item.model';
 import { Order } from '../models/order.model';
 
 
