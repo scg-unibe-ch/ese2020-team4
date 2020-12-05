@@ -1,11 +1,24 @@
+
 <div class="searchbar">
   <input class="searchfield" [(ngModel)]="stringInTab" (keyup.enter)="onClickReset()" type="text" placeholder="Search">
   <button (click)="onClickReset()">Search</button>
 </div>
 
-<div class="accord">
-  <mat-accordion class="example-headers-align" multi="False">
-
+<pre style="margin:5px;"></pre>
+<mat-accordion class = "filter">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Additional Filters
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+  
+  
+  
+  <div>
+  <mat-accordion multi="False">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -14,7 +27,7 @@
         <mat-panel-description>
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <div class="searchbar">
+      <div class="searchbarI">
         <input class="searchfield" [(ngModel)]="imageSearchStringTemp" (keyup.enter)="onClickReset()" type="text" placeholder="Image Search">
         <button (click)="onClickReset()" matTooltip="Searches for specific Image Labels in Product" matTooltipPosition="below" matTooltipShowDelay= "500" >Search</button >
       </div>
@@ -79,9 +92,12 @@
       <mat-checkbox class="example-margin" [(ngModel)]="lend" (click)="onClickFilter()">lend</mat-checkbox>
     </mat-expansion-panel>
   </mat-accordion>
-</div>
+  </div>
+</mat-expansion-panel>
+</mat-accordion>
 
-<p>results: {{results}}</p>
+<pre style="margin:2px;"></pre>
+<p class = "result">results: {{results}}</p>
 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
   Sort by: {{sortBy}} <mat-icon>expand_more</mat-icon>
 </button>
@@ -97,9 +113,15 @@
   </button>
 </mat-menu>
 
-<app-item-card *ngFor="let itemCard of itemListFiltered" [item]="itemCard">
-</app-item-card>
+<div class= "view">
+
+<div vlass = "content" fxLayout="row wrap" >
+  <div fxFlex="25%"   *ngFor="let itemCard of itemListFiltered">
+  <app-item-card fxLayoutGap="3%" [item]="itemCard">
+  </app-item-card>
+  </div>
+</div>
 
 
-
+</div>
 

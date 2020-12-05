@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 
 import { Item } from '../../models/item.model';
 import { ChangeDetectorRef } from '@angular/core';
-import { MatDialog,  } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig,  } from '@angular/material/dialog';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component,Output, OnInit, ViewChild, OnDestroy} from '@angular/core';
 import { environment } from '../../../environments/environment';
@@ -50,7 +50,7 @@ export class OrderComponent implements OnInit, OnDestroy{
     }, (err: HttpErrorResponse) => {
         console.log(err.message)
     });
-    this.changePrice()
+    this.changePrice();
     this.subscription = this.everyFiveSeconds.subscribe(()=> {
       this.refresh();
     })
@@ -82,7 +82,12 @@ export class OrderComponent implements OnInit, OnDestroy{
       width: '250px',
       data: this.itemId
     });
+    dialogRef.afterClosed().subscribe(() => {
+      this.refresh();
+    })
+
   }
+
 
   calculateCost(): number {
     this.cost = 0

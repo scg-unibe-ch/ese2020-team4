@@ -77,6 +77,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DetailedItemComponent } from './detailed-item/detailed-item.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatChipsModule} from '@angular/material/chips';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -178,23 +179,23 @@ import {MatChipsModule} from '@angular/material/chips';
     MatTooltipModule,
     MatSliderModule,
     NgbModule,
-        MatDialogModule,
-        MatTableModule,
-        MatSortModule,
-        MatPaginatorModule,
-        MatStepperModule,
-        MatMenuModule,
-        MatExpansionModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MultiRangeSliderModule,
-        ClickOutsideModule,
-        NgxSliderModule,
-        MatSliderModule,
-        NgbModule,
-        MatTooltipModule,
-        MatChipsModule
-
+    MatDialogModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatStepperModule,
+    MatMenuModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MultiRangeSliderModule,
+    ClickOutsideModule,
+    NgxSliderModule,
+    MatSliderModule,
+    NgbModule,
+    MatTooltipModule,
+    MatChipsModule,
+    FlexLayoutModule
   ],
   providers: [
     {

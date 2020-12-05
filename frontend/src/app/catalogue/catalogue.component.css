@@ -6,10 +6,10 @@
 
 .catalogue-content-container {
     padding: 100px;
-    padding-top: 50px;
-    width: 89%;
+    padding-top: 40px;
+    margin-left: 160px;
+    width: 100%;
     display: flex;
-    justify-content: center;
 }
 
 .sidebar {
@@ -76,6 +76,11 @@
     margin-right: 12px;
     font-size: 24px;
 }
+
+
+
 a {
     text-decoration: none;
   }
+
+  

@@ -62,7 +62,6 @@ export class CatalogueProductsListComponent implements OnInit {
         return new Item(instance.itemId, instance.title, instance.description, instance.location, instance.price, instance.productType,
           instance.transactionType, instance.delivery, instance.createdAt, instance.encodedPicture, instance.labeljson);
       })
-
       this.itemListFiltered = this.itemList;
       this.results = this.itemListFiltered.length;
 
