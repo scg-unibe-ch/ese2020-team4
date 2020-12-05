@@ -1,3 +1,4 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../environments/environment";
@@ -16,11 +17,13 @@ export class DetailedItemComponent implements OnInit {
   item: Item = new Item(null,null,null,null,null,null,null,null, null,null, null);
   sellerId;
   seller;
+  sellerName;
   sellerRating;
   amountOfReviews = 'this seller has no review yet';
   otherArticles;
+  imagePath;
 
-  constructor(private dialog: MatDialog, private route: ActivatedRoute, private httpClient: HttpClient, private router: Router) {
+  constructor(private dialog: MatDialog, private route: ActivatedRoute, private httpClient: HttpClient, private router: Router, private _sanitizer : DomSanitizer) {
     this.route.params.subscribe( params => this.itemId = params.id);
   }
 
@@ -30,16 +33,15 @@ export class DetailedItemComponent implements OnInit {
       this.sellerId = data.userId;
       this.item = new Item(data.itemId, data.title, data.description, data.location, data.price, data.productType,
         data.transactionType, data.delivery, data.createdAt, data.encodedPicture, data.labeljson);
-      console.log(this.item);
+      this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'+ data.encodedPicture)
       this.httpClient.get(environment.endpointURL + 'user/getSpecific/' + this.sellerId, {
       }).subscribe((res: any) => {
-        console.log(res)
         this.seller = res;
+        this.sellerName = res.userName
       });
 
       this.httpClient.get(environment.endpointURL + 'item/getReviews/' + this.sellerId, {
       }).subscribe((res: any) => {
-        console.log(res[0])
         if(res[0]>0){
           this.amountOfReviews = ' based on ' + res[1] + ' reviews';
         }
@@ -53,6 +55,8 @@ export class DetailedItemComponent implements OnInit {
 
 
   }
+
+
   openDialog(itemId): void {
     itemId = itemId
     const dialogRef = this.dialog.open(BuyComponent, {

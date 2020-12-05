@@ -1,12 +1,14 @@
 
 
-<img src="data:image/jpeg;base64,{{item.picture}}" width="400" >
+<img [src]="imagePath"  width="400" >
 <hr>
 <h1><b>{{item.title}}</b></h1>
 <hr>
-<p><b>Price: </b>{{item.price}}    <button mat-flat-button color="primary" (click)= "openDialog(item.itemId)"  align="right">Buy</button></p>
+<p><b>Price: </b>{{item.price}}    
+  <button class="cartButton" mat-flat-button color="primary" (click)= "openDialog(item.itemId)">Add to Cart</button>
+</p>
 <hr>
-<p><b>Vendor: </b>{{seller.userName}}   <ngb-rating [(rate)]="sellerRating" [readonly]="true" [max]="5">
+<p><b>Vendor: </b>{{sellerName}}   <ngb-rating [(rate)]="sellerRating" [readonly]="true" [max]="5">
   </ngb-rating>
 </p>
 <hr>

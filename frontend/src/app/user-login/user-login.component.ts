@@ -98,9 +98,12 @@ export class UserLoginComponent implements OnInit {
       this.router.navigateByUrl('/main/available-products');
       this.httpClient.get(environment.endpointURL + 'order/getUserOrder/' + localStorage.getItem('userId'), {
       }).subscribe((res: any) => {
-        if (res.orderId != undefined) {
-          localStorage.setItem('orderId', res.orderId)
-          localStorage.setItem('orderSize', res.count)
+        console.log(res)
+        if (res != null) {
+          if (res.orderId != undefined) {
+            localStorage.setItem('orderId', res.orderId)
+            localStorage.setItem('orderSize', res.count)
+          }
         }
       })
     }, (err: any) => {
