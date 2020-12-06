@@ -1,91 +1,87 @@
 <app-header></app-header>
 <mat-tab-group animationDuration="1ms" staticHeight>
-  <div [formGroup]="editInfo">
-    <mat-tab label="Account">
-      <mat-card class="edit-container">
-        <mat-accordion class="example-headers-align accord" multi>
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Personal data
-              </mat-panel-title>
-              <mat-panel-description>
-                Change your personal information
-                <mat-icon>account_circle</mat-icon>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-        
-            <mat-form-field>
-              <mat-label>Username</mat-label>
-              <input matInput placeholder={{userName}} [type]="'userName'" formControlName="userName"  > 
-            </mat-form-field>
 
-            <br>
-        
-            <mat-form-field>
-              <mat-label>First Name</mat-label>
-              <input matInput placeholder= {{first}} [type]="'firstName'" formControlName="firstName" >
-            </mat-form-field>
+  <mat-tab label="Account">
 
-            <mat-form-field>
-              <mat-label>Last Name</mat-label>
-              <input matInput placeholder={{last}} [type]="'lastName'" formControlName="lastName" >
-            </mat-form-field>
-        
-          </mat-expansion-panel>
+    <div [formGroup]="editInfo" class="account-container">
+      <mat-card>
+        <div class="edit_container">
+          <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput placeholder={{userName}} [type]="'userName'" formControlName="userName">
+          </mat-form-field>
 
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Shipping Information
-              </mat-panel-title>
-              <mat-panel-description>
-                Change your address
-                <mat-icon>map</mat-icon>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-        
-            <mat-form-field>
-              <mat-label>Street Name & Number</mat-label>
-              <input matInput placeholder={{street}} formControlName="street" >
-            </mat-form-field>
+          <br>
 
-            <br>
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder={{first}} [type]="'firstName'" formControlName="firstName">
+          </mat-form-field>
 
-            <mat-form-field>
-              <mat-label>Zip Code</mat-label>
-              <input matInput placeholder={{zipCode}} formControlName="zipCode" >
-            </mat-form-field>
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder={{last}} [type]="'lastName'" formControlName="lastName">
+          </mat-form-field>
 
-            <mat-form-field>
-              <mat-label>City</mat-label>
-              <input matInput placeholder={{city}} formControlName="city" >
-            </mat-form-field>
+          <br>
 
-            <br>
+          <mat-form-field>
+            <mat-label>Street Name & Number</mat-label>
+            <input matInput placeholder={{street}} formControlName="street">
+          </mat-form-field>
 
-            <mat-form-field>
-              <mat-label>Country</mat-label>
-              <input matInput placeholder={{country}} formControlName="country" >
-            </mat-form-field>
 
-            <br>
-            
-            <mat-form-field>
-              <mat-label>Phone Number</mat-label>
-              <input matInput placeholder={{tNumber}} formControlName="tNumber" >
-            </mat-form-field>
-          </mat-expansion-panel>
-        </mat-accordion>
+          <br>
+
+          <mat-form-field>
+            <mat-label>Zip Code</mat-label>
+            <input matInput placeholder={{zipCode}} formControlName="zipCode">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <input matInput placeholder={{city}} formControlName="city">
+          </mat-form-field>
+
+          <br>
+
+          <mat-form-field>
+            <mat-label>Country</mat-label>
+            <input matInput placeholder={{country}} formControlName="country">
+          </mat-form-field>
+
+          <br>
+
+          <mat-form-field>
+            <mat-label>Phone Number</mat-label>
+            <input matInput placeholder={{tNumber}} formControlName="tNumber">
+          </mat-form-field>
+        </div>
+        <div class="submitBtn">
+          <button type="submit" mat-flat-button color="primary" value="Submit" (click)=deblock() [disabled]=editing>
+            <span class="material-icons" 
+              style="margin-bottom: 1px;
+              padding-right: 5px;">
+                create
+            </span>
+            Edit
+          </button>
+          <button type="submit" mat-flat-button color="primary" value="Submit" (click)=submit() [disabled]=blocked style="margin-left: 10px; margin-right: 5px;">Submit</button>
+        </div>
       </mat-card>
-      <div class="submitBtn">
-        <button type="submit" mat-flat-button color="primary" value="Submit" (click)=submit() >Submit</button>
-      </div>
-    </mat-tab>
-    <mat-tab label="Wallet">
-      <app-user-wallet></app-user-wallet>
-    </mat-tab>
-    
-    </div>
-  </mat-tab-group>
+      
 
+      <div class="picture">
+        <mat-icon style="font-size: 250px; height: auto; width: auto;">account_circle</mat-icon>
+        <input type="file" accept="image/*"  name="image" />
+      </div>
+    </div>
+
+
+  </mat-tab>
+
+  <mat-tab label="Wallet">
+    <app-user-wallet></app-user-wallet>
+  </mat-tab>
+
+</mat-tab-group>

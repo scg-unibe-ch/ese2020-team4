@@ -17,9 +17,8 @@
   }
 
   .edit-container{
-    display: flex;
-    justify-content: center;
-    box-shadow: none;
+    width: 500px;
+    flex: 1;
   }
 
   .accord{
@@ -29,4 +28,18 @@
   .submitBtn{
     display: flex;
     justify-content: center;
+  }
+
+  .account-container{
+    display: flex;
+    margin: 50px;
+    justify-content: center;
+  }
+
+  .picture{
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    flex-wrap: wrap;
   }

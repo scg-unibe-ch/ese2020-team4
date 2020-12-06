@@ -23,7 +23,8 @@ export class UserAccountComponent implements OnInit {
   city: string;
   country: string;
   tNumber: number;
-
+  blocked = true;
+  editing = false;
 
 
   userToken: string;
@@ -46,14 +47,14 @@ export class UserAccountComponent implements OnInit {
   
   ngOnInit(): void {
     this.editInfo = this.formBuilder.group({
-      userName: [''],
-      firstName: [''],
-      lastName: [''],
-      street: [''],
-      zipCode: [''],
-      city: [''],
-      country: [''],
-      tNumber: ['']
+      userName: [{value: this.userName, disabled: this.blocked}],
+      firstName: [{value: this.first, disabled: this.blocked}],
+      lastName: [{value: this.last, disabled: this.blocked}],
+      street: [{value: this.street, disabled: this.blocked}],
+      zipCode: [{value: this.zipCode, disabled: this.blocked}],
+      city: [{value: this.city, disabled: this.blocked}],
+      country: [{value: this.country, disabled: this.blocked}],
+      tNumber: [{value: this.tNumber, disabled: this.blocked}]
     })
     this.checkUserStatus();
   }
@@ -141,6 +142,13 @@ export class UserAccountComponent implements OnInit {
     }, (error: any) => {
       this.secureEndpointResponse = 'Unauthorized';
     });
+  }
+
+  deblock(){
+    this.blocked = false;
+    this.editing = true;
+    this.editInfo.enable();
+    this.checkUserStatus();
   }
 
 }
