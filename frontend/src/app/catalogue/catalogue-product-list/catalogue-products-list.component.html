@@ -115,9 +115,9 @@
 
 <div class= "view">
 
-<div vlass = "content" fxLayout="row wrap" >
+<div vlass = "content" fxLayout="row wrap" fxLayoutGap="1% grid">
   <div fxFlex="25%"   *ngFor="let itemCard of itemListFiltered">
-  <app-item-card fxLayoutGap="3%" [item]="itemCard">
+  <app-item-card  [item]="itemCard">
   </app-item-card>
   </div>
 </div>

@@ -1,26 +1,26 @@
 .searchbar{
-  width: 500px;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
+    width: 500px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
   /* justify-content: center; */
 }
 
 .searchbarI {
-  width: 500px;
-  display: flex;
-  margin-right: auto;
+    width: 500px;
+    display: flex;
+    margin-right: auto;
 }
 
 .searchfield{
-  width: 500px;
+    width: 500px;
 }
 
 .result{
-  float: right;
+    float: right;
 
 }
 
 .view  {
-  width: 150%;
+    width: 100%;
 }

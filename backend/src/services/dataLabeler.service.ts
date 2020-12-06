@@ -5,11 +5,12 @@ import {Op} from 'sequelize';
 export class DataLabelCycle {
     public processToLabels(): void {
         Item.findAll({where: {
-            [Op.and] : [{labeljson : ''}, , {encodedPicture: {[Op.ne]: defaultPicture.base64Value}}]}
+            [Op.and] : [{labeljson : ' '}, , {encodedPicture: {[Op.ne]: defaultPicture.base64Value}}]}
              })
         .then(found => {
             if (found != null) {
                 found.map(value => {
+                    console.log('Here');
                     const {ClarifaiStub} = require('clarifai-nodejs-grpc');
                     const grpc = require('@grpc/grpc-js');
 
@@ -17,7 +18,7 @@ export class DataLabelCycle {
                     const metadata = new grpc.Metadata();
                     let finalName = ' ';
 
-                    metadata.set('authorization', 'Key');
+                    metadata.set('authorization', 'Key ');
 
                     stub.PostModelOutputs(
                         {
@@ -35,14 +36,17 @@ export class DataLabelCycle {
                                 console.log('Received failed status: ' + response.status.description + '\n' + response.status.details);
                                 return;
                             }
+                            console.log(response);
                             for (const c of response.outputs[0].data.concepts) {
                                 finalName += c.name + ' ';
+                                console.log(c.name);
                             }
                             const data = response.outputs[0].data.concepts.map(function(c) {
                                 return {
                                     name : c.name
                                 };
                             });
+
                             value.update({labeljson: finalName});
                         }
                     );

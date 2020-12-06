@@ -1,11 +1,12 @@
 import { defaultPicture } from './../../../../backend/src/public/images/defaultPicture';
-import { environment } from './../../environments/environment';
 import { CheckoutComponent } from './../checkout/checkout.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+
+
 
 
 @Component({
@@ -58,7 +59,7 @@ export class HeaderComponent implements OnInit {
     //After Logout to Main
     this.router.navigateByUrl('/main/available-products');
   }
-  
+
   ngOnInit(): void {
     this.checkUserStatus();
     this.picture = localStorage.getItem('picture')
@@ -80,6 +81,8 @@ export class HeaderComponent implements OnInit {
     
 
   }
+
+
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CheckoutComponent, {
