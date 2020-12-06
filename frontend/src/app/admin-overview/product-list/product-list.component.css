@@ -16,7 +16,6 @@ th {
 
 .mat-table {
   overflow: auto;
-  max-height: 500px;
 }
 
 th.mat-header-cell {
@@ -31,8 +30,16 @@ th.mat-header-cell {
 }
 
 .appButton{
-  height:25px;
-  width:80px;
-  font-size:9px;
+  height:30px;
+  width:90px;
+  font-size:12px;
   line-height: 0.8;
+}
+
+tr.mat-row{
+  height: 80px;
+}
+
+tr.mat-footer-row{
+  height: 80px;
 }
