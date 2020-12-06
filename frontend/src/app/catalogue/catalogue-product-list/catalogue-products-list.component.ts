@@ -52,8 +52,6 @@ export class CatalogueProductsListComponent implements OnInit {
   };
 
   constructor(private httpClient: HttpClient) {
-
-
   }
 
   ngOnInit(): void {

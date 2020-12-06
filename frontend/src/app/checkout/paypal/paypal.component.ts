@@ -29,16 +29,16 @@ export class PaypalComponent implements OnInit  {
   
   ngOnInit() {
     paypal.Buttons({
-      
         createOrder: (data, actions) => {
+          console.log(this.orderPrice.toFixed(2))
           return actions.order.create({
             purchase_units: [
               {
                 description: "ESE2020 Order",
                 amount: {
                   currency_code: 'USD',
-                  value: this.orderPrice
-                }
+                  value: this.orderPrice.toFixed(2)
+                },
               }
             ]
           });

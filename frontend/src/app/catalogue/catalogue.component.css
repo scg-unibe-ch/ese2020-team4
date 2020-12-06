@@ -9,7 +9,7 @@
     padding-top: 40px;
     margin-left: 160px;
     width: 100%;
-    display: flex;
+    display: block;
 }
 
 .sidebar {

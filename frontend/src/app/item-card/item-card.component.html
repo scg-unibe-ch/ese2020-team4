@@ -1,21 +1,23 @@
-<mat-card class="example-card" (click)= "detailedView(item.itemId, item.productType)">
+
+<mat-card class="example-card mat-elevation-z3" (click)= "detailedView(item.itemId, item.productType)">
   <pre style="margin:4px;"></pre>
   <mat-card-header>
     <div></div>
     <mat-card-title>{{item.title}}</mat-card-title>
     <mat-card-subtitle>{{item.price | currency: 'USD'}}</mat-card-subtitle>
   </mat-card-header>  
-  <img src="data:image/jpeg;base64,{{item.picture}}" width="500" height="600">
+  <div class="thumbnail">
+    <span matTooltip="{{item.labels}}" matTooltipPosition="below" matTooltipShowDelay= "500">
+    <img src="data:image/jpeg;base64,{{item.picture}}" class="portrait" alt="Image" width="700" height="1000">
+    </span>
+  </div>
   <mat-card-content>
+    <pre style="margin:5px;"></pre>
     <p>
-      {{item.description}}
-    </p>
-    <p>
-      Place: {{item.location}}
+      Location: {{item.location}}
     </p>
   </mat-card-content>
   <mat-card-actions>
   <button mat-flat-button color="primary" (click)= "detailedView(item.itemId, item.productType)">Details</button>
   </mat-card-actions>
 </mat-card>
-<pre style="margin:5px;"></pre>
