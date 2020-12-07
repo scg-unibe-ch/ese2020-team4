@@ -10,7 +10,6 @@ export class DataLabelCycle {
         .then(found => {
             if (found != null) {
                 found.map(value => {
-                    console.log('Here');
                     const {ClarifaiStub} = require('clarifai-nodejs-grpc');
                     const grpc = require('@grpc/grpc-js');
 
