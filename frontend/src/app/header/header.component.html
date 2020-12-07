@@ -14,8 +14,8 @@
           <span class="text-size-cart">{{getCurrOrderSize()}}</span>
           <mat-icon class="cart">shopping_cart</mat-icon>
         </button>
-        <span class="text-size">{{getCurrWallet() | currency: 'BTC'}} </span>
-        <span class="text-size">  {{userName}}</span>
+        <span class="text-size" style="padding-left: 5px; padding-right: 5px;">{{getCurrWallet() | currency: 'BTC'}} </span>
+        <span class="text-size" style="padding-left: 5px;">  {{userName}}</span>
 
         
         <button mat-button [matMenuTriggerFor]="menu">
@@ -29,6 +29,23 @@
           <button mat-menu-item [routerLink]="['/main/account']">Account</button>
           <button mat-menu-item [routerLink]="['/main/your-product']">Your Products</button>
           <button mat-menu-item [routerLink]="['/main/your-transaction']">Your Transactions</button>
+          <!-- <div class="dark-mode-container">
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+            </label>
+            <span style="padding-top: 2px;">Darkmode</span>
+          </div> -->
+          <!-- <section class="example-section">
+            <mat-slide-toggle [(ngModel)]="isDark"
+                class="example-margin"
+                [color]="color"
+                [checked]="checked"
+                [disabled]="disabled">
+              Dark Mode
+            </mat-slide-toggle>
+          </section> -->
+          <button mat-menu-item (click)="toggleDark()">Toggle Dark Mode</button>
           <button mat-menu-item color="warn" 
             style="color: #e30b0b;font-size: 16px; font-weight: 500;" 
             (click)="logout()">Logout</button>

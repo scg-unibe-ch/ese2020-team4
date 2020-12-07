@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ThemePalette } from '@angular/material/core';
 
 
 
@@ -21,8 +22,12 @@ export class HeaderComponent implements OnInit {
   roleId = "";
   picture = "";
   NoCustomIcon = true;
+  color: ThemePalette = 'accent';
+  checked = false;
+  disabled = false;
+  isDark = false;
 
-  constructor(private httpClient: HttpClient,private dialog: MatDialog, private router: Router) {}
+  constructor(private httpClient: HttpClient, private dialog: MatDialog, private router: Router) { }
 
   getCurrWallet() {
     this.checkUserStatus();
@@ -55,7 +60,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('picture');
 
     this.checkUserStatus();
-    
+
     //After Logout to Main
     this.router.navigateByUrl('/main/available-products');
   }
@@ -78,7 +83,7 @@ export class HeaderComponent implements OnInit {
       this.NoCustomIcon = false;
       this.picture = localStorage.getItem('picture')
     }
-    
+
 
   }
 
@@ -92,12 +97,27 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  displayMenu(): void{
+  displayMenu(): void {
     this.trigger.openMenu();
   }
 
-  hideMenu(): void{
+  hideMenu(): void {
     this.trigger.closeMenu();
+  }
+
+  toggleDark() {
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme == "dark") {
+      document.body.classList.add("dark");
+    }
+
+    document.body.classList.toggle("dark");
+
+    let theme = "light";
+    if (document.body.classList.contains("dark-theme")) {
+      theme = "dark";
+    }
+    localStorage.setItem("theme", theme);
   }
 
 }

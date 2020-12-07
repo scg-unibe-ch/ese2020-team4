@@ -1,10 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
+body{
+  --text-color: #222;
+  --bkg-color: #fff;
+}
+
+body.dark{
+  --text-color: #eeeeee;
+  --bkg-color: #121212;
+}
+
 html, body { 
   height: 100%;
   margin: 0;
+  background: var(--bkg-color);
 }
+
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent;
@@ -26,3 +38,4 @@ button.buttonR {
 /* .catalogue-content-container > ng-star-inserted {
   width: 100%;
 } */
+

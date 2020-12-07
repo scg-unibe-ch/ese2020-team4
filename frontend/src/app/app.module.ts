@@ -20,6 +20,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BuyComponent} from './item-card/buy-dialog/buy-dialog.component';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -195,7 +196,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     NgbModule,
     MatTooltipModule,
     MatChipsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatSlideToggleModule
   ],
   providers: [
     {
