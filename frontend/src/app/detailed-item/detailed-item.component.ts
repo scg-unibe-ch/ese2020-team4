@@ -22,6 +22,7 @@ export class DetailedItemComponent implements OnInit {
   amountOfReviews = 'this seller has no review yet';
   otherArticles;
   imagePath;
+  sellerMail;
 
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private httpClient: HttpClient, private router: Router, private _sanitizer : DomSanitizer) {
     this.route.params.subscribe( params => this.itemId = params.id);
@@ -37,7 +38,8 @@ export class DetailedItemComponent implements OnInit {
       this.httpClient.get(environment.endpointURL + 'user/getSpecific/' + this.sellerId, {
       }).subscribe((res: any) => {
         this.seller = res;
-        this.sellerName = res.userName
+        this.sellerName = res.userName;
+        this.sellerMail = res.email;
       });
 
       this.httpClient.get(environment.endpointURL + 'item/getReviews/' + this.sellerId, {

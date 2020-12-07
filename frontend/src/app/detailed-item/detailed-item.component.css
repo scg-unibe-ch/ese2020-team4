@@ -2,3 +2,10 @@
     position: relative;
     float: center;
 }
+
+
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}

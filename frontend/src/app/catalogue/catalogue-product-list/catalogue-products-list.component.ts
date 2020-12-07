@@ -25,7 +25,7 @@ export class CatalogueProductsListComponent implements OnInit {
 
   searchString = '';
   stringInTab = '';
-  imageSearchStringTemp = '';
+  // imageSearchStringTemp = '';
   imageSearchString = '';
   location = '';
   delivery = false;
@@ -45,7 +45,7 @@ export class CatalogueProductsListComponent implements OnInit {
   attachOutsideOnClick = true;
 
   value: number = 0;
-  highValue: number = 10000;
+  highValue: number = 100000;
   options: Options = {
     floor: this.value,
     ceil: this.highValue
@@ -80,7 +80,7 @@ export class CatalogueProductsListComponent implements OnInit {
 
   onClickReset() {
     this.searchString = this.stringInTab
-    this.imageSearchString = this.imageSearchStringTemp
+    this.imageSearchString = '';
     this.value = this.minPrice;
     this.highValue = this.maxPrice;
     this.location = '';
