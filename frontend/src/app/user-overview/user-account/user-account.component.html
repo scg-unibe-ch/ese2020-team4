@@ -4,7 +4,7 @@
   <mat-tab label="Account">
 
     <div [formGroup]="editInfo" class="account-container">
-      <mat-card>
+      <mat-card class="form">
         <div class="edit_container">
           <mat-form-field>
             <mat-label>Username</mat-label>
@@ -73,7 +73,7 @@
 
       <div class="picture">
         <mat-icon style="font-size: 250px; height: auto; width: auto;">account_circle</mat-icon>
-        <input type="file" accept="image/*"  name="image" />
+        <input class="uploader" type="file" accept="image/*"  name="image" />
       </div>
     </div>
 

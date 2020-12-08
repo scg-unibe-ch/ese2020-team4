@@ -99,7 +99,7 @@
 <pre style="margin:2px;"></pre>
 <p class = "result">results: {{results}}</p>
 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-  Sort by: {{sortBy}} <mat-icon>expand_more</mat-icon>
+  <p>Sort by: {{sortBy}} <mat-icon>expand_more</mat-icon></p>
 </button>
 <mat-menu #menu="matMenu">
   <button mat-menu-item (click)="onClickSortLowest()">
