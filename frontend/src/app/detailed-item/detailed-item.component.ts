@@ -7,6 +7,9 @@ import {Item} from "../models/item";
 import {BuyComponent} from "../item-card/buy-dialog/buy-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 
+/**
+ * Component with detailed information about item from catalogue
+ */
 
 @Component({
   selector: 'app-detailed-item',

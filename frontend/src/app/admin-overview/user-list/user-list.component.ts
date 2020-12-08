@@ -14,6 +14,9 @@ import { DataSource } from '@angular/cdk/table';
 import {DeleteDialogComponent} from './delete-dialog/delete-dialog.component';
 import {User} from "../../models/user.model";
 
+/**
+ * The component for the admin panel to manage users (i.e. possibility to delete them)
+ */
 
 
 @Component({

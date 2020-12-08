@@ -7,6 +7,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { HttpClient } from '@angular/common/http';
 
+/**
+ * the page when user wants to complete order.
+ */
 
 @Component({
   selector: 'app-checkout',
@@ -30,35 +33,35 @@ export class CheckoutComponent implements OnInit  {
   disableAnimation = true;
   wallet;
 
-  
+
   account = false;
   address: any;
   order: any;
   payment: any;
 
   shippingAddress: FormGroup;
-  
+
   constructor(private httpClient: HttpClient, private formBuilder: FormBuilder,public dialogRef: MatDialogRef<CheckoutComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData: any ) { }
-  
+
   ngOnInit() {
-    
+
     this.shippingAddress = this.formBuilder.group({
       userId: [localStorage.getItem("userId")],
       street: ["", Validators.required],
       zipCode: [0, Validators.required],
       city: ["", Validators.required],
       country: ["",Validators.required],
-      
+
     })
   }
-  
+
   ngAfterViewInit(): void {
     setTimeout(() => this.disableAnimation = false);
   }
- 
+
   getAddress(): void {
-    this.httpClient.get(environment.endpointURL + 'user/getSpecific/'+localStorage.getItem("userId")).subscribe((res: any) => { 
+    this.httpClient.get(environment.endpointURL + 'user/getSpecific/'+localStorage.getItem("userId")).subscribe((res: any) => {
       this.data = res
       if(this.shippingAddress.invalid){
         this.shippingAddress.patchValue(this.data)
@@ -83,10 +86,10 @@ export class CheckoutComponent implements OnInit  {
     this.httpClient.get(environment.endpointURL + 'user/getSpecific/' + localStorage.getItem('userId'), {}).subscribe((res: any) =>{
       this.wallet = res.wallet;
     });
-    
+
     if(this.wallet >= this.orderChild.finalCost){
       this.httpClient.put(environment.endpointURL + 'user/minusWallet/'+ localStorage.getItem('userId'), { "price": this.orderChild.finalCost}).subscribe((res:any) => {});
-      
+
       this.httpClient.put(environment.endpointURL + 'order/change/'+ localStorage.getItem('orderId'), {status: "complete"}).subscribe((res: any) => {});
       this.httpClient.put(environment.endpointURL + 'item/completeTransaction/'+ localStorage.getItem('userId')+"/"+localStorage.getItem("orderId"), null).subscribe((res: any) => {});
       localStorage.removeItem("orderId")
@@ -105,6 +108,6 @@ export class CheckoutComponent implements OnInit  {
       this.wallet = res.wallet;
     });
   }
-  
+
 }
 

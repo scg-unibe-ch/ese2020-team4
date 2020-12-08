@@ -9,6 +9,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectorRef, ViewChild, OnDestroy } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 
+/**
+ * component that manages the sold items of user
+ */
 @Component({
   selector: 'user-sold',
   templateUrl: './user-sold.component.html',
@@ -46,7 +49,7 @@ export class UserSoldComponent implements OnInit, OnDestroy{
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-  
+
   refresh(): void{
     this.httpClient.get(environment.endpointURL + 'item/getTranSol/' + this.userId, {
     }).subscribe(data => {
@@ -57,7 +60,7 @@ export class UserSoldComponent implements OnInit, OnDestroy{
         console.log(err.message)
     });
     this.itemTable.renderRows();
-  
+
   }
 
 }

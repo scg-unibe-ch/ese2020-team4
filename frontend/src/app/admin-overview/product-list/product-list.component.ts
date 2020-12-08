@@ -12,13 +12,17 @@ import {Item} from "../../models/item.model";
 import {ApprovmentDialogComponent} from "./approvment-dialog/approvment-dialog.component";
 import {DeleteItemDialogComponent} from "./delete-item-dialog/delete-item-dialog.component";
 
+/**
+ * The component for the admin panel to manage products/services (i.e. approve/disapprove or delete them)
+ */
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit, OnDestroy {
-  
+
   locData;
   everyFiveSeconds: Observable<number> = timer(0, 15000);
   subscription: Subscription;

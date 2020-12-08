@@ -16,6 +16,10 @@ export interface ItemData {
   item: any;
 }
 
+/**
+ * component that contains the product list of user
+ */
+
 @Component({
   selector: 'products-list',
   templateUrl: './products-list.component.html',
@@ -69,7 +73,7 @@ export class UserItemListComponent implements OnInit, OnDestroy{
         console.log(err.message)
     });
     this.itemTable.renderRows();
-  
+
   }
 
   deleteItem(itemId){

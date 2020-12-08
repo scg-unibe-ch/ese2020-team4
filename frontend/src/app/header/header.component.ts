@@ -7,6 +7,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ThemePalette } from '@angular/material/core';
 
+/**
+ * Header of each page in application.
+ */
 
 
 

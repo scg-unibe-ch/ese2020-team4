@@ -6,6 +6,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
 
+/**
+ * User account overview with personal details (e.g. username, email,etc.)
+ */
 
 @Component({
   selector: 'app-user-account',
