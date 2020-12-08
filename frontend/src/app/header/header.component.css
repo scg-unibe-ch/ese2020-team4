@@ -195,3 +195,9 @@ input:checked + .slider:before {
 .example-margin {
   margin: 10px;
 }
+
+.header-bar {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+}
