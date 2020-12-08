@@ -21,7 +21,7 @@ export class DataLabelCycle {
                     let finalName = ' ';
 
                     // Insert API Key here
-                    metadata.set('authorization', 'Key');
+                    metadata.set('authorization', 'Key ________');
 
                     stub.PostModelOutputs(
                         {

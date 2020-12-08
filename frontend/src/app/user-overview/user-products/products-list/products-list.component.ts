@@ -47,7 +47,6 @@ export class UserItemListComponent implements OnInit, OnDestroy{
   ngOnInit(){
     this.httpClient.get(environment.endpointURL + 'item/get/' + this.userId, {
     }).subscribe(data => {
-         console.log(data)
         this.locData = data as Item[];
         this.dataSource = new MatTableDataSource(data as Item[]);
         this.changeDetectorRefs.detectChanges();
