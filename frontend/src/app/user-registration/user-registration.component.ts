@@ -18,6 +18,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   }
 }
 
+/**
+ * A component to register a new user.
+ */
 
 @Component({
   selector: 'app-user-registration',
@@ -27,7 +30,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class UserRegistrationComponent implements OnInit {
   userForm: FormGroup;
   constructor(private formBuilder: FormBuilder, private dialog: MatDialog, private httpClient: HttpClient, private router: Router) {
-    
+
   }
   secureEndpointResponse = 'response';
   hide = true;

@@ -24,13 +24,12 @@ export class PaypalComponent implements OnInit  {
 
   paidFor = false;
   shippingAddress: FormGroup;
-  
+
   constructor(private httpClient: HttpClient, private formBuilder: FormBuilder) { }
-  
+
   ngOnInit() {
     paypal.Buttons({
         createOrder: (data, actions) => {
-          console.log(this.orderPrice.toFixed(2))
           return actions.order.create({
             purchase_units: [
               {
@@ -46,7 +45,7 @@ export class PaypalComponent implements OnInit  {
         onApprove: async (data, actions) => {
           const order = await actions.order.capture();
           this.finalizeTransaction();
-          
+
         },
         onError: err => {
           console.log(err);

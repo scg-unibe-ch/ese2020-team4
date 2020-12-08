@@ -173,7 +173,6 @@ itemController.get('/getReviews/:id', (req: Request, res: Response) => {
             }
 
             average = average / (found.length);
-            console.log(average);
             res.status(200).send([average, found.length]);
 
         } else {

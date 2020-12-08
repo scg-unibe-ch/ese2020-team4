@@ -50,7 +50,7 @@ export class DetailedItemComponent implements OnInit {
           this.amountOfReviews = ' based on ' + res[1] + ' reviews';
         }
         this.sellerRating = res[0]  + 0.5;
-      },(err: any) => {console.log('test')});
+      },(err: any) => {console.log(err)});
 
     }, (err: HttpErrorResponse) => {
       this.router.navigateByUrl('/pageNotFound', { skipLocationChange: true });

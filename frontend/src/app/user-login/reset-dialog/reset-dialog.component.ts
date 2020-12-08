@@ -26,7 +26,6 @@ export class ResetDialogComponent {
       this.response = res.message;
     }, (err: any) => {
 
-      console.log(err.error.message);
       this.response = err.error.message;
 
     }

@@ -12,7 +12,7 @@ export class UserService {
 
     public register(user: UserAttributes): Promise<UserAttributes> {
         const saltRounds = 12;
-        console.log('test');
+
         user.password = bcrypt.hashSync(user.password, saltRounds); // hashes the password, never store passwords as plaintext
         return User.findOne({
             where: {
@@ -30,7 +30,7 @@ export class UserService {
                         return Promise.reject({message: 'email is already taken'});
                     }
                 }
-                console.log('test2');
+
                 return User.create(user).then(inserted => Promise.resolve(inserted)).catch(err => Promise.reject(err));
             })
             .catch(err => Promise.reject({message: err}));
@@ -65,12 +65,10 @@ export class UserService {
 
 
     resetRequest(userEmail: string): Promise<{message: string}> {
-        console.log(userEmail);
         return User.findOne({where: {email: userEmail}
         })
             .then(user => {
                     if (!user) {
-                        console.log('backend 1');
                         return Promise.reject({message: 'No account with that email address exists'});
                     }
 
@@ -85,7 +83,6 @@ export class UserService {
             }).then(user => {
 
                 const receiver = user.email;
-                console.log(receiver);
 
                 const transporter = nodemailer.createTransport({
                     service: 'gmail',
@@ -121,8 +118,6 @@ export class UserService {
     }
 
     resetPassword(token: string, pw: string): Promise<{message: string}> {
-        console.log(token);
-        console.log(pw);
        // return User.findOne(token)
         return User.findOne({
             where: {
@@ -132,10 +127,9 @@ export class UserService {
         })
             .then(user => {
                 if (!user) {
-                    console.log('backend 1');
                     return Promise.reject({message: 'Password reset token is invalid or has expired'});
                 }
-                console.log('backend 2');
+
 
 
                 user.resetPasswordToken = null;
@@ -151,7 +145,6 @@ export class UserService {
             }).then(user => {
 
                 const receiver = user.email;
-                console.log(receiver);
 
                 const transporter = nodemailer.createTransport({
                     service: 'gmail',
