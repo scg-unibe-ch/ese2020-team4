@@ -39,9 +39,7 @@ export class CatalogueProductsListComponent implements OnInit {
   maxPrice: number;
   minPrice: number;
 
-
   results: number;
-
   sortBy = '';
 
   attachOutsideOnClick = true;
