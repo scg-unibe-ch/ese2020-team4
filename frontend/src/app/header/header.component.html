@@ -24,7 +24,7 @@
         </button>
         <mat-menu #menu="matMenu">
           <div *ngIf="!!(isAdmin())">
-            <button mat-menu-item [routerLink]="['/main/admin-overview']">Admin Overlay</button>
+            <button mat-menu-item [routerLink]="['/main/admin-overview/admin-user-list']">Admin Overlay</button>
           </div>
           <button mat-menu-item [routerLink]="['/main/account']">Account</button>
           <button mat-menu-item [routerLink]="['/main/your-product']">Your Products</button>
