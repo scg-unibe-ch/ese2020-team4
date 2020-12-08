@@ -4,17 +4,37 @@
 body{
   --text-color: #222;
   --bkg-color: #fff;
+  --bkg-sidebar: rgba(64, 82, 243, 0.2);
+  --bkg-primary: #3f51b5;
 }
 
 body.dark{
   --text-color: #eeeeee;
   --bkg-color: #121212;
+  --bkg-sidebar: #333333;
+  --bkg-primary: #333333;
 }
 
 html, body { 
   height: 100%;
   margin: 0;
   background: var(--bkg-color);
+}
+
+.mat-toolbar{
+  background: var(--bkg-primary);
+}
+
+.mat-toolbar.mat-primary{
+  background: var(--bkg-primary);
+}
+
+.mat-tab-label, .mat-tab-link{
+  color: var(--text-color);
+}
+
+.sidebar{
+  background: var(--bkg-sidebar);
 }
 
 ::-webkit-scrollbar {
