@@ -10,7 +10,6 @@ th {
   display: flex;
   flex-direction: column;
   text-align: left;
-  max-height: 2000px;
   min-width: 1000px;
 }
 

@@ -45,8 +45,9 @@ export class UserItemListComponent implements OnInit, OnDestroy{
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit(){
-    this.httpClient.get(environment.endpointURL + 'item/getPro/', {
+    this.httpClient.get(environment.endpointURL + 'item/get/' + this.userId, {
     }).subscribe(data => {
+         console.log(data)
         this.locData = data as Item[];
         this.dataSource = new MatTableDataSource(data as Item[]);
         this.changeDetectorRefs.detectChanges();

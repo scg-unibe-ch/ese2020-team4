@@ -7,7 +7,7 @@
             <img class="img-responsive" src="assets/t4Icon.png">
           </a>
         </div>
-        Team4's secret bonanza</button>
+        4Exchange</button>
 
       <div class="container text-right" *ngIf="!!(loggedIn())">
         <button *ngIf="existingOrder()" mat-flat-button color="primary" (click) = "openDialog()">
@@ -29,22 +29,6 @@
           <button mat-menu-item [routerLink]="['/main/account']">Account</button>
           <button mat-menu-item [routerLink]="['/main/your-product']">Your Products</button>
           <button mat-menu-item [routerLink]="['/main/your-transaction']">Your Transactions</button>
-          <!-- <div class="dark-mode-container">
-            <label class="switch">
-              <input type="checkbox">
-              <span class="slider round"></span>
-            </label>
-            <span style="padding-top: 2px;">Darkmode</span>
-          </div> -->
-          <!-- <section class="example-section">
-            <mat-slide-toggle [(ngModel)]="isDark"
-                class="example-margin"
-                [color]="color"
-                [checked]="checked"
-                [disabled]="disabled">
-              Dark Mode
-            </mat-slide-toggle>
-          </section> -->
           <button mat-menu-item (click)="toggleDark()">Toggle Dark Mode</button>
           <button mat-menu-item color="warn" 
             style="color: #e30b0b;font-size: 16px; font-weight: 500;" 

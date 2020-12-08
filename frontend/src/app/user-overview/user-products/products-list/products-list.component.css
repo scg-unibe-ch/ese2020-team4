@@ -10,8 +10,7 @@ th {
     display: flex;
     flex-direction: column;
     text-align: left;
-    max-height: 2000px;
-    min-width: 1000px;
+    min-width: 1400px;
 }
   
 .mat-table {
@@ -21,15 +20,6 @@ th {
 th.mat-header-cell {
     text-align: left !important;
   }
-
-.container{
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    max-height: 2000px;
-    min-width: 1000px;
-}
-
 
 button.tableb {    
     height:25px;

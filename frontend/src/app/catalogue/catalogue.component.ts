@@ -17,6 +17,4 @@ export class CatalogueComponent {
 
 
   constructor(private httpClient: HttpClient) { }
-
-
 }
