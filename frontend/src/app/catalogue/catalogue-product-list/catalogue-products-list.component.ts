@@ -12,6 +12,10 @@ export interface ItemData {
   item: any;
 }
 
+/**
+ * page containing a list of all the products
+ */
+
 @Component({
   selector: 'catalogue-products-list',
   templateUrl: './catalogue-products-list.component.html',
@@ -25,12 +29,10 @@ export class CatalogueProductsListComponent implements OnInit {
 
   searchString = '';
   stringInTab = '';
-  // imageSearchStringTemp = '';
   imageSearchString = '';
   location = '';
   delivery = false;
-  available: boolean; //change backend first!
-  itemRank: number;  // idea was to add an attribute to product/services which corresponds to their itemRank (similarly to pageRank)
+  available: boolean;
   sell= false;
   lend= false;
 

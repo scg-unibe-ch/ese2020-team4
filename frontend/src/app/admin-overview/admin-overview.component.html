@@ -1,3 +1,4 @@
+<!--  
 <app-header></app-header>
 <mat-tab-group animationDuration="1ms" staticHeight>
   <mat-tab label="User list">
@@ -9,3 +10,32 @@
   </mat-tab>
 
 </mat-tab-group>
+ -->
+ <app-header></app-header>
+<div class = "admin-container">
+  <div class = "sidebar">
+    <div class = admin-bar>
+
+      <a [routerLink]="['admin-user-list']" routerLinkActive="selected" class="admin-item">
+      <i class="material-icons">keyboard_arrow_right</i>
+      User List
+      </a>
+
+       <a [routerLink]="['admin-product-list']" routerLinkActive= "selected" class="admin-item">
+      <i class="material-icons">keyboard_arrow_right</i>
+      Product List
+      </a>
+
+
+      
+   </div>
+
+   <app-scroll-to-top></app-scroll-to-top>
+
+ </div>
+
+
+ <div class="admin-content-container">
+   <router-outlet></router-outlet>
+</div>
+</div>

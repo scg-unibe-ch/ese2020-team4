@@ -8,6 +8,9 @@ import { ResetDialogComponent } from "./reset-dialog/reset-dialog.component";
 import { Router } from '@angular/router';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 
+/**
+ * A component to login.
+ */
 
 
 @Component({

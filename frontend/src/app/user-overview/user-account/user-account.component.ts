@@ -6,6 +6,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
 
+/**
+ * User account overview with personal details (e.g. username, email,etc.)
+ */
+
 @Component({
   selector: 'app-user-account',
   templateUrl: './user-account.component.html',
@@ -44,7 +48,7 @@ export class UserAccountComponent implements OnInit {
   getToken() {
     return this.userToken;
   }
-  
+
   ngOnInit(): void {
     this.editInfo = this.formBuilder.group({
       userName: [{value: this.userName, disabled: this.blocked}],
@@ -62,7 +66,7 @@ export class UserAccountComponent implements OnInit {
   checkUserStatus(): void {
     // Get user data from local storage
     this.userToken = localStorage.getItem('userToken');
-    
+
 
     this.httpClient.get(environment.endpointURL + 'user/getSpecific/' + localStorage.getItem('userId'), {}).subscribe((res: any) =>{
       this.userName = res.userName;
@@ -86,7 +90,7 @@ export class UserAccountComponent implements OnInit {
         tNumber : (this.tNumber)
         })
     });
-    
+
     this.userName = localStorage.getItem('userName');
     // Set boolean whether a user is logged in or not
     this.loggedIn = !!(this.userToken);
@@ -114,7 +118,7 @@ export class UserAccountComponent implements OnInit {
   }
 
   submit():void{
-    this.httpClient.put(environment.endpointURL + 'user/edit/'+ localStorage.getItem('userId'), 
+    this.httpClient.put(environment.endpointURL + 'user/edit/'+ localStorage.getItem('userId'),
     {
       "userName" : this.editInfo.get('userName').value!=null ? this.editInfo.get('userName').value : this.userName,
       "firstName": this.editInfo.get('firstName').value!=null ? this.editInfo.get('firstName').value : this.first,
@@ -126,12 +130,12 @@ export class UserAccountComponent implements OnInit {
       "tNumber": this.editInfo.get('tNumber').value!=null ? this.editInfo.get('tNumber').value : this.tNumber
 
     }).subscribe((res:any) =>{
-      
+
     })
     this.checkUserStatus();
     this.router.navigateByUrl('/main/available-products');
   }
-  
+
 
   /**
    * Function to access a secure endpoint that can only be accessed by logged in users by providing their token.

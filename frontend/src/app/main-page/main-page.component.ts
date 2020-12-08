@@ -6,6 +6,10 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 
+/**
+ * the main page.
+ */
+
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',

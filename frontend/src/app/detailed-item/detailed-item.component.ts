@@ -7,11 +7,16 @@ import {Item} from "../models/item";
 import {BuyComponent} from "../item-card/buy-dialog/buy-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 
+/**
+ * Component with detailed information about item from catalogue
+ */
+
 @Component({
   selector: 'app-detailed-item',
   templateUrl: './detailed-item.component.html',
   styleUrls: ['./detailed-item.component.css']
 })
+
 export class DetailedItemComponent implements OnInit {
   itemId;
   item: Item = new Item(null,null,null,null,null,null,null,null, null,null, null);
@@ -48,7 +53,7 @@ export class DetailedItemComponent implements OnInit {
           this.amountOfReviews = ' based on ' + res[1] + ' reviews';
         }
         this.sellerRating = res[0]  + 0.5;
-      },(err: any) => {console.log('test')});
+      },(err: any) => {console.log(err)});
 
     }, (err: HttpErrorResponse) => {
       this.router.navigateByUrl('/pageNotFound', { skipLocationChange: true });

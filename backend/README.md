@@ -9,3 +9,6 @@ You should have installed [NodeJS and npm](https://nodejs.org/en/download/) (the
 - run `npm install`
 - run `npm run dev`
 - open your browser with the url [http://localhost:3000](http://localhost:3000/)
+
+## Tests
+navigate to the folder containing all the tests (cd backend/src/tests) and type npm test in the CLI

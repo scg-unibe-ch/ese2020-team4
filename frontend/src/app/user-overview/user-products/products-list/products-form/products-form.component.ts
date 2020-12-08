@@ -4,6 +4,10 @@ import { Component, OnInit, Directive, Input, Inject } from '@angular/core';
 import {FormBuilder, FormGroup, Validators, NgControl, FormControl} from '@angular/forms';
 import { environment } from '../../../../../environments/environment';
 
+/**
+ * Products form component
+ */
+
 @Component({
   selector: 'products-form',
   templateUrl: './products-form.component.html',
@@ -76,7 +80,7 @@ export class ProductsFormComponent implements OnInit {
 
   selectImage(event) {
     if (event.target.files.length > 0) {
-      
+
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);

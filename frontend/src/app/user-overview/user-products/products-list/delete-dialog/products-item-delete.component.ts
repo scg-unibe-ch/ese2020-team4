@@ -3,6 +3,10 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
 
+/**
+ * Component with functionality to delete products
+ */
+
 @Component({
   selector: 'products-item-delete',
   templateUrl: './products-item-delete.component.html',

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
+/**
+ * The Admin Panel consisting of two tabs
+ */
+
 @Component({
   selector: 'app-admin-overview',
   templateUrl: './admin-overview.component.html',

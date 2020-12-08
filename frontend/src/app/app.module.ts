@@ -158,7 +158,10 @@ import {FlexLayoutModule} from '@angular/flex-layout';
             {path: 'main/your-product', component: UserProductsComponent, canActivate: [Guard]},
             {path: 'main/your-transaction', component: UserTransactionsComponent, canActivate: [Guard]},
             {path: 'main/account', component: UserAccountComponent, canActivate: [Guard]},
-            {path: 'main/admin-overview', component: AdminOverviewComponent, canActivate: [Guard], data: {expectedRole: 'admin'}},
+            {path: 'main/admin-overview', component: AdminOverviewComponent, canActivate: [Guard], data: {expectedRole: 'admin'},
+            children: [
+            {path: 'admin-user-list', component: UserListComponent},
+            {path: 'admin-product-list', component:  ProductListComponent}]},
             {path: 'login', component: UserLoginComponent},
             {path: 'register', component: UserRegistrationComponent},
             {path: '**', component: PageNotFoundComponent},

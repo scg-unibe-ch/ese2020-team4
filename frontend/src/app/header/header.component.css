@@ -70,6 +70,7 @@
     font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: 1.9rem;
     font-weight: 500;
+    outline: none;
   }
 
   .registerBtn{
@@ -193,4 +194,10 @@ input:checked + .slider:before {
 
 .example-margin {
   margin: 10px;
+}
+
+.header-bar {
+  position: sticky;
+  z-index: 1;
+  top: 0;
 }

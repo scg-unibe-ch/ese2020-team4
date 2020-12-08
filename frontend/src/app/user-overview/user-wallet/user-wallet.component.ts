@@ -3,6 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
 
+/**
+ * The component for the user to his wallet
+ */
+
 @Component({
   selector: 'app-user-wallet',
   templateUrl: './user-wallet.component.html',
@@ -25,12 +29,12 @@ export class UserWalletComponent implements OnInit {
     return this.currwallet;
   }
 
-  
+
   chargeAccount(): void {
 
     this.httpClient.put(environment.endpointURL + 'user/charge/'+ localStorage.getItem('userId'), {"wallet" : this.wallet}).subscribe((res:any) =>{
       this.getAccountBalance();
     })
   }
-  
+
 }

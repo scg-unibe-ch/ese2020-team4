@@ -5,7 +5,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgControl } from '@angular/forms';
 import { environment } from '../../../../../environments/environment';
 
-
+/**
+ * Component with functionality to edit products
+ */
 
 @Component({
   selector: 'edit-products-form',
@@ -15,7 +17,7 @@ import { environment } from '../../../../../environments/environment';
 export class EditProductsFormComponent implements OnInit {
   itemForm: FormGroup;
   public constructor(public dialogRef: MatDialogRef<EditProductsFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ItemData, private formBuilder: FormBuilder, private httpClient: HttpClient) { 
+    @Inject(MAT_DIALOG_DATA) public data: ItemData, private formBuilder: FormBuilder, private httpClient: HttpClient) {
   }
   secureEndpointResponse = '';
   hide = true;
@@ -23,7 +25,7 @@ export class EditProductsFormComponent implements OnInit {
   typeFlag = false;
   sellLendFlag = false;
   deliverys = "0";
-  
+
   ngOnInit() {
     this.itemForm = this.formBuilder.group({
       itemId: [''],
@@ -67,8 +69,8 @@ export class EditProductsFormComponent implements OnInit {
     else {
       this.flags[param] = false;
     }
-    } 
-    
+    }
+
   flagCheck(param): boolean {
     return this.flags[param]
   }

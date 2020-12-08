@@ -10,7 +10,8 @@ const userService = new UserService();
 
 userController.post('/register',
     (req: Request, res: Response) => {
-        userService.register(req.body).then(registered => res.send(registered)).catch(err => res.status(500).send(err));
+        userService.register(req.body).then(registered => res.status(200).send(registered)).catch(err => res.status(500).send(err));
+        // res.status(200).send('works');
     }
 );
 
@@ -19,7 +20,6 @@ userController.put('/edit/:id',
         User.findByPk(req.params.id)
         .then(found => {
             if (found != null) {
-                console.log(req.body);
                 found.update({
                     'userName': req.body.userName,
                     'firstName': req.body.firstName,
@@ -51,7 +51,6 @@ userController.put('/charge/:id', (req: Request, res: Response) => {
     User.findByPk(req.params.id)
         .then(found => {
             if (found != null) {
-                console.log(req.body);
                 found.update({'wallet': +found.wallet + +req.body.wallet}).then(updated => {
                     res.status(200).send(updated);
                 });
@@ -67,7 +66,6 @@ userController.put('/minusWallet/:id', (req: Request, res: Response) => {
     User.findByPk(req.params.id)
         .then(found => {
             if (found != null) {
-                console.log(req.body.price);
                 found.update({'wallet': +found.wallet - +req.body.price}).then(updated => {
                     res.status(200).send(updated);
                 });

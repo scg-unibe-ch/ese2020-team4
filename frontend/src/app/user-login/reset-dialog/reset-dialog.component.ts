@@ -3,7 +3,9 @@ import {FormGroup} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {HttpClient} from "@angular/common/http";
 import {environment} from '../../../environments/environment';
-
+/**
+ * A dialog Component for reseting your password.
+ */
 @Component({
   selector: 'app-reset-dialog',
   templateUrl: './reset-dialog.component.html',
@@ -26,7 +28,6 @@ export class ResetDialogComponent {
       this.response = res.message;
     }, (err: any) => {
 
-      console.log(err.error.message);
       this.response = err.error.message;
 
     }

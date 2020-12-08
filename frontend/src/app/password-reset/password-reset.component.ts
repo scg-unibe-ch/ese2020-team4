@@ -5,6 +5,9 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Router} from "@angular/router";
 
+/**
+ * A component for reseting the password.
+ */
 
 @Component({
   selector: 'app-password-reset',

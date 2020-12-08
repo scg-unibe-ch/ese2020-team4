@@ -11,6 +11,10 @@ import { environment } from '../../../../environments/environment';
 import {DeleteDialogComponent} from "../../../admin-overview/user-list/delete-dialog/delete-dialog.component";
 import {RatingDialogComponent} from "./rating-dialog/rating-dialog.component";
 
+/**
+ * component that manages the bought items of user
+ */
+
 @Component({
   selector: 'user-bought',
   templateUrl: './user-bought.component.html',

@@ -4,6 +4,9 @@ import {BuyServiceComponent} from "../catalogue/catalogue-service-list/buy-dialo
 import {MatDialog} from "@angular/material/dialog";
 import {BuyComponent} from "./buy-dialog/buy-dialog.component";
 import {ActivatedRoute, Router} from "@angular/router";
+/**
+ * Component that defines how items are displayed in catalogue
+ */
 
 @Component({
   selector: 'app-item-card',
