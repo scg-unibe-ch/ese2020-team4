@@ -14,9 +14,9 @@
       <mat-panel-description>
       </mat-panel-description>
     </mat-expansion-panel-header>
-  
-  
-  
+
+
+
   <div>
   <mat-accordion multi="False">
     <mat-expansion-panel>
@@ -28,8 +28,8 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <div class="searchbarI">
-        <input class="searchfield" [(ngModel)]="imageSearchStringTemp" (keyup.enter)="onClickReset()" type="text" placeholder="Image Search">
-        <button (click)="onClickReset()" matTooltip="Searches for specific Image Labels in Product" matTooltipPosition="below" matTooltipShowDelay= "500" >Search</button >
+        <input class="searchfield" [(ngModel)]="imageSearchString" (keyup.enter)="onClickFilter()" type="text" placeholder="Image Search">
+        <button (click)="onClickFilter()" matTooltip="Searches for specific Image Labels in Product" matTooltipPosition="below" matTooltipShowDelay= "500" >Search</button >
       </div>
     </mat-expansion-panel>
 

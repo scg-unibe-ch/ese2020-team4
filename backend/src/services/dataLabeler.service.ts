@@ -17,11 +17,11 @@ export class DataLabelCycle {
                     const metadata = new grpc.Metadata();
                     let finalName = ' ';
 
-                    metadata.set('authorization', 'Key ');
+                    metadata.set('authorization', 'Key');
 
                     stub.PostModelOutputs(
                         {
-                            model_id: 'aaa03c23b3724a16a56b629203edc62c',
+                        model_id: 'aa03c23b3724a16a56b629203edc62c',
                             inputs: [{data: {image: {base64: value.encodedPicture}}}]
                         },
                         metadata,

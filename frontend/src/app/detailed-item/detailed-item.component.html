@@ -4,12 +4,13 @@
 <hr>
 <h1><b>{{item.title}}</b></h1>
 <hr>
-<p><b>Price: </b>{{item.price}}    
+<p><b>Price: </b>{{item.price}}
   <button class="cartButton" mat-flat-button color="primary" (click)= "openDialog(item.itemId)">Add to Cart</button>
 </p>
 <hr>
 <p><b>Vendor: </b>{{sellerName}}   <ngb-rating [(rate)]="sellerRating" [readonly]="true" [max]="5">
   </ngb-rating>
+  <button class="cartButton" mat-flat-button color="primary"><a href="mailto:sellerMail">Contact</a></button>
 </p>
 <hr>
 <p><b>Type: </b>{{item.transactionType}}</p>

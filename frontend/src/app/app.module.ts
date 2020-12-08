@@ -154,7 +154,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
             },
             {path: 'checkout', component: CheckoutComponent},
             {path: 'reset/:id', component: PasswordResetComponent},
-            {path: '', redirectTo: '/main', pathMatch: 'full'},
+            {path: '', redirectTo: '/main/available-products', pathMatch: 'full'},
             {path: 'main/your-product', component: UserProductsComponent, canActivate: [Guard]},
             {path: 'main/your-transaction', component: UserTransactionsComponent, canActivate: [Guard]},
             {path: 'main/account', component: UserAccountComponent, canActivate: [Guard]},

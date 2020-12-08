@@ -62,7 +62,7 @@ export class MainPageComponent implements OnInit {
     this.roleId = localStorage.getItem('roleId');
     this.httpClient.get(environment.endpointURL + 'user/getSpecific/' + localStorage.getItem('userId'), {}).subscribe((res: any) =>{
       localStorage.setItem('userName', res.userName);
-    });
+    },(err: any) => {console.log('error no user found')});
 
   }
 
