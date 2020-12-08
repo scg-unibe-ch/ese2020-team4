@@ -7,11 +7,13 @@ import {Item} from "../models/item";
 import {BuyComponent} from "../item-card/buy-dialog/buy-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 
+
 @Component({
   selector: 'app-detailed-item',
   templateUrl: './detailed-item.component.html',
   styleUrls: ['./detailed-item.component.css']
 })
+
 export class DetailedItemComponent implements OnInit {
   itemId;
   item: Item = new Item(null,null,null,null,null,null,null,null, null,null, null);

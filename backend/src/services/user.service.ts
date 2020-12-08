@@ -12,7 +12,7 @@ export class UserService {
 
     public register(user: UserAttributes): Promise<UserAttributes> {
         const saltRounds = 12;
-
+        console.log('test');
         user.password = bcrypt.hashSync(user.password, saltRounds); // hashes the password, never store passwords as plaintext
         return User.findOne({
             where: {
@@ -30,6 +30,7 @@ export class UserService {
                         return Promise.reject({message: 'email is already taken'});
                     }
                 }
+                console.log('test2');
                 return User.create(user).then(inserted => Promise.resolve(inserted)).catch(err => Promise.reject(err));
             })
             .catch(err => Promise.reject({message: err}));
